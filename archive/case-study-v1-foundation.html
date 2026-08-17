@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juno — Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+
+/* ─── RESET ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ─── TOKENS ────────────────────────────────────────── */
+:root {
+  --cream:       #F5F1E8;
+  --cream-dark:  #EDE8DC;
+  --white:       #FFFFFF;
+  --green:       #5A8B6F;
+  --green-light: #EBF1EE;
+  --green-mid:   #9CB9A9;
+  --green-dark:  #1B2E22;
+  --gold:        #D4A86F;
+  --dark:        #1A1A1A;
+  --mid:         #6B7280;
+  --border:      #E5E7EB;
+  --border-green:#C8D9CE;
+}
+
+/* ─── BASE ──────────────────────────────────────────── */
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── LAYOUT ────────────────────────────────────────── */
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.container-narrow {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+@media (max-width: 768px) {
+  .container, .container-narrow { padding: 0 24px; }
+}
+
+/* ─── NAVIGATION ────────────────────────────────────── */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(245, 241, 232, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.site-nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark);
+  letter-spacing: 0.01em;
+}
+.nav-label span {
+  color: var(--mid);
+  font-weight: 400;
+}
+.nav-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+  background: var(--green-light);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+/* ─── HERO ──────────────────────────────────────────── */
+.hero {
+  background: var(--cream);
+  padding: 88px 0 0;
+  overflow: hidden;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 64px;
+  align-items: end;
+}
+.hero-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: clamp(64px, 9vw, 108px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--dark);
+  margin-bottom: 24px;
+}
+.hero-tagline {
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--mid);
+  max-width: 540px;
+  margin-bottom: 48px;
+}
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  margin-bottom: 16px;
+}
+.stat-item {
+  padding: 0 24px 0 0;
+  margin: 8px 24px 8px 0;
+  border-right: 1px solid var(--border);
+}
+.stat-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+.stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 3px;
+}
+.stat-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+}
+.research-note {
+  font-size: 12px;
+  color: var(--mid);
+  line-height: 1.5;
+  max-width: 520px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+.research-note strong { color: var(--dark); }
+.hero-visual {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.hero-screen {
+  width: 340px;
+  border-radius: 24px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.08);
+  display: block;
+  cursor: zoom-in;
+}
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { justify-content: flex-start; }
+  .hero-screen { width: 280px; }
+}
+
+/* ─── OPENING STATEMENT ─────────────────────────────── */
+.opening {
+  background: var(--white);
+  padding: 96px 0;
+}
+.opening-text {
+  font-size: clamp(19px, 2.2vw, 24px);
+  line-height: 1.65;
+  color: var(--dark);
+  font-weight: 400;
+}
+.opening-text em {
+  font-style: italic;
+  color: var(--mid);
+}
+.opening-insight {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  font-size: clamp(16px, 1.8vw, 18px);
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+/* ─── SECTION SHELL ─────────────────────────────────── */
+.section { padding: 96px 0; }
+.section-lg { padding: 120px 0; }
+.section-sm { padding: 64px 0; }
+.section-white { background: var(--white); }
+.section-cream { background: var(--cream); }
+.section-green-light { background: var(--green-light); }
+.section-dark { background: var(--green-dark); color: var(--white); }
+
+.section-number {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.section-dark .section-number { color: var(--green-mid); }
+
+.section-title {
+  font-size: clamp(30px, 4vw, 50px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--dark);
+  margin-bottom: 24px;
+}
+.section-dark .section-title { color: var(--white); }
+
+.section-intro {
+  font-size: clamp(17px, 1.8vw, 20px);
+  line-height: 1.65;
+  color: var(--mid);
+  max-width: 640px;
+}
+.section-dark .section-intro { color: rgba(255,255,255,0.65); }
+
+.section-body {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--dark);
+}
+.section-body p + p { margin-top: 20px; }
+
+/* ─── PULL QUOTE ────────────────────────────────────── */
+.pull-quote {
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--green);
+  border-left: 3px solid var(--green);
+  padding-left: 28px;
+  margin: 48px 0;
+}
+
+/* ─── DIAGRAM BLOCK ─────────────────────────────────── */
+.diagram-block {
+  margin-top: 64px;
+}
+.diagram-block img,
+.diagram-block object {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  cursor: zoom-in;
+}
+.diagram-caption {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--mid);
+  text-align: center;
+  font-style: italic;
+}
+
+/* ─── OBSERVATIONS GRID ─────────────────────────────── */
+.observations-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  margin-top: 56px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.observation-card {
+  background: var(--white);
+  padding: 36px;
+}
+.observation-card:nth-child(even) { background: #FAFAF9; }
+.observation-number {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.observation-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.observation-body {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--mid);
+}
+
+@media (max-width: 680px) {
+  .observations-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── PRINCIPLES GRID ───────────────────────────────── */
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  margin-top: 56px;
+}
+.principle-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 32px;
+  border: 1px solid var(--border-green);
+}
+.principle-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.principle-body {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--mid);
+}
+
+/* ─── DECISIONS ─────────────────────────────────────── */
+.decision-block {
+  padding: 80px 0;
+  border-top: 1px solid var(--border);
+}
+.decision-block:first-child { border-top: none; padding-top: 0; }
+.decision-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 16px;
+}
+.decision-flag::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--border);
+}
+.decision-title {
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--dark);
+  margin-bottom: 24px;
+  max-width: 640px;
+}
+.decision-layout {
+  display: grid;
+  gap: 64px;
+  align-items: start;
+  margin-top: 48px;
+}
+.decision-layout.text-left  { grid-template-columns: 1fr 1fr; }
+.decision-layout.text-right { grid-template-columns: 1fr 1fr; }
+.decision-layout.text-right .decision-text { order: 2; }
+.decision-layout.text-right .decision-visual { order: 1; }
+.decision-layout.text-top {
+  grid-template-columns: 1fr;
+}
+.decision-text p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--mid);
+  margin-bottom: 16px;
+}
+.decision-text p strong { color: var(--dark); }
+.decision-insight {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--dark);
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .decision-layout.text-left,
+  .decision-layout.text-right { grid-template-columns: 1fr; }
+  .decision-layout.text-right .decision-text,
+  .decision-layout.text-right .decision-visual { order: unset; }
+}
+
+/* ─── SCREENSHOT STYLES ─────────────────────────────── */
+.screenshot {
+  display: block;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
+  width: 100%;
+  cursor: zoom-in;
+}
+.screenshot-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+.screenshot-pair-label {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 16px;
+}
+.pair-caption {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--dark);
+  padding: 24px;
+  background: var(--green-light);
+  border-radius: 12px;
+  margin-top: 8px;
+}
+.pair-item {}
+.pair-item-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.annotation-list {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.annotation-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  align-items: start;
+}
+.annotation-key {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark);
+}
+.annotation-val {
+  font-size: 13px;
+  color: var(--mid);
+  text-align: right;
+}
+.annotation-item.single-col { grid-template-columns: 1fr; }
+.annotation-item.single-col .annotation-key {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--mid);
+}
+.annotation-item.single-col .annotation-key strong { color: var(--dark); font-weight: 600; }
+
+@media (max-width: 640px) {
+  .screenshot-pair { grid-template-columns: 1fr; }
+  .pair-caption { grid-column: 1; }
+}
+
+/* ─── CHAT SEQUENCE ─────────────────────────────────── */
+.chat-sequence {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+.chat-sequence-caption {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--mid);
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+@media (max-width: 640px) {
+  .chat-sequence { grid-template-columns: 1fr; }
+  .chat-sequence-caption { grid-column: 1; }
+}
+
+/* ─── GOVERNANCE LAYOUT ─────────────────────────────── */
+.governance-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+  margin-top: 48px;
+}
+.governance-diagram img {
+  width: 100%;
+  max-width: 420px;
+  display: block;
+  border-radius: 12px;
+  cursor: zoom-in;
+}
+@media (max-width: 900px) {
+  .governance-layout { grid-template-columns: 1fr; }
+}
+
+/* ─── SURFACE TABLE ─────────────────────────────────── */
+.surface-table {
+  width: 100%;
+  margin-top: 48px;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.surface-table th {
+  background: var(--green);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  text-align: left;
+}
+.surface-table td {
+  padding: 16px 20px;
+  font-size: 15px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.surface-table tr:last-child td { border-bottom: none; }
+.surface-table tr:nth-child(even) td { background: var(--cream); }
+.surface-table td:first-child { font-weight: 600; color: var(--dark); }
+.surface-table td:last-child { color: var(--mid); font-style: italic; }
+
+/* ─── ECOSYSTEM SECTION ─────────────────────────────── */
+.ecosystem-diagram-wrapper {
+  margin-top: 64px;
+  text-align: center;
+}
+.ecosystem-diagram-wrapper img {
+  max-width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+  cursor: zoom-in;
+}
+
+/* ─── BRAND SECTION ─────────────────────────────────── */
+.brand-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+  margin-top: 56px;
+}
+.brand-points { display: flex; flex-direction: column; gap: 32px; }
+.brand-point {}
+.brand-point-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+.brand-point-body {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--mid);
+}
+.brand-visual { position: relative; }
+.brand-visual img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.14);
+  cursor: zoom-in;
+}
+@media (max-width: 900px) {
+  .brand-layout { grid-template-columns: 1fr; }
+}
+
+/* ─── PRODUCT GALLERY ───────────────────────────────── */
+.gallery-intro {
+  padding: 80px 0 56px;
+}
+.gallery-intro .section-number { color: var(--green-mid); }
+.gallery-intro .section-title { color: var(--white); }
+.gallery-intro .section-intro { color: rgba(255,255,255,0.55); }
+
+.screens-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 0 0 96px;
+}
+.screen-item {}
+.screen-item img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.35);
+  display: block;
+  cursor: zoom-in;
+}
+.screen-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-top: 16px;
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .screens-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .screens-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* ─── REFLECTION ────────────────────────────────────── */
+.reflection-header {
+  margin-bottom: 64px;
+}
+.reflection-items {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.reflection-item {
+  padding: 36px 40px;
+  background: var(--white);
+}
+.reflection-item:nth-child(even) { background: #FAFAF9; }
+.reflection-question {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+.reflection-detail {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--mid);
+}
+.prototype-note {
+  margin-top: 56px;
+  padding: 32px 36px;
+  background: var(--green-light);
+  border-radius: 14px;
+  border: 1px solid var(--border-green);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--mid);
+}
+.prototype-note strong { color: var(--dark); }
+
+/* ─── FOOTER ────────────────────────────────────────── */
+.site-footer {
+  background: var(--dark);
+  padding: 56px 0;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+.footer-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+.footer-meta {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 4px;
+}
+.footer-right {
+  text-align: right;
+}
+.footer-note {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-right { text-align: center; }
+}
+
+/* ─── DIVIDER ───────────────────────────────────────── */
+.section-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0;
+}
+
+/* ─── LIGHTBOX ──────────────────────────────────────── */
+#lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  padding: 32px;
+}
+#lightbox-overlay.active { display: flex; }
+#lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 32px 96px rgba(0,0,0,0.5);
+}
+#lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  color: rgba(255,255,255,0.7);
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+  font-weight: 300;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+#lightbox-close:hover { color: white; }
+
+/* ─── UTILITIES ─────────────────────────────────────── */
+.mt-8  { margin-top: 8px;  }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.mt-64 { margin-top: 64px; }
+strong { font-weight: 600; }
+
+</style>
+</head>
+<body>
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- NAV                                                 -->
+<!-- ─────────────────────────────────────────────────── -->
+<nav class="site-nav">
+  <div class="container">
+    <div class="nav-label">Juno <span>— Case Study</span></div>
+    <div class="nav-tag">Product Design</div>
+  </div>
+</nav>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- HERO                                                -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <div class="hero-content">
+        <div class="hero-kicker">Community Platform · 2025</div>
+        <h1>Juno</h1>
+        <p class="hero-tagline">Designing a growth ecosystem for homemaker entrepreneurs</p>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-label">Role</div>
+            <div class="stat-value">Independent Product Design</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Platform</div>
+            <div class="stat-value">Mobile · iOS</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Prototype</div>
+            <div class="stat-value">Figma Make</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Screens</div>
+            <div class="stat-value">41</div>
+          </div>
+        </div>
+
+        <p class="research-note">
+          <strong>Research context:</strong> Problem space informed by a prior group research project,
+          <em>Beyond the Household: A case study of how Indian homemakers create businesses.</em>
+        </p>
+      </div>
+
+      <div class="hero-visual">
+        <img
+          src="Screens visuals/ConnectionsScreen/Connections radar 1.png"
+          alt="Juno Connections screen showing an orbital radar with bee-icon nodes representing nearby homemaker entrepreneurs"
+          class="hero-screen"
+          data-lightbox
+        >
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- OPENING STATEMENT                                   -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="opening">
+  <div class="container-narrow">
+    <p class="opening-text">
+      A home baker in Whitefield tracks her orders in WhatsApp, learns pricing from YouTube,
+      manages her task list in a notebook, and finds her packaging supplier through word of mouth.
+      She is not underserved by technology in the abstract.
+      She is underserved by the <em>gaps between the tools she already uses.</em>
+    </p>
+    <p class="opening-insight">
+      That observation came from prior research studying homemaker entrepreneurs across Bangalore.
+      The research identified networking as a key opportunity area. But the more carefully I examined
+      the findings, the clearer it became that networking was a symptom, not the problem.
+      The real problem was fragmentation. Juno is my individual response to that problem:
+      a community platform designed not to introduce new tools, but to connect the ones that already exist.
+    </p>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 01 — THE PROBLEM                                    -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="section-number">01</div>
+    <h2 class="section-title">The problem was<br>never networking</h2>
+
+    <div class="container-narrow" style="padding: 0; max-width: 660px;">
+      <p class="section-intro mt-24">
+        Research surfaced a consistent picture. One participant described her business:
+        <em>"Mostly I contact customers personally through WhatsApp and accept custom made cake orders
+        based on preferences."</em>
+      </p>
+
+      <p class="section-body mt-24">
+        Her business runs on WhatsApp. Her learning runs on YouTube. Her operations run on
+        informal systems she designed herself. Nothing connects. Each growth action requires
+        context-switching, re-entering the same information, and losing the accumulative value
+        of what came before.
+      </p>
+
+      <p class="section-body mt-16">
+        The research identified four directions: skill monetization, learning hubs, community and
+        networking, and work-life balance. The community direction was where I began. But I kept
+        returning to the same question: what would it take to design a system where learning,
+        networking, operations, and contribution didn't compete for the user's limited time —
+        but reinforced each other?
+      </p>
+
+      <blockquote class="pull-quote">
+        "The problem was never networking. The problem was fragmented growth.
+        Networking was simply one symptom."
+      </blockquote>
+    </div>
+
+    <div class="diagram-block">
+      <img
+        src="Diagrams/fragmentation-diagram.svg"
+        alt="Five disconnected tools — WhatsApp, YouTube, Notebook, Personal Contacts, Word of Mouth — floating in isolation with no connecting lines"
+        data-lightbox
+      >
+      <p class="diagram-caption">
+        Five tools. Five contexts. No connection between them. This is the operating environment Juno was designed to replace.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 02 — THE USER                                       -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="section section-white">
+  <div class="container">
+    <div class="section-number">02</div>
+    <h2 class="section-title">A business that<br>lives between tools</h2>
+
+    <p class="section-intro mt-24">
+      The research studied homemakers at three stages. Juno's primary audience is the middle:
+      women with a working home business who are actively trying to grow, but haven't yet
+      formalized their operations or built a network beyond their immediate circle.
+      Bakers, tailors, pickle makers, handicraft sellers, beauty practitioners —
+      varied businesses, remarkably consistent operating patterns.
+    </p>
+
+    <div class="observations-grid mt-48">
+      <div class="observation-card">
+        <div class="observation-number">Observation 01</div>
+        <div class="observation-title">Learning happens through people, not curricula</div>
+        <p class="observation-body">
+          Users learn through conversations, shared experiences, and peer stories — not formal
+          business education. The Learning Hub centers community stories and peer-led sessions
+          because that reflects how learning actually works for this user group.
+        </p>
+      </div>
+      <div class="observation-card">
+        <div class="observation-number">Observation 02</div>
+        <div class="observation-title">Trust drives every transaction</div>
+        <p class="observation-body">
+          Vendor recommendations, customer referrals, and community introductions all happen
+          through personally vouched channels. Users don't transact with strangers — they transact
+          with people someone they trust has already introduced. This became the foundation of the
+          connection and privacy systems.
+        </p>
+      </div>
+      <div class="observation-card">
+        <div class="observation-number">Observation 03</div>
+        <div class="observation-title">WhatsApp is the operating system</div>
+        <p class="observation-body">
+          For customer communication, order management, community groups, and vendor sharing,
+          WhatsApp isn't a preference — it's the infrastructure the entire business runs on.
+          Designing against it would mean competing with the platform where the business already lives.
+        </p>
+      </div>
+      <div class="observation-card">
+        <div class="observation-number">Observation 04</div>
+        <div class="observation-title">Operations run on daily tasks</div>
+        <p class="observation-body">
+          These users don't think in terms of business management dashboards. They think:
+          <em>what needs to be completed today?</em> This shaped My Business's entry point —
+          not a performance overview, but a task list. The familiar checklist, made operational.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 03 — DESIGN PRINCIPLES                              -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="section section-green-light">
+  <div class="container">
+    <div class="section-number">03</div>
+    <h2 class="section-title">Five beliefs before<br>any screens</h2>
+
+    <p class="section-intro mt-24">
+      These are the beliefs that drove each decision point where there was a genuine choice between
+      alternatives. They're not principles identified in retrospect.
+    </p>
+
+    <div class="principles-grid">
+      <div class="principle-card">
+        <div class="principle-title">Community as infrastructure, not feature</div>
+        <p class="principle-body">
+          Community is not one tab. It is the foundation that makes learning, networking, and business
+          growth possible. Without it, every other surface loses most of its value. Community health
+          is a product responsibility, not a moderation afterthought.
+        </p>
+      </div>
+      <div class="principle-card">
+        <div class="principle-title">Trust before visibility</div>
+        <p class="principle-body">
+          Most platforms default to full visibility and let users manage privacy in settings.
+          Juno inverts this. A user's phone number, WhatsApp, and email are hidden until a
+          connection is established. Trust unlocks identity — not the other way around.
+        </p>
+      </div>
+      <div class="principle-card">
+        <div class="principle-title">Familiar over new</div>
+        <p class="principle-body">
+          Users already have working mental models: WhatsApp messages, checklist tasks, card-based
+          recommendations. The product builds on those rather than replacing them. Every place where
+          a familiar interaction model was available, it was chosen over an original one.
+        </p>
+      </div>
+      <div class="principle-card">
+        <div class="principle-title">Systems over screens</div>
+        <p class="principle-body">
+          Individual screens were never optimized in isolation. Decisions were made based on how
+          entire loops functioned — whether the Learning surface fed back into Home, whether Create
+          content reached the right people, whether vendor sharing circulated or dead-ended.
+        </p>
+      </div>
+      <div class="principle-card">
+        <div class="principle-title">Value should circulate</div>
+        <p class="principle-body">
+          Knowledge, introductions, supplier recommendations, and business stories should move
+          through the network as transferable objects — not remain locked in individual relationships.
+          Every sharing mechanism in the product exists to serve this principle.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 04 — THE DECISIONS                                  -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="section section-white">
+  <div class="container">
+    <div class="section-number">04</div>
+    <h2 class="section-title">The decisions that<br>made it different</h2>
+    <p class="section-intro mt-24">
+      These are the decisions that had real alternatives — where a different choice would have
+      produced a materially different product.
+    </p>
+  </div>
+</section>
+
+<!-- Decision A: Trust Architecture -->
+<section class="section-sm section-white">
+  <div class="container">
+    <div class="decision-block" style="padding-top: 0; border-top: none;">
+
+      <div class="decision-flag">Decision A</div>
+      <h3 class="decision-title">Trust architecture:<br>progressive identity reveal</h3>
+
+      <div class="decision-layout text-top">
+        <div class="decision-text">
+          <p>
+            The standard approach to user profiles is full visibility, with privacy managed through settings.
+            For homemaker entrepreneurs — many operating out of their homes, building networks in their local
+            neighbourhoods, navigating a genuine tension between professional visibility and personal safety —
+            this creates real disincentives to participate.
+          </p>
+          <p>
+            <strong>Discovery state:</strong> business work is visible. Name, trade, location, products, and
+            reviews are accessible. Contact information is withheld behind an explicit prompt.
+          </p>
+          <p>
+            <strong>Connected state:</strong> full contact becomes visible. WhatsApp is promoted to the
+            primary action button. The profile reads as a trusted colleague, not a public listing.
+          </p>
+          <p class="decision-insight">
+            This has structural consequences throughout the product. The radar shows bee avatars — not photos —
+            for unconnected users. Privacy is not a settings toggle. It is built into the information architecture.
+          </p>
+        </div>
+      </div>
+
+      <div class="screenshot-pair mt-48">
+        <div class="pair-item">
+          <div class="pair-item-label">Before connection</div>
+          <img
+            src="Screens visuals/User profile screen/UserProfileScreen-Non connected state.png"
+            alt="User profile in discovery state — bee avatar visible, contact details hidden, Connect button prominent"
+            class="screenshot"
+            data-lightbox
+          >
+        </div>
+        <div class="pair-item">
+          <div class="pair-item-label">After connection</div>
+          <img
+            src="Screens visuals/User profile screen/UserProfileScreen-Connected State.png"
+            alt="User profile in connected state — WhatsApp promoted to primary action, phone number and email now visible"
+            class="screenshot"
+            data-lightbox
+          >
+        </div>
+        <div class="pair-caption">
+          Same user. Same profile. Different trust state.
+        </div>
+      </div>
+
+      <div class="annotation-list mt-32" style="max-width: 680px;">
+        <div class="annotation-item single-col">
+          <div class="annotation-key"><strong>Bee avatar (discovery state)</strong> — Identity protected until trust is established. The mascot solves brand recognition, privacy, and radar visualization simultaneously.</div>
+        </div>
+        <div class="annotation-item single-col">
+          <div class="annotation-key"><strong>"Connect to view contact details"</strong> — The gate is explicit, not hidden in settings. The user understands the exchange before committing.</div>
+        </div>
+        <div class="annotation-item single-col">
+          <div class="annotation-key"><strong>WhatsApp as primary action (connected state)</strong> — Promoted from secondary button to primary CTA. The platform where her business runs becomes the primary path.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Decision B: Governance -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="decision-block" style="padding-top: 0; border-top: none;">
+
+      <div class="decision-flag">Decision B</div>
+      <h3 class="decision-title">Governance-based learning</h3>
+
+      <div class="governance-layout">
+        <div class="governance-diagram">
+          <img
+            src="Diagrams/governance-tier-diagram.svg"
+            alt="Three-tier governance diagram showing Beginner, Intermediate, and Mentor levels with earned progression arrows"
+            data-lightbox
+          >
+        </div>
+        <div class="decision-text">
+          <p>
+            Open publishing maximises contribution but degrades content quality over time.
+            Full central moderation protects quality but creates a bottleneck that doesn't scale.
+            Most platforms choose one and accept the tradeoff.
+          </p>
+          <p>
+            <strong>Beginner</strong> — content requires approval before publishing. The reviewer bears
+            accountability for quality until the author has established a track record.
+          </p>
+          <p>
+            <strong>Intermediate</strong> — demonstrated experience unlocks direct publishing of
+            workshops and lessons.
+          </p>
+          <p>
+            <strong>Mentor</strong> — earns participation in the approval process itself, contributing
+            to the governance of the system, not just its content.
+          </p>
+          <p class="decision-insight">
+            Experience should influence authority. A beginner sharing a raw observation is different
+            from a mentor teaching a validated method. The governance system encodes that difference
+            into the product structure rather than relying on moderation to correct it after the fact.
+          </p>
+          <div class="mt-32">
+            <div class="pair-item-label" style="text-align: left; margin-bottom: 12px;">Governance in the publish flow</div>
+            <img
+              src="Screens visuals/ShareJourneyScreen/Share journey full frame.png"
+              alt="Share your journey screen showing an Intermediary governance badge, confirming direct publish rights"
+              class="screenshot"
+              style="max-width: 320px;"
+              data-lightbox
+            >
+            <p style="font-size: 13px; color: var(--mid); margin-top: 12px; font-style: italic;">
+              The "Intermediary" badge confirms direct publishing rights. A Beginner submitting the same form enters a review queue.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Decision C: Create as Engine -->
+<section class="section section-white">
+  <div class="container">
+    <div class="decision-block" style="padding-top: 0; border-top: none;">
+
+      <div class="decision-flag">Decision C</div>
+      <h3 class="decision-title">Create replacing Collaborate</h3>
+
+      <div class="decision-layout text-left">
+        <div class="decision-text">
+          <p>
+            An earlier version of the navigation included a Collaborate section — a destination for
+            users to find collaborative projects. It was removed.
+          </p>
+          <p>
+            The diagnosis: Collaborate existed as a destination without a behavioural trigger.
+            Users could browse collaboration opportunities, but nothing in the product created the
+            conditions for collaboration to emerge organically. It was a feature waiting for behaviour
+            the product wasn't generating.
+          </p>
+          <p>
+            Create replaced it — in the centre of the navigation bar.
+          </p>
+          <p class="decision-insight">
+            Without contribution, the learning surface goes static, the home feed loses its human
+            texture, and the community has no new reasons to engage. Create is not a content feature —
+            it is the mechanism that keeps the ecosystem alive.
+          </p>
+          <div class="annotation-list mt-32">
+            <div class="annotation-item single-col">
+              <div class="annotation-key"><strong>Share your journey</strong> → feeds the Learning Hub peer stories section</div>
+            </div>
+            <div class="annotation-item single-col">
+              <div class="annotation-key"><strong>Add a lesson</strong> → feeds the structured content library</div>
+            </div>
+            <div class="annotation-item single-col">
+              <div class="annotation-key"><strong>Update a milestone</strong> → feeds the Home community milestones carousel</div>
+            </div>
+            <div class="annotation-item single-col">
+              <div class="annotation-key"><strong>Host a workshop</strong> → feeds Learning Hub and Connections live sessions</div>
+            </div>
+          </div>
+        </div>
+        <div class="decision-visual">
+          <div class="pair-item-label" style="text-align: center; margin-bottom: 12px;">Create — always one tap away</div>
+          <img
+            src="Screens visuals/ShareJourneyScreen/Share Journey 1.png"
+            alt="Create bottom sheet showing four contribution options: Share your journey, Add a lesson, Update a milestone, Host a workshop"
+            class="screenshot"
+            data-lightbox
+          >
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Decision D: Value Circulation -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="decision-block" style="padding-top: 0; border-top: none;">
+
+      <div class="decision-flag">Decision D</div>
+      <h3 class="decision-title">Value circulation loops</h3>
+
+      <div class="decision-layout text-top">
+        <div class="decision-text" style="max-width: 680px;">
+          <p>
+            Research showed that vendor recommendations and peer introductions are among the
+            highest-trust forms of business knowledge in this community. A baker who found a
+            reliable packaging supplier will tell another baker who asks. The product encodes
+            this behaviour structurally.
+          </p>
+          <p>
+            Vendors in My Business can be shared as rich cards in chat conversations — not a
+            name to search for, but a card with business category, location, phone number, and
+            a tagline. A recommendation becomes a structured, actionable object.
+            The same mechanism applies to connections: a trusted peer can be introduced through
+            a shareable profile card.
+          </p>
+        </div>
+      </div>
+
+      <div class="chat-sequence">
+        <div>
+          <div class="pair-item-label" style="text-align: center; margin-bottom: 12px;">The conversation</div>
+          <img
+            src="Screens visuals/ChatScreen Vendor/Chat screen.png"
+            alt="Chat conversation between two bakers discussing packaging, ending with 'Can you share their contact?'"
+            class="screenshot"
+            data-lightbox
+          >
+        </div>
+        <div>
+          <div class="pair-item-label" style="text-align: center; margin-bottom: 12px;">The structured response</div>
+          <img
+            src="Screens visuals/ChatScreen Vendor/Vendor card sent.png"
+            alt="Chat showing a vendor card for ABC Packaging Solutions with location, phone number, and direct call/message actions"
+            class="screenshot"
+            data-lightbox
+          >
+        </div>
+        <p class="chat-sequence-caption">
+          A verbal recommendation becomes a structured, reusable object.<br>
+          The recipient receives location, contact, and context — and can act immediately.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Decision E: WhatsApp -->
+<section class="section section-white">
+  <div class="container">
+    <div class="decision-block" style="padding-top: 0; border-top: none;">
+
+      <div class="decision-flag">Decision E</div>
+      <h3 class="decision-title">WhatsApp as partner,<br>not competitor</h3>
+
+      <div class="decision-layout text-right">
+        <div class="decision-text">
+          <p>
+            Building an internal messaging system that competes with WhatsApp would mean asking
+            users to migrate the platform where their entire business already lives. The research
+            made this clear: the observation wasn't that these users wished they had a different
+            communication tool — it was that WhatsApp <em>was</em> their communication infrastructure.
+          </p>
+          <p>
+            Every WhatsApp integration point was a deliberate design decision: the primary action on
+            connected profiles, quick-action buttons on customer and vendor cards, community groups
+            listed on business profiles, and — most directly — how live learning sessions are
+            registered for.
+          </p>
+          <p class="decision-insight">
+            To join a live expert session, you receive the link on WhatsApp. Not an in-app
+            notification. Not an email. WhatsApp — because that is where this user will
+            actually see it and act on it.
+          </p>
+        </div>
+        <div class="decision-visual">
+          <div class="pair-item-label" style="text-align: center; margin-bottom: 12px;">Joining a session via WhatsApp</div>
+          <img
+            src="Screens visuals/Learning Hub/Learning with experts whatsapp form.png"
+            alt="Join via WhatsApp bottom sheet with phone number field and Get Link on WhatsApp CTA"
+            class="screenshot"
+            data-lightbox
+          >
+          <div class="annotation-list mt-16">
+            <div class="annotation-item single-col">
+              <div class="annotation-key"><strong>"Join via WhatsApp"</strong> — WhatsApp is the primary registration mechanism, not a notification preference</div>
+            </div>
+            <div class="annotation-item single-col">
+              <div class="annotation-key"><strong>"Get Link on WhatsApp" CTA</strong> — The session lives where the user already is</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 05 — THE ECOSYSTEM                                  -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="section-lg section-cream">
+  <div class="container">
+    <div class="section-number">05</div>
+    <h2 class="section-title">A system, not a collection<br>of features</h2>
+
+    <div class="container-narrow" style="padding: 0; max-width: 680px;">
+      <p class="section-intro mt-24">
+        The five surfaces in Juno are not five separate apps sharing a navigation bar.
+        They are nodes in a system with intentional feedback loops.
+      </p>
+      <p class="section-body mt-24">
+        Community generates questions, discussions, and peer stories. Learning provides structured
+        responses — paths, lessons, and expert sessions. Create returns new knowledge and experience
+        back to both surfaces. Connections enables the peer relationships that make learning and
+        contribution meaningful. My Business grounds everything in the daily operational reality of
+        running a home business.
+      </p>
+    </div>
+
+    <div class="ecosystem-diagram-wrapper">
+      <img
+        src="Ecosystem Diagram-official.png"
+        alt="Ecosystem diagram showing five surfaces — Create, Home, Learning, Connections, My Business — connected by value flows in a continuous cycle of compounding value"
+        data-lightbox
+      >
+      <p class="diagram-caption mt-16">
+        Value circulates. Every surface strengthens the others.
+      </p>
+    </div>
+
+    <div class="container-narrow mt-64" style="padding: 0; max-width: 760px;">
+      <p class="section-body">
+        Each surface was defined by the user intent it answers — not by the features that needed a home.
+        Every feature decision had a test: which intent does this serve, and does adding it
+        strengthen or dilute that answer?
+      </p>
+      <table class="surface-table mt-32">
+        <thead>
+          <tr>
+            <th>Surface</th>
+            <th>Intent question</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Home</td>
+            <td>What should I focus on today?</td>
+          </tr>
+          <tr>
+            <td>Connections</td>
+            <td>Who can help me grow?</td>
+          </tr>
+          <tr>
+            <td>Create</td>
+            <td>What can I contribute?</td>
+          </tr>
+          <tr>
+            <td>Learning</td>
+            <td>What can I learn?</td>
+          </tr>
+          <tr>
+            <td>My Business</td>
+            <td>How is my business performing?</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 06 — THE BRAND                                      -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="section section-white">
+  <div class="container">
+    <div class="section-number">06</div>
+    <h2 class="section-title">The brand as argument</h2>
+
+    <p class="section-intro mt-24">
+      Juno takes its name from the Roman goddess of women, guidance, protection, and transition —
+      supporting women through the move from homemaker to entrepreneur. The visual identity
+      makes three arguments.
+    </p>
+
+    <div class="brand-layout">
+      <div class="brand-points">
+        <div class="brand-point">
+          <div class="brand-point-title">Juno Green, not WhatsApp green</div>
+          <p class="brand-point-body">
+            The early colour palette sat close to WhatsApp's — a natural starting point for a product
+            built to integrate with it. But the conflict became clear: the product needed to look like
+            itself, not like WhatsApp. The colour system moved to a muted botanical sage that reads
+            as warm and community-oriented without trading on another platform's identity.
+          </p>
+        </div>
+        <div class="brand-point">
+          <div class="brand-point-title">Cream, not white</div>
+          <p class="brand-point-body">
+            White is efficient and neutral. Cream is warm and lived-in. The backgrounds signal
+            neighbourhood, not dashboard.
+          </p>
+        </div>
+        <div class="brand-point">
+          <div class="brand-point-title">The Tool-Bee</div>
+          <p class="brand-point-body">
+            The mascot solves four problems simultaneously: brand recognition (a distinctive,
+            ownable character), privacy (the universal avatar for every unconnected user),
+            community representation (the hive as a metaphor for collective growth), and
+            radar visualisation (bee nodes work in the orbital graph in a way generic icons do not).
+          </p>
+          <p class="brand-point-body mt-8" style="font-style: italic; color: var(--dark);">
+            The bee is not decorative. It is load-bearing.
+          </p>
+        </div>
+      </div>
+      <div class="brand-visual">
+        <img
+          src="Screens visuals/ConnectionsScreen/Connections page full view.png"
+          alt="Full Connections screen showing My People section with real photos of connected users, and the radar with bee avatars for unconnected users"
+          data-lightbox
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 07 — THE PRODUCT                                    -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="section-dark">
+  <div class="container">
+    <div class="gallery-intro">
+      <div class="section-number">07</div>
+      <h2 class="section-title">The product</h2>
+      <p class="section-intro">
+        41 screens. A working prototype built from Figma source via Figma Make.
+        Every screen answers one intent question.
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="screens-grid">
+      <div class="screen-item">
+        <img
+          src="Screens visuals/Homepage/Homepage above-the-fold view.png"
+          alt="Juno Home screen showing Community Milestones carousel and Trending Discussions with bee-avatar profiles"
+          data-lightbox
+        >
+        <div class="screen-label">Home</div>
+      </div>
+      <div class="screen-item">
+        <img
+          src="Screens visuals/ConnectionsScreen/Connections page full view.png"
+          alt="Juno Connections screen showing My People with connected user photos and the orbital radar below"
+          data-lightbox
+        >
+        <div class="screen-label">Connections</div>
+      </div>
+      <div class="screen-item">
+        <img
+          src="Screens visuals/Learning Hub/Learning Hub Above-the-fold view.png"
+          alt="Juno Learning Hub showing Continue Learning progress ring, Learning Paths section"
+          data-lightbox
+        >
+        <div class="screen-label">Learning</div>
+      </div>
+      <div class="screen-item">
+        <img
+          src="Screens visuals/My business/My business Above-the-fold view.png"
+          alt="Juno My Business screen showing Today's Tasks checklist with order and payment items, and consistency tracker"
+          data-lightbox
+        >
+        <div class="screen-label">My Business</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 08 — REFLECTION                                     -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="section section-cream">
+  <div class="container">
+    <div class="reflection-header">
+      <div class="section-number">08</div>
+      <h2 class="section-title">What I'd want<br>to learn next</h2>
+      <p class="section-intro mt-24">
+        Juno is a prototype — a high-fidelity hypothesis, not a validated product.
+        Several design decisions remain unvalidated, and the answers would materially change the product.
+      </p>
+    </div>
+
+    <div class="reflection-items">
+      <div class="reflection-item">
+        <div class="reflection-question">Does progressive identity reveal feel protective or obstructive?</div>
+        <p class="reflection-detail">
+          The trust architecture assumes users will connect first and evaluate contact later.
+          A user who wants to assess someone before committing to a connection request may experience
+          the gate as a barrier rather than a feature. Testing would surface whether the two-step
+          flow builds trust or creates friction at the wrong moment.
+        </p>
+      </div>
+      <div class="reflection-item">
+        <div class="reflection-question">Does the governance system build credibility or create gatekeeping?</div>
+        <p class="reflection-detail">
+          The tier structure assumes users will experience Beginner approval as appropriate scaffolding
+          rather than unnecessary restriction. If users interpret it as a barrier to contribution,
+          the system designed to protect content quality would instead suppress the contribution
+          the ecosystem needs to function.
+        </p>
+      </div>
+      <div class="reflection-item">
+        <div class="reflection-question">Does the radar communicate proximity or confuse?</div>
+        <p class="reflection-detail">
+          The orbital visualisation is conceptually coherent — distance as community. Whether users
+          read it that way immediately, or find it disorienting compared to a list, requires real
+          usage data. The toggle to List view addresses this, but only if users discover it.
+        </p>
+      </div>
+      <div class="reflection-item">
+        <div class="reflection-question">Is the WhatsApp integration deep enough?</div>
+        <p class="reflection-detail">
+          The current integrations are meaningful but additive — they sit alongside in-app flows
+          rather than replacing them. A more aggressive version of the "familiar over new" principle
+          would ask whether the product should eventually work <em>through</em> WhatsApp rather
+          than alongside it.
+        </p>
+      </div>
+    </div>
+
+    <div class="prototype-note mt-48">
+      <strong>About the prototype:</strong> The designs were built in Figma. The working prototype
+      was generated using Figma Make, which produced a functional React codebase from the Figma source.
+      This allowed focus on design quality, interaction logic, and the design system rather than on
+      implementation. All data is hardcoded. There is no backend, no real authentication, and no
+      live activity. The full tier governance system is designed — its implementation in the current
+      prototype is partial.
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- FOOTER                                              -->
+<!-- ─────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-name">Eshwar</div>
+        <div class="footer-meta">Product Designer</div>
+      </div>
+      <div class="footer-right">
+        <p class="footer-note">
+          Juno — Independent project, 2025<br>
+          Strategy · Information Architecture · Interaction Design · Visual Identity
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- LIGHTBOX                                            -->
+<!-- ─────────────────────────────────────────────────── -->
+<div id="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button id="lightbox-close" aria-label="Close image viewer">×</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+(function () {
+  var overlay = document.getElementById('lightbox-overlay');
+  var img     = document.getElementById('lightbox-img');
+  var btn     = document.getElementById('lightbox-close');
+
+  function open(src, alt) {
+    img.src = src;
+    img.alt = alt || '';
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    img.src = '';
+  }
+
+  document.querySelectorAll('[data-lightbox]').forEach(function (el) {
+    el.addEventListener('click', function () { open(el.src, el.alt); });
+  });
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) close();
+  });
+
+  btn.addEventListener('click', close);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+  });
+})();
+</script>
+
+</body>
+</html>

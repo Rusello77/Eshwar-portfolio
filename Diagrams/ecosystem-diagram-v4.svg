@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 740" width="1120" height="740">
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#5A8B6F"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1120" height="740" fill="#F5F1E8"/>
+
+  <!-- Diagram thesis -->
+  <text
+    x="560" y="34"
+    text-anchor="middle"
+    font-size="13" font-weight="600"
+    fill="#1A1A1A" letter-spacing="0.3"
+  >Five surfaces. One ecosystem.</text>
+
+  <!-- ================================================
+       ARROWS — drawn before nodes so nodes mask endpoints
+       ================================================ -->
+
+  <!-- ── PRIMARY ENGINE FLOWS (2.5px — Create is the generative source) ── -->
+
+  <!-- Create → Learning -->
+  <path d="M620,156 Q768,206 848,288"
+        fill="none" stroke="#5A8B6F" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="752" y="208" text-anchor="middle" font-size="10" fill="#6B7280">journeys + lessons</text>
+
+  <!-- Create → Home -->
+  <path d="M500,156 Q352,206 272,288"
+        fill="none" stroke="#5A8B6F" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="368" y="208" text-anchor="middle" font-size="10" fill="#6B7280">milestones, stories</text>
+
+  <!-- ── FEEDBACK FLOWS ── -->
+
+  <!-- Learning → Home (arcs north — upper half of knowledge loop) -->
+  <path d="M827,316 Q560,242 284,316"
+        fill="none" stroke="#5A8B6F" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="556" y="262" text-anchor="middle" font-size="10" fill="#6B7280">trending content</text>
+
+  <!-- Home → Learning (arcs south — lower half of knowledge loop) -->
+  <path d="M293,330 Q560,414 836,330"
+        fill="none" stroke="#5A8B6F" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="556" y="412" text-anchor="middle" font-size="10" fill="#6B7280">learning topics</text>
+
+  <!-- Knowledge loop annotation — geometric centre of the open space between the two arcs.
+       Upper arc passes through ~(558, 279); lower arc through ~(562, 372). y=330 sits 51px
+       below the upper arc and 42px above the lower arc — clear of both paths and their labels. -->
+  <text x="560" y="330"
+        text-anchor="middle"
+        font-size="10" font-style="italic"
+        fill="#6B7280" fill-opacity="0.6"
+  >knowledge loop</text>
+
+  <!-- Connections → Home (bridges lower cluster to upper) -->
+  <path d="M255,525 Q232,440 210,352"
+        fill="none" stroke="#5A8B6F" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="224" y="440" text-anchor="middle" font-size="10" fill="#6B7280">activity + introductions</text>
+
+  <!-- ── CHAT-MEDIATED FLOWS ── -->
+
+  <!-- Connections → Chat -->
+  <path d="M338,580 Q432,664 524,672"
+        fill="none" stroke="#5A8B6F" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Chat → Connections -->
+  <path d="M518,660 Q428,620 330,568"
+        fill="none" stroke="#5A8B6F" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- My Business → Chat -->
+  <path d="M782,580 Q688,664 596,672"
+        fill="none" stroke="#5A8B6F" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Chat → My Business -->
+  <path d="M602,660 Q692,620 790,568"
+        fill="none" stroke="#5A8B6F" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Chat flow labels — positioned in gap between main nodes and Chat oval -->
+  <text x="386" y="625" text-anchor="middle" font-size="10" fill="#6B7280">shared profiles</text>
+  <text x="386" y="641" text-anchor="middle" font-size="10" fill="#6B7280">peer introductions</text>
+  <text x="736" y="625" text-anchor="middle" font-size="10" fill="#6B7280">saved vendors</text>
+  <text x="736" y="641" text-anchor="middle" font-size="10" fill="#6B7280">vendor cards</text>
+
+  <!-- ================================================
+       NODES — drawn after arrows; white/green fill masks arrow ends
+       ================================================ -->
+
+  <!-- CREATE — engine node: full Juno Green, visually dominant anchor -->
+  <g transform="translate(455, 60)">
+    <rect width="210" height="96" rx="14" fill="#5A8B6F"/>
+    <text x="105" y="38" text-anchor="middle" font-size="17" font-weight="700" fill="#FFFFFF">Create</text>
+    <text x="105" y="60" text-anchor="middle" font-size="11" fill="#FFFFFF" fill-opacity="0.85">The contribution engine</text>
+  </g>
+
+  <!-- HOME — upper left -->
+  <g transform="translate(127, 277)">
+    <rect width="166" height="86" rx="12" fill="#FFFFFF" stroke="#5A8B6F" stroke-width="2"/>
+    <text x="83" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#5A8B6F">Home</text>
+    <text x="83" y="52" text-anchor="middle" font-size="10" fill="#6B7280">Community pulse + stories</text>
+  </g>
+
+  <!-- LEARNING — upper right -->
+  <g transform="translate(827, 277)">
+    <rect width="166" height="86" rx="12" fill="#FFFFFF" stroke="#5A8B6F" stroke-width="2"/>
+    <text x="83" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#5A8B6F">Learning</text>
+    <text x="83" y="52" text-anchor="middle" font-size="10" fill="#6B7280">Structured lessons + paths</text>
+  </g>
+
+  <!-- CONNECTIONS — lower left -->
+  <g transform="translate(172, 525)">
+    <rect width="166" height="86" rx="12" fill="#FFFFFF" stroke="#5A8B6F" stroke-width="2"/>
+    <text x="83" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#5A8B6F">Connections</text>
+    <text x="83" y="52" text-anchor="middle" font-size="10" fill="#6B7280">Peer network + introductions</text>
+  </g>
+
+  <!-- MY BUSINESS — lower right -->
+  <g transform="translate(782, 525)">
+    <rect width="166" height="86" rx="12" fill="#FFFFFF" stroke="#5A8B6F" stroke-width="2"/>
+    <text x="83" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#5A8B6F">My Business</text>
+    <text x="83" y="52" text-anchor="middle" font-size="10" fill="#6B7280">Orders, vendors + performance</text>
+  </g>
+
+  <!-- CHAT CONNECTOR — dashed oval signals mechanism, not primary surface -->
+  <ellipse cx="560" cy="672" rx="48" ry="22"
+           fill="#EBF1EE" stroke="#5A8B6F" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="560" y="676" text-anchor="middle" font-size="11" fill="#6B7280">Chat</text>
+
+  <!-- Closing principle -->
+  <text
+    x="560" y="716"
+    text-anchor="middle"
+    font-size="12" font-style="italic"
+    fill="#6B7280"
+  >Value circulates. Every surface strengthens the others.</text>
+
+</svg>

@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" width="1000" height="720">
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#5A8B6F"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="720" fill="#F5F1E8"/>
+
+  <!-- ================================================
+       ARROWS — drawn before nodes so nodes mask endpoints
+       ================================================ -->
+
+  <!-- Create → Learning  (lessons, journeys, workshops) -->
+  <path d="M548,145 Q682,196 756,265" fill="none" stroke="#5A8B6F" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="672" y="192" text-anchor="middle" font-size="10" fill="#6B7280">lessons</text>
+
+  <!-- Create → Home  (milestones, stories) -->
+  <path d="M452,145 Q318,196 244,265" fill="none" stroke="#5A8B6F" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="328" y="192" text-anchor="middle" font-size="10" fill="#6B7280">milestones</text>
+
+  <!-- Learning → Home  (surfaced trending content — arcs north) -->
+  <path d="M743,290 Q500,224 257,290" fill="none" stroke="#5A8B6F" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="500" y="246" text-anchor="middle" font-size="10" fill="#6B7280">trending content</text>
+
+  <!-- Home → Learning  (questions become learning topics — arcs south) -->
+  <path d="M257,305 Q500,374 743,305" fill="none" stroke="#5A8B6F" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="500" y="374" text-anchor="middle" font-size="10" fill="#6B7280">learning topics</text>
+
+  <!-- Connections → Home  (activity, introductions surface in feed) -->
+  <path d="M212,502 Q194,422 178,336" fill="none" stroke="#5A8B6F" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="189" y="420" text-anchor="middle" font-size="10" fill="#6B7280">activity</text>
+
+  <!-- Connections → Chat  (peer introductions, recommendations — arcs south) -->
+  <path d="M291,566 Q356,614 430,584" fill="none" stroke="#5A8B6F" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="357" y="616" text-anchor="middle" font-size="10" fill="#6B7280">introductions</text>
+
+  <!-- Chat → Connections  (shared profiles surface new connections — arcs north) -->
+  <path d="M454,575 Q360,547 291,542" fill="none" stroke="#5A8B6F" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="366" y="545" text-anchor="middle" font-size="10" fill="#6B7280">profiles</text>
+
+  <!-- My Business → Chat  (vendor cards shared in conversations — arcs south) -->
+  <path d="M709,566 Q644,614 570,584" fill="none" stroke="#5A8B6F" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="643" y="616" text-anchor="middle" font-size="10" fill="#6B7280">vendor cards</text>
+
+  <!-- Chat → My Business  (received vendor cards saved to vendor list — arcs north) -->
+  <path d="M558,575 Q640,547 709,542" fill="none" stroke="#5A8B6F" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="638" y="545" text-anchor="middle" font-size="10" fill="#6B7280">saved vendors</text>
+
+  <!-- ================================================
+       NODES — drawn after arrows; white fill masks arrow endpoints
+       ================================================ -->
+
+  <!-- CREATE — top center, engine node: larger + 3px border -->
+  <g transform="translate(405, 55)">
+    <rect width="190" height="90" rx="12" fill="#FFFFFF" stroke="#5A8B6F" stroke-width="3"/>
+    <text x="95" y="35" text-anchor="middle" font-size="16" font-weight="700" fill="#5A8B6F">Create</text>
+    <text x="95" y="54" text-anchor="middle" font-size="10" fill="#6B7280">What can I contribute?</text>
+  </g>
+
+  <!-- HOME — upper left -->
+  <g transform="translate(99, 254)">
+    <rect width="158" height="82" rx="12" fill="#FFFFFF" stroke="#5A8B6F" stroke-width="2"/>
+    <text x="79" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#5A8B6F">Home</text>
+    <text x="79" y="47" text-anchor="middle" font-size="10" fill="#6B7280">What should I focus</text>
+    <text x="79" y="60" text-anchor="middle" font-size="10" fill="#6B7280">on today?</text>
+  </g>
+
+  <!-- LEARNING — upper right -->
+  <g transform="translate(743, 254)">
+    <rect width="158" height="82" rx="12" fill="#FFFFFF" stroke="#5A8B6F" stroke-width="2"/>
+    <text x="79" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#5A8B6F">Learning</text>
+    <text x="79" y="52" text-anchor="middle" font-size="10" fill="#6B7280">What can I learn?</text>
+  </g>
+
+  <!-- CONNECTIONS — lower left -->
+  <g transform="translate(133, 502)">
+    <rect width="158" height="82" rx="12" fill="#FFFFFF" stroke="#5A8B6F" stroke-width="2"/>
+    <text x="79" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#5A8B6F">Connections</text>
+    <text x="79" y="52" text-anchor="middle" font-size="10" fill="#6B7280">Who can help me grow?</text>
+  </g>
+
+  <!-- MY BUSINESS — lower right -->
+  <g transform="translate(709, 502)">
+    <rect width="158" height="82" rx="12" fill="#FFFFFF" stroke="#5A8B6F" stroke-width="2"/>
+    <text x="79" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#5A8B6F">My Business</text>
+    <text x="79" y="47" text-anchor="middle" font-size="10" fill="#6B7280">How is my business</text>
+    <text x="79" y="60" text-anchor="middle" font-size="10" fill="#6B7280">performing?</text>
+  </g>
+
+  <!-- CHAT — bottom center: same styling, no intent question -->
+  <g transform="translate(421, 574)">
+    <rect width="158" height="82" rx="12" fill="#FFFFFF" stroke="#5A8B6F" stroke-width="2"/>
+    <text x="79" y="46" text-anchor="middle" font-size="15" font-weight="700" fill="#5A8B6F">Chat</text>
+  </g>
+
+</svg>

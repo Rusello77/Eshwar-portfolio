@@ -1,0 +1,720 @@
+# JUNO — DESIGN HISTORY & DECISION ARCHIVE
+
+## Project Overview
+
+Juno is a community-driven business growth platform designed for homemaker entrepreneurs. While the final product includes networking, learning, business management, content creation, and mentorship systems, the project did not begin with this scope.
+
+The product evolved through multiple iterations and strategic decisions that gradually transformed a simple networking concept into a privacy-first growth ecosystem.
+
+This document captures the thinking, rationale, tradeoffs, and design philosophy that shaped the project.
+
+---
+
+# 1. Project Origin
+
+## Where the Idea Came From
+
+Juno originated from a previous research project exploring the realities of homemakers running small businesses.
+
+During that project, one future opportunity stood out repeatedly:
+
+> Homemakers lacked a structured way to discover, learn from, and connect with others facing similar challenges.
+
+Initially, the idea was framed as a networking platform.
+
+However, as the project evolved, it became clear that networking alone would not solve the problem.
+
+The deeper issue was that homemakers were already operating within an ecosystem of disconnected tools and informal processes.
+
+Examples included:
+
+* WhatsApp for communication
+* YouTube for learning
+* Personal contacts for vendors
+* Handwritten notebooks for tracking tasks
+* Word-of-mouth referrals for networking
+
+The real opportunity was not to create another networking platform.
+
+The opportunity was to create a system that organized and connected these existing behaviors.
+
+---
+
+# 2. Understanding the User
+
+## Primary User Group
+
+The project focuses on homemaker entrepreneurs operating small and medium-scale home businesses.
+
+Common examples discussed throughout the project included:
+
+* Bakers
+* Tailors
+* Pickle and condiment sellers
+* Handicraft creators
+* Home-based product makers
+
+The typical age range considered was approximately 25–45 years.
+
+This decision was influenced less by demographic preference and more by interface considerations. The interaction patterns and feature complexity were not specifically designed for senior users.
+
+---
+
+## Key User Behaviors
+
+### Learning Through People
+
+A recurring observation was that users rarely learn through formal business education.
+
+Instead, learning often happens through:
+
+* Conversations
+* Shared experiences
+* Observation
+* Personal journeys
+* Community interactions
+
+This insight later became the foundation of the Learning and Create systems.
+
+---
+
+### Trust Through Referrals
+
+Users consistently relied on trusted recommendations.
+
+Examples included:
+
+* Vendor recommendations
+* Customer referrals
+* Community introductions
+* Peer advice
+
+This insight eventually influenced both the Vendor Sharing and Profile Sharing loops.
+
+---
+
+### Managing Work Through Daily Tasks
+
+Many users organized work mentally or through informal notes.
+
+Rather than managing complex workflows, users often think in terms of:
+
+> "What needs to be completed today?"
+
+This observation later inspired the Daily Tasks system within My Business.
+
+---
+
+### Existing Dependence on WhatsApp
+
+One of the strongest recurring themes was WhatsApp.
+
+It was used for:
+
+* Customer communication
+* Community groups
+* Order updates
+* Vendor sharing
+* Billing discussions
+
+This became one of the most influential observations in the project.
+
+Rather than competing with WhatsApp, the product would eventually be designed to coexist with it.
+
+---
+
+# 3. Core Design Philosophy
+
+Several philosophical beliefs repeatedly guided design decisions.
+
+---
+
+## Community as Infrastructure
+
+The project does not treat community as a feature.
+
+Community is the foundation that enables:
+
+* Learning
+* Networking
+* Referrals
+* Growth
+* Trust
+
+Without community, the rest of the system loses much of its value.
+
+---
+
+## Trust Must Be Earned
+
+One of the strongest principles in the entire project.
+
+Most social platforms assume visibility first.
+
+Juno intentionally reverses this.
+
+The philosophy became:
+
+> Trust should unlock visibility, not the other way around.
+
+This belief later shaped:
+
+* Anonymous profiles
+* Connection requests
+* Identity reveal systems
+* Profile permissions
+
+---
+
+## Learning Comes From Experience
+
+The project rejects the assumption that expertise only exists within formal education.
+
+Instead:
+
+> Valuable knowledge already exists within the community.
+
+The platform's role is to make that knowledge discoverable and transferable.
+
+---
+
+## Entrepreneurship Is Relationship-Driven
+
+Business growth is not viewed purely as an operational problem.
+
+Relationships drive:
+
+* Opportunities
+* Suppliers
+* Customers
+* Learning
+* Credibility
+
+Because of this, networking became deeply integrated into the entire ecosystem rather than isolated in one section.
+
+---
+
+# 4. Design Principles
+
+## Explicit Principles
+
+### Familiar Over New
+
+Users already understand certain behaviors.
+
+The product should build on existing mental models rather than forcing entirely new ones.
+
+Examples:
+
+* WhatsApp integration
+* Card-based sharing
+* Checklist-style task management
+
+---
+
+### Trust Over Exposure
+
+Privacy should be protected by default.
+
+Identity should be progressively revealed.
+
+---
+
+### Simplicity Over Features
+
+The project repeatedly avoided feature additions that increased complexity without delivering meaningful value.
+
+---
+
+### Systems Over Screens
+
+Rather than optimizing individual screens, decisions were made based on how entire loops functioned.
+
+---
+
+## Implicit Principles
+
+### Growth Should Feel Earned
+
+Users gradually unlock capabilities.
+
+Examples include:
+
+* Teaching permissions
+* Workshop hosting
+* Reputation systems
+
+---
+
+### Value Should Circulate
+
+Knowledge, vendors, opportunities, and relationships should move through the network.
+
+This belief influenced many of the sharing mechanisms later added.
+
+---
+
+# 5. Major Design Decisions
+
+---
+
+# Decision 1: Transforming Networking into an Ecosystem
+
+## Problem
+
+A networking platform alone would not solve the broader challenges users face.
+
+## Alternatives Considered
+
+* Pure networking platform
+* Community platform
+* Full ecosystem
+
+## Decision
+
+Expand beyond networking into learning and business management.
+
+## Why
+
+Research repeatedly revealed that networking, learning, and operations were interconnected.
+
+Users did not experience these as separate activities.
+
+## Impact
+
+Juno evolved into a complete ecosystem.
+
+---
+
+# Decision 2: Replacing Collaborate with Create
+
+## Problem
+
+The Collaborate section lacked a clear purpose.
+
+It existed as a destination without a strong behavioral trigger.
+
+## Alternative
+
+Retain Collaborate as a networking feature.
+
+## Decision
+
+Replace Collaborate with Create.
+
+## Why
+
+A healthy ecosystem requires contribution, not just consumption.
+
+Without creation:
+
+* Learning becomes static
+* Community becomes passive
+* Knowledge stops circulating
+
+## Impact
+
+Create became the engine powering learning and community growth.
+
+---
+
+# Decision 3: Privacy-First Identity System
+
+## Problem
+
+Showing full identities immediately created privacy concerns.
+
+This felt especially problematic for homemakers and local networking contexts.
+
+## Alternatives
+
+* Fully public profiles
+* Anonymous platform
+* Progressive identity reveal
+
+## Decision
+
+Progressive identity reveal.
+
+## Why
+
+Trust is built gradually.
+
+Visibility should follow trust.
+
+## Impact
+
+One of the strongest differentiators in the product.
+
+---
+
+# Decision 4: Bee Avatar System
+
+## Problem
+
+Using real profile photos throughout the product introduced:
+
+* Visual inconsistency
+* Privacy concerns
+* Clutter in radar visualizations
+
+## Alternatives
+
+* Real photos
+* Generic icons
+* Custom avatars
+* Bee system
+
+## Decision
+
+Bee system.
+
+## Why
+
+The bee simultaneously represented:
+
+* Community
+* Productivity
+* Growth
+* Collective progress
+
+It also supported privacy goals.
+
+## Impact
+
+Unified visual identity across the platform.
+
+---
+
+# Decision 5: Radar + List Discovery
+
+## Problem
+
+Radar discovery was visually engaging but not universally preferred.
+
+## Alternative
+
+Radar-only discovery.
+
+## Decision
+
+Radar and List toggle.
+
+## Why
+
+Different users prefer different browsing styles.
+
+Radar supports exploration.
+
+List supports efficiency.
+
+## Impact
+
+Improved usability without sacrificing uniqueness.
+
+---
+
+# Decision 6: Vendor Sharing Loop
+
+## Problem
+
+Users frequently exchange supplier information.
+
+The platform lacked a structured mechanism.
+
+## Decision
+
+Vendor cards can be shared directly through messaging.
+
+## Why
+
+Vendor recommendations are a critical form of business knowledge.
+
+## Impact
+
+Community knowledge becomes reusable.
+
+---
+
+# Decision 7: Profile Sharing Loop
+
+## Problem
+
+Users often recommend people, not just vendors.
+
+## Decision
+
+Introduce shareable profile cards.
+
+## Why
+
+Networking should spread organically through trusted introductions.
+
+## Impact
+
+Community growth becomes self-reinforcing.
+
+---
+
+# Decision 8: Governance-Based Learning
+
+## Problem
+
+Allowing everyone to immediately teach reduces trust and content quality.
+
+## Alternatives
+
+* Open publishing
+* Fully moderated publishing
+* Tiered governance
+
+## Decision
+
+Tiered governance.
+
+## Structure
+
+### Beginner
+
+Requires approval.
+
+### Intermediate
+
+Can publish workshops directly.
+
+### Mentor
+
+Participates in approvals.
+
+## Why
+
+Experience should influence authority.
+
+## Impact
+
+Balances openness and quality control.
+
+---
+
+# 6. Branding Evolution
+
+## Initial Direction
+
+The visual language initially leaned toward functional interface design.
+
+Over time, it became clear that the product needed a stronger emotional identity.
+
+---
+
+## Birth of Juno
+
+The name was chosen because it represented:
+
+* Women
+* Guidance
+* Protection
+* Transition
+
+The mythology aligned naturally with the platform's mission.
+
+---
+
+## Birth of the Tool-Bee
+
+The mascot was created to solve multiple problems simultaneously:
+
+* Brand recognition
+* Privacy
+* Community representation
+* Radar visualization
+
+The final bee became both a mascot and a system component.
+
+---
+
+## Color Evolution
+
+Early visual decisions were influenced by WhatsApp familiarity.
+
+Eventually this created brand conflict.
+
+The decision was made to consolidate around:
+
+* Juno Green
+* Juno Gold
+* Neutral Cream
+
+This strengthened ownership and identity.
+
+---
+
+# 7. Information Architecture Logic
+
+The IA was built around user intent rather than feature categories.
+
+---
+
+## Home
+
+Answers:
+
+> What should I focus on today?
+
+---
+
+## Connections
+
+Answers:
+
+> Who can help me grow?
+
+---
+
+## Create
+
+Answers:
+
+> What can I contribute?
+
+---
+
+## Learning
+
+Answers:
+
+> What can I learn?
+
+---
+
+## My Business
+
+Answers:
+
+> How is my business performing?
+
+---
+
+This structure reduced overlap and created clear mental models.
+
+---
+
+# 8. Significant Iterations
+
+## Real Photos → Bee System
+
+Triggered by:
+
+* Privacy concerns
+* Visual inconsistency
+* Radar clutter
+
+---
+
+## Collaborate → Create
+
+Triggered by:
+
+* Weak purpose
+* Lack of contribution flow
+
+---
+
+## Generic Business Levels → Governance Structure
+
+Triggered by:
+
+* Need for credibility
+* Learning quality concerns
+
+---
+
+## WhatsApp Green → Juno Green
+
+Triggered by:
+
+* Brand ownership concerns
+* Visual inconsistency
+
+---
+
+## Public Profiles → Progressive Identity
+
+Triggered by:
+
+* Trust concerns
+* User safety considerations
+
+---
+
+# 9. Strongest Portfolio-Worthy Insights
+
+## Insight 1
+
+The problem was never networking.
+
+The problem was fragmented growth.
+
+Networking was simply one symptom.
+
+---
+
+## Insight 2
+
+Privacy can be a product feature, not just a security requirement.
+
+---
+
+## Insight 3
+
+Trust can be intentionally designed into a system.
+
+---
+
+## Insight 4
+
+Community becomes valuable when knowledge becomes transferable.
+
+Vendor sharing and profile sharing demonstrate this.
+
+---
+
+## Insight 5
+
+Governance is a UX problem.
+
+Who gets to teach, publish, and influence others directly affects trust.
+
+---
+
+## Insight 6
+
+The strongest products are loops, not screens.
+
+The project evolved from disconnected interfaces into interconnected systems.
+
+---
+
+# 10. Open Questions & Future Opportunities
+
+Several opportunities remain intentionally unresolved:
+
+* Mentor verification systems
+* Long-term moderation
+* Reputation scoring
+* Advanced contribution incentives
+* Marketplace possibilities
+* Monetization strategy
+
+These areas represent future evolution rather than unfinished design.
+
+---
+
+# Closing Reflection
+
+Juno ultimately became a project about trust, growth, and community.
+
+The most important outcome was not the creation of individual screens.
+
+The most important outcome was designing a system where learning, networking, business management, and contribution reinforce one another.
+
+The final product is best understood not as an application, but as a structured ecosystem that helps homemaker entrepreneurs move from isolated effort to collective growth.

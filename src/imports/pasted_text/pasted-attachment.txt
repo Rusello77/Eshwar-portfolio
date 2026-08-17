@@ -1,0 +1,231 @@
+Refine the “Continue Learning” card component in the Learning Hub to a premium, visually polished version, while maintaining full consistency with the existing app design system.
+
+Do NOT redesign the app or change the visual language.
+Only enhance this component using the same:
+
+green color palette
+
+typography
+
+spacing system
+
+card styles
+
+The result should feel like a natural evolution of the current UI, not a different design style.
+
+Design for mobile (390x844) using Auto Layout.
+
+🧩 Component Layout
+
+Use a horizontal card layout.
+
+Left:
+
+Circular progress indicator (hero element)
+
+Right:
+
+Course details + actions stacked vertically
+
+Maintain balanced spacing and alignment.
+
+🟢 Progress Ring (Primary Visual)
+
+Create a refined circular progress indicator.
+
+Requirements:
+
+Display progress percentage (e.g., 60%)
+
+Use a thin stroke
+
+Apply a subtle green gradient:
+#3BAE84 → #5DC9A3
+
+Background ring should be very light grey
+
+Keep the style minimal and soft
+
+Optional:
+
+Add a very subtle inner shadow or glow (low opacity)
+
+Do not make it visually heavy
+
+The progress ring should feel clean and slightly elevated, not decorative.
+
+📝 Content Section (Right Side)
+
+Stack elements vertically:
+
+1. Context Label (New Addition)
+
+Add a small label above the title:
+
+Examples:
+
+Continue Learning
+or
+Pricing
+
+Style:
+
+Small font (12–13px)
+
+Medium weight
+
+Green or secondary text color
+
+Low visual prominence
+
+2. Course Title
+
+Max 2 lines
+
+Semibold
+
+Slightly tighter line height
+
+Maintain good spacing below
+
+Example:
+
+How to Price Homemade Food
+
+3. Rating
+
+Star icon + rating (e.g., ⭐ 4.6)
+
+Small text
+
+Secondary color (grey)
+
+Reduced visual prominence
+
+4. Primary CTA
+
+Button:
+
+Resume
+
+Style:
+
+Green background
+
+White text
+
+Rounded corners (12–16px)
+
+Height: ~48px
+
+Slight elevation shadow (very subtle)
+
+Ensure button feels like the primary action focus.
+
+5. Secondary Action
+
+Text link:
+
+View Path →
+
+Style:
+
+Green text
+
+Smaller size than button
+
+No background
+
+Minimal styling
+
+🎨 Card Styling Enhancements
+
+Keep within existing system but refine slightly.
+
+Background
+
+Base: white
+
+Add very subtle green tint layer or gradient (extremely light, low opacity)
+
+Keep effect soft and barely noticeable
+
+Shadow
+
+Slightly elevate card compared to standard cards
+
+Use soft shadow:
+0px 6px 20px rgba(0,0,0,0.05)
+
+Do not overdo elevation.
+
+Padding
+
+Internal padding: 16px–20px
+
+Maintain consistent spacing with other cards
+
+📏 Spacing Rules
+
+Progress ↔ content: 16–20px
+
+Title ↔ rating: 6–8px
+
+Rating ↔ button: 12–16px
+
+Button ↔ “View Path”: 8px
+
+Ensure breathable layout.
+
+🎭 Microinteractions (Optional but Recommended)
+
+If prototyping:
+
+Progress ring animates from 0 → current value
+
+Resume button slightly scales on tap
+
+Card slightly lifts on interaction
+
+Keep motion subtle and smooth.
+
+🚫 Constraints
+
+Do NOT include:
+
+thumbnails or images
+
+linear progress bars
+
+additional buttons (no restart, no bookmark)
+
+heavy gradients or bright colors
+
+visual styles inconsistent with rest of app
+
+🧠 UX Intent
+
+This component should:
+
+instantly communicate progress
+
+guide the user to resume learning
+
+feel slightly elevated as a key entry point
+
+It should remain:
+
+Minimal
+Clean
+Consistent
+Calm
+
+✅ Final Output
+
+Generate a premium Continue Learning card that:
+
+visually stands out slightly
+
+remains fully consistent with the rest of the app
+
+improves clarity, hierarchy, and perceived quality

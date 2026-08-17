@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 710" width="680" height="710">
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    </style>
+    <!-- Arrowhead for upward green progression arrows -->
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#5A8B6F"/>
+    </marker>
+    <!-- Arrowhead for gold review arrow -->
+    <marker id="arrowGold" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#D4A86F"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="680" height="710" fill="#F5F1E8"/>
+
+  <!-- ================================================
+       MENTOR TIER — top, full Juno Green
+       x=150, y=40, w=380, h=140
+       ================================================ -->
+  <g transform="translate(150, 40)">
+    <rect width="380" height="140" rx="10" fill="#5A8B6F"/>
+    <!-- Tier label -->
+    <text x="190" y="40" text-anchor="middle" font-size="17" font-weight="700" letter-spacing="2" fill="#FFFFFF">MENTOR</text>
+    <!-- Description -->
+    <text x="190" y="63" text-anchor="middle" font-size="12" fill="#FFFFFF" fill-opacity="0.8">Publishes directly + participates in approvals</text>
+    <!-- Chip: Publishes directly -->
+    <rect x="55" y="80" width="128" height="26" rx="13" fill="#FFFFFF" fill-opacity="0.2" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="1"/>
+    <text x="119" y="97" text-anchor="middle" font-size="11" fill="#FFFFFF">Publishes directly</text>
+    <!-- Chip: Reviews submissions -->
+    <rect x="197" y="80" width="128" height="26" rx="13" fill="#FFFFFF" fill-opacity="0.2" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="1"/>
+    <text x="261" y="97" text-anchor="middle" font-size="11" fill="#FFFFFF">Reviews submissions</text>
+  </g>
+
+  <!-- ================================================
+       INTERMEDIATE TIER — middle, 60% tint of Juno Green
+       x=150, y=224, w=380, h=140
+       ================================================ -->
+  <g transform="translate(150, 224)">
+    <rect width="380" height="140" rx="10" fill="#9CB9A9"/>
+    <!-- Tier label -->
+    <text x="190" y="40" text-anchor="middle" font-size="17" font-weight="700" letter-spacing="2" fill="#1A1A1A">INTERMEDIATE</text>
+    <!-- Description -->
+    <text x="190" y="63" text-anchor="middle" font-size="12" fill="#000000" fill-opacity="0.6">Publishes workshops and lessons directly</text>
+    <!-- Chip: Publishes directly -->
+    <rect x="120" y="80" width="140" height="26" rx="13" fill="#FFFFFF" stroke="#5A8B6F" stroke-width="1"/>
+    <text x="190" y="97" text-anchor="middle" font-size="11" fill="#5A8B6F">Publishes directly</text>
+  </g>
+
+  <!-- ================================================
+       BEGINNER TIER — bottom, 25% tint of Juno Green
+       x=150, y=408, w=380, h=140
+       ================================================ -->
+  <g transform="translate(150, 408)">
+    <rect width="380" height="140" rx="10" fill="#D6E2DB"/>
+    <!-- Tier label -->
+    <text x="190" y="40" text-anchor="middle" font-size="17" font-weight="700" letter-spacing="2" fill="#1A1A1A">BEGINNER</text>
+    <!-- Description -->
+    <text x="190" y="63" text-anchor="middle" font-size="12" fill="#000000" fill-opacity="0.6">Content reviewed before publishing</text>
+    <!-- Chip: Requires approval -->
+    <rect x="120" y="80" width="140" height="26" rx="13" fill="#FFFFFF" stroke="#5A8B6F" stroke-width="1"/>
+    <text x="190" y="97" text-anchor="middle" font-size="11" fill="#5A8B6F">Requires approval</text>
+  </g>
+
+  <!-- ================================================
+       UPWARD ARROWS — Juno Green, earned progression
+       ================================================ -->
+  <!-- Intermediate → Mentor  (gap: y=180 to y=224) -->
+  <line x1="340" y1="221" x2="340" y2="183" stroke="#5A8B6F" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <!-- Beginner → Intermediate  (gap: y=364 to y=408) -->
+  <line x1="340" y1="405" x2="340" y2="367" stroke="#5A8B6F" stroke-width="2" marker-end="url(#arrowGreen)"/>
+
+  <!-- ================================================
+       "Earned through experience" — vertical label,
+       left margin, reading upward (rotated -90°)
+       ================================================ -->
+  <text
+    x="120" y="294"
+    text-anchor="middle"
+    font-size="11"
+    fill="#6B7280"
+    transform="rotate(-90, 120, 294)"
+  >Earned through experience</text>
+
+  <!-- ================================================
+       CURVED GOLD ARROW — Mentor right → Beginner right
+       Closes the governance loop
+       ================================================ -->
+  <!-- Mentor tier right-center: (530, 110)  Beginner tier right-center: (530, 478) -->
+  <path
+    d="M530,110 C618,110 618,478 530,478"
+    fill="none"
+    stroke="#D4A86F"
+    stroke-width="2"
+    marker-end="url(#arrowGold)"
+  />
+
+  <!-- ================================================
+       "Reviews submissions" — vertical label,
+       right of curve, reading downward (rotated 90°),
+       Juno Gold
+       ================================================ -->
+  <text
+    x="644" y="294"
+    text-anchor="middle"
+    font-size="11"
+    fill="#D4A86F"
+    transform="rotate(90, 644, 294)"
+  >Reviews submissions</text>
+
+  <!-- ================================================
+       CAPTION
+       ================================================ -->
+  <text
+    x="340" y="616"
+    text-anchor="middle"
+    font-size="13"
+    font-style="italic"
+    fill="#6B7280"
+  >Experience should influence authority.</text>
+
+</svg>

@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond the Household — UX Research</title>
+<meta name="description" content="Beyond the Household — A UX research study on how Indian homemakers create businesses, uncovering motivations, barriers, and pathways to entrepreneurship.">
+<meta property="og:title" content="Beyond the Household — UX Research by Eshwar">
+<meta property="og:description" content="A field research study examining how Indian homemakers create and grow businesses from home.">
+<meta property="og:image" content="Research Project/1.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Beyond the Household — UX Research by Eshwar">
+<meta name="twitter:image" content="Research Project/1.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%235A8B6F'/><text x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif' fill='white' font-weight='700'>E</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+
+/* ─── RESET ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ─── TOKENS ────────────────────────────────────────── */
+:root {
+  --cream:       #F5F1E8;
+  --white:       #FFFFFF;
+  --green:       #5A8B6F;
+  --green-light: #EBF1EE;
+  --green-mid:   #9CB9A9;
+  --green-dark:  #1B2E22;
+  --dark:        #1A1A1A;
+  --mid:         #6B7280;
+  --border:      #E5E7EB;
+}
+
+/* ─── BASE ──────────────────────────────────────────── */
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── LAYOUT ────────────────────────────────────────── */
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ─── SECTIONS ───────────────────────────────────────── */
+.section    { padding: 96px 0; }
+.section-lg { padding: 120px 0; }
+.section-white { background: var(--white); }
+.section-cream { background: var(--cream); }
+.section-dark  { background: var(--green-dark); color: var(--white); }
+
+.section-number {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.section-dark .section-number { color: var(--green-mid); }
+
+.section-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--dark);
+}
+.section-dark .section-title { color: var(--white); }
+
+.section-intro {
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.75;
+  color: var(--mid);
+  max-width: 680px;
+  margin-top: 20px;
+  margin-bottom: 56px;
+}
+
+/* ─── NAV ────────────────────────────────────────────── */
+.rp-nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.rp-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.rp-nav-back {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mid);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rp-nav-back:hover { color: var(--dark); }
+.rp-nav-label {
+  font-size: 13px;
+  color: var(--mid);
+  font-weight: 500;
+}
+
+/* ─── HERO ───────────────────────────────────────────── */
+.rp-hero {
+  background: var(--cream);
+  padding: 72px 0 64px;
+}
+.rp-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.rp-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  background: var(--white);
+}
+.rp-cover {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.05);
+  cursor: zoom-in;
+}
+
+/* ─── SLIDE COMPONENTS ───────────────────────────────── */
+.rp-slides {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+.rp-slide-block {}
+.rp-slide-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+.rp-slide {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+  cursor: zoom-in;
+}
+
+/* ─── INSIGHTS 2×2 GRID ──────────────────────────────── */
+.rp-insights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.rp-insights-grid .rp-slide {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* ─── DIVIDER BETWEEN SLIDES IN SAME SECTION ─────────── */
+.rp-slide-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0;
+}
+
+/* ─── TRANSITION SECTION ─────────────────────────────── */
+.rp-transition-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: start;
+}
+.rp-transition-illustration {
+  width: 260px;
+  flex-shrink: 0;
+  margin-top: 56px;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 24px 56px rgba(0,0,0,0.28);
+}
+.rp-transition-illustration img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+.rp-transition-inner {
+  max-width: 730px;
+}
+.rp-transition-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  margin-bottom: 24px;
+}
+.rp-transition-heading {
+  font-family: 'Lora', serif;
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+.rp-transition-body {
+  font-size: 17px;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 24px;
+}
+.rp-transition-body strong {
+  color: var(--white);
+  font-weight: 600;
+}
+.rp-transition-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+  margin: 48px 0;
+  max-width: 760px;
+}
+.rp-next-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: var(--green);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-top: 16px;
+}
+.rp-next-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  margin-top: 16px;
+}
+
+/* ─── LIGHTBOX ───────────────────────────────────────── */
+#lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.93);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  padding: 32px;
+}
+#lightbox-overlay.active { display: flex; }
+#lightbox-img {
+  max-width: 95vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 32px 96px rgba(0,0,0,0.5);
+}
+#lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  color: rgba(255,255,255,0.7);
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+  font-weight: 300;
+  background: none;
+  border: none;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#lightbox-close:hover { color: white; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+  .rp-insights-grid { grid-template-columns: 1fr; gap: 32px; }
+  .rp-slides { gap: 40px; }
+}
+
+/* ─── GLOBAL NAVIGATION ─────────────────────────────── */
+.gnav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.gnav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.gnav-logo {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--dark);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.gnav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.gnav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--mid);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.15s;
+}
+.gnav-link:hover { color: var(--dark); }
+.gnav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+.gnav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+}
+
+/* ─── PROJECT NAVIGATION ─────────────────────────────── */
+.project-nav-wrapper {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+}
+.project-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 0 96px;
+  gap: 16px;
+}
+.pnav-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  flex: 1;
+  max-width: 280px;
+}
+.pnav-direction {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.pnav-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.3;
+}
+.pnav-link:hover .pnav-title { color: var(--green); }
+.pnav-prev { align-items: flex-start; }
+.pnav-next { align-items: flex-end; text-align: right; }
+.pnav-all {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+}
+.pnav-all:hover { color: var(--dark); border-color: var(--dark); }
+
+/* ─── RESPONSIVE (shared) ────────────────────────────── */
+@media (max-width: 640px) {
+  .gnav-links {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: var(--white);
+    flex-direction: column;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+    z-index: 199;
+    padding: 8px 0;
+  }
+  .gnav-links.is-open { display: flex; }
+  .gnav-link { padding: 14px 24px; }
+  .gnav-hamburger { display: flex; }
+  .project-nav { flex-wrap: wrap; }
+  .pnav-next { align-items: flex-start; text-align: left; }
+}
+
+/* ─── NATIVE COMPONENT STYLES ────────────────────────── */
+
+/* Shared section shell */
+.rp-section { padding: 96px 0; }
+.rp-section-white { background: var(--white); }
+.rp-section-cream { background: var(--cream); }
+.rp-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.rp-section-heading {
+  font-family: 'Lora', serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+.rp-section-body {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--mid);
+  max-width: 680px;
+}
+.rp-section-body + .rp-section-body { margin-top: 16px; }
+
+/* Hero (web-native) — full-bleed background image experiment */
+.rp-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+  padding: 100px 0 88px;
+}
+.rp-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(90deg, rgba(245,241,232,0.95) 0%, rgba(245,241,232,0.68) 38%, rgba(245,241,232,0.42) 62%, rgba(245,241,232,0.65) 100%),
+    url("Homemaker placeholder.png");
+  background-size: cover, cover;
+  background-position: center, center 35%;
+  background-repeat: no-repeat, no-repeat;
+  z-index: 0;
+}
+.rp-hero > .container {
+  position: relative;
+  z-index: 1;
+}
+.rp-hero-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 24px;
+}
+.rp-hero-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(52px, 7vw, 96px);
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin-bottom: 32px;
+}
+.rp-hero-subtitle {
+  font-size: clamp(17px, 1.8vw, 20px);
+  line-height: 1.7;
+  color: var(--mid);
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+.rp-hero-tags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Purpose — intro + illustration */
+.rp-purpose-intro {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 56px;
+  align-items: center;
+}
+.rp-purpose-illustration img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@media (max-width: 900px) {
+  .rp-purpose-intro { grid-template-columns: 1fr; gap: 32px; }
+  .rp-purpose-illustration { max-width: 260px; }
+}
+
+/* Purpose — objective list */
+.objective-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 48px;
+  max-width: 720px;
+  border-top: 1px solid var(--border);
+}
+.objective-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.objective-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  min-width: 32px;
+  padding-top: 3px;
+  flex-shrink: 0;
+}
+.objective-text {
+  font-size: 17px;
+  color: var(--dark);
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* Method cards */
+.method-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 56px;
+}
+.method-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px;
+}
+.method-step {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+.method-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.method-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.method-method {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.method-method::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+}
+.method-desc {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.75;
+}
+.method-note {
+  margin-top: 24px;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--green);
+  padding: 14px 18px;
+  background: var(--green-light);
+  border-radius: 8px;
+  border-left: 3px solid var(--green);
+}
+
+/* Segment cards (target group) */
+.segment-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 56px;
+}
+.segment-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px;
+}
+.segment-stage-num {
+  font-family: 'Lora', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--green-light);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.segment-stage-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.segment-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+.segment-desc {
+  font-size: 14px;
+  color: var(--mid);
+  line-height: 1.75;
+}
+
+/* Area of inquiry cards */
+.inquiry-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 56px;
+}
+.inquiry-card {
+  background: var(--green-light);
+  border: 1px solid #C8D9CE;
+  border-top: 3px solid var(--green);
+  border-radius: 12px;
+  padding: 32px;
+}
+.inquiry-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+.inquiry-desc {
+  font-size: 14px;
+  color: var(--mid);
+  line-height: 1.75;
+}
+
+/* Insights (kept as images) */
+.insights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+.insight-block {}
+.insight-block-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 14px;
+}
+.insight-img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  cursor: zoom-in;
+}
+
+/* Future Impact */
+.impact-stat-box {
+  background: var(--green-dark);
+  border-radius: 16px;
+  padding: 56px 64px;
+  margin-bottom: 32px;
+}
+.impact-stat-figure {
+  font-family: 'Lora', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+.impact-stat-body {
+  font-size: 17px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  max-width: 560px;
+}
+.impact-stat-source {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 20px;
+  letter-spacing: 0.03em;
+}
+.impact-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.impact-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+}
+.impact-card-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.impact-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+.impact-card-desc {
+  font-size: 14px;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+/* Possible Solutions — web-native card grid */
+.solutions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.solution-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(16,24,20,0.03);
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+.solution-card:hover {
+  box-shadow: 0 10px 28px rgba(16,24,20,0.06);
+  transform: translateY(-2px);
+  border-color: var(--green-mid);
+}
+.solution-card-media {
+  aspect-ratio: 4 / 3;
+  background: var(--cream);
+  overflow: hidden;
+}
+.solution-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.solution-card-body { padding: 28px; }
+.solution-card-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.solution-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+.solution-card-desc {
+  font-size: 14px;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+/* UX Learnings */
+.learning-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  margin-top: 56px;
+}
+.learning-item {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 64px;
+  align-items: start;
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+}
+.learning-left {}
+.learning-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.learning-title {
+  font-size: clamp(20px, 2.2vw, 24px);
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.learning-desc {
+  font-size: 16px;
+  color: var(--mid);
+  line-height: 1.85;
+  padding-top: 6px;
+}
+
+/* Section sub-divider */
+.rp-sub-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 64px 0;
+}
+
+/* Image retained sections */
+.rp-image-section { margin-top: 48px; }
+.rp-image-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+.rp-retained-img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  cursor: zoom-in;
+}
+
+/* ─── BEHAVIOURAL PATTERNS SECTION ──────────────────── */
+.patterns-section { background: var(--green-dark); padding: 96px 0; }
+.patterns-label-inv {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  margin-bottom: 16px;
+}
+.patterns-heading {
+  font-family: 'Lora', serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+.patterns-intro {
+  font-size: 17px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.55);
+  max-width: 640px;
+}
+.patterns-list {
+  margin-top: 72px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.pattern-item {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 64px;
+  padding: 56px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  align-items: start;
+}
+.pattern-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  margin-bottom: 12px;
+}
+.pattern-name {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.pattern-body {
+  font-size: 16px;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 28px;
+}
+.pattern-consideration {
+  background: rgba(90,139,111,0.18);
+  border-left: 3px solid var(--green);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+}
+.pattern-consideration-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  margin-bottom: 8px;
+}
+.pattern-consideration-text {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ─── RESPONSIVE (components) ────────────────────────── */
+@media (max-width: 900px) {
+  .impact-cards { grid-template-columns: 1fr 1fr; }
+  .learning-item { grid-template-columns: 1fr; gap: 16px; }
+  .impact-stat-box { padding: 40px; }
+  .rp-transition-row { grid-template-columns: 1fr; gap: 40px; }
+  .rp-transition-inner { max-width: 100%; }
+  .rp-transition-illustration { width: 260px; max-width: 100%; margin: 0 auto; }
+}
+@media (max-width: 768px) {
+  .method-cards { grid-template-columns: 1fr; }
+  .segment-cards { grid-template-columns: 1fr; }
+  .inquiry-cards { grid-template-columns: 1fr; }
+  .insights-grid { grid-template-columns: 1fr; }
+  .impact-cards { grid-template-columns: 1fr 1fr; }
+  .pattern-item { grid-template-columns: 1fr; gap: 20px; }
+}
+@media (max-width: 560px) {
+  .impact-cards { grid-template-columns: 1fr; }
+  .solutions-grid { grid-template-columns: 1fr; }
+  .rp-hero { padding: 72px 0 64px; }
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- GLOBAL NAVIGATION                                   -->
+<!-- ─────────────────────────────────────────────────── -->
+<header class="gnav" id="gnav">
+  <div class="container">
+    <div class="gnav-inner">
+      <a href="index.html" class="gnav-logo">Eshwar</a>
+      <nav class="gnav-links" id="gnav-links" aria-label="Main navigation">
+        <a href="about-v2.html" class="gnav-link">About</a>
+        <a href="index-cards-v3.html#work" class="gnav-link">Work</a>
+        <a href="contact-v3.html" class="gnav-link">Contact</a>
+      </nav>
+      <button class="gnav-hamburger" id="gnav-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="gnav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- HERO                                                -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="rp-hero">
+  <div class="container">
+    <div class="rp-hero-eyebrow">02 — UX Research · Group Project</div>
+    <h1 class="rp-hero-title">Beyond the<br>Household</h1>
+    <p class="rp-hero-subtitle">
+      A research study into how Indian homemakers create and grow businesses —
+      their motivations, the barriers they face, and the support systems
+      they need to succeed.
+    </p>
+    <div class="rp-hero-tags">
+      <span class="rp-tag">Group Project</span>
+      <span class="rp-tag">UX Research</span>
+      <span class="rp-tag">1.5 months</span>
+      <span class="rp-tag">Field Study · India</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 01 — PURPOSE OF RESEARCH                            -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="rp-section rp-section-white">
+  <div class="container">
+
+    <div class="rp-purpose-intro">
+      <div>
+        <div class="rp-section-label">01 — Purpose</div>
+        <h2 class="rp-section-heading">The Indian homemaker is entering<br>entrepreneurship at scale.</h2>
+        <p class="rp-section-body">
+          India's informal economy has always included homemakers running small trades and craft
+          businesses. But something is changing — the ambitions are broader, the scale is different,
+          and the gap between those ambitions and the available infrastructure is growing.
+        </p>
+        <p class="rp-section-body" style="margin-top: 16px;">
+          Access to skills, business resources, and peer support is fragmented and often
+          inaccessible. This study set out to understand that gap from the inside.
+        </p>
+      </div>
+      <div class="rp-purpose-illustration">
+        <img src="Illustrations/Homemaker business ill.png" alt="Illustration of a homemaker running forward carrying a bag of goods, with a seller dashboard graphic behind her representing her growing business">
+      </div>
+    </div>
+
+    <ol class="objective-list">
+      <li class="objective-item">
+        <span class="objective-num">01</span>
+        <span class="objective-text">Understand the motivations driving homemakers into entrepreneurship</span>
+      </li>
+      <li class="objective-item">
+        <span class="objective-num">02</span>
+        <span class="objective-text">Identify the barriers that prevent them from growing or scaling</span>
+      </li>
+      <li class="objective-item">
+        <span class="objective-num">03</span>
+        <span class="objective-text">Map the decision-making patterns that shape their business journeys</span>
+      </li>
+      <li class="objective-item">
+        <span class="objective-num">04</span>
+        <span class="objective-text">Surface opportunities for scalable, product-driven interventions</span>
+      </li>
+    </ol>
+
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 02 — PROCESS                                        -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="rp-section rp-section-cream">
+  <div class="container">
+
+    <div class="rp-section-label">02 — Process</div>
+    <h2 class="rp-section-heading">A six-week study across two phases</h2>
+
+    <!-- Timeline: retained as image (complex visual) -->
+    <div class="rp-image-section">
+      <div class="rp-image-label">Project Timeline</div>
+      <img
+        src="Research Project/3.png"
+        alt="Project timeline: Research Planning (Aug week 2), Secondary Research (Aug week 3), Scheduling (Aug week 4), Primary Research — online and offline interviews (Sep week 1), Synthesis (Sep week 2), Final presentation."
+        class="rp-retained-img"
+        data-lightbox
+        loading="lazy"
+      >
+    </div>
+
+    <div class="rp-sub-divider"></div>
+
+    <div class="rp-section-label">Research Methods</div>
+    <h3 class="rp-section-heading" style="font-size: clamp(22px, 2.5vw, 32px);">A two-step approach — open first, then deep</h3>
+    <p class="rp-section-body">
+      We began without a fixed script. The goal was to hear participants describe their reality
+      in their own terms before we formed any hypotheses.
+    </p>
+
+    <div class="method-cards">
+
+      <div class="method-card">
+        <div class="method-step">Step 1</div>
+        <div class="method-title">Secondary Research &<br>Unstructured Interviews</div>
+        <div class="method-methods">
+          <span class="method-method">Desk research and literature review</span>
+          <span class="method-method">Open-ended, unstructured conversations</span>
+        </div>
+        <p class="method-desc">
+          We mapped the broader landscape through existing literature, then moved into
+          open-ended conversations with participants — no script, no agenda, no preconceived
+          notions about what we expected to find.
+        </p>
+        <div class="method-note">
+          The participants defined the conversation. We followed.
+        </div>
+      </div>
+
+      <div class="method-card">
+        <div class="method-step">Step 2</div>
+        <div class="method-title">Cognitive Walkthrough<br>Interviews & Shadowing</div>
+        <div class="method-methods">
+          <span class="method-method">Structured cognitive walkthroughs</span>
+          <span class="method-method">Observation and shadowing</span>
+        </div>
+        <p class="method-desc">
+          We then followed participants through their daily routines — watching how they managed
+          their businesses alongside their households. This gave us a holistic view of their
+          digital literacy, time management, and the full texture of their working lives.
+        </p>
+        <div class="method-note">
+          Understanding behaviour, not just reported opinion.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 03 — RESEARCH DESIGN                               -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="rp-section rp-section-white">
+  <div class="container">
+
+    <div class="rp-section-label">03 — Research Design</div>
+    <h2 class="rp-section-heading">Who we spoke with,<br>and what we explored</h2>
+
+    <!-- Target Group -->
+    <p class="rp-section-body">
+      Participants were grouped by business stage — from those still figuring out how to start,
+      to those already operating at scale. This let us capture how needs and challenges
+      shift across the entrepreneurship journey.
+    </p>
+
+    <div class="segment-cards">
+
+      <div class="segment-card">
+        <div class="segment-stage-num">A</div>
+        <div class="segment-stage-label">Starting from scratch</div>
+        <div class="segment-title">A vague idea, no clear path forward</div>
+        <p class="segment-desc">
+          Participants at this stage had an interest in starting a business but were still
+          learning how to begin. The primary challenge was knowing where to start — not
+          just what to do, but in what order.
+        </p>
+      </div>
+
+      <div class="segment-card">
+        <div class="segment-stage-num">B</div>
+        <div class="segment-stage-label">Growing an existing idea</div>
+        <div class="segment-title">Clear direction, ready to scale</div>
+        <p class="segment-desc">
+          These participants had established something small and were navigating the shift
+          to slightly larger. Scale felt aspirational, but practical constraints — time,
+          money, support — were limiting what was possible.
+        </p>
+      </div>
+
+      <div class="segment-card">
+        <div class="segment-stage-num">C</div>
+        <div class="segment-stage-label">Scaling an existing business</div>
+        <div class="segment-title">Established operations, seeking growth</div>
+        <p class="segment-desc">
+          Participants at this stage had sizeable businesses and were actively looking for
+          growth opportunities — particularly around efficiency, reach, and long-term
+          financial sustainability.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="rp-sub-divider"></div>
+
+    <!-- Area of Inquiry -->
+    <div class="rp-section-label">Areas of Inquiry</div>
+    <h3 class="rp-section-heading" style="font-size: clamp(22px, 2.5vw, 32px);">Three lenses for every conversation</h3>
+    <p class="rp-section-body">
+      Every interview was guided by three areas of focus — broad enough to leave room for
+      the unexpected, specific enough to ensure we came away with actionable understanding.
+    </p>
+
+    <div class="inquiry-cards">
+
+      <div class="inquiry-card">
+        <div class="inquiry-title">Systemic Gaps &amp; Opportunities</div>
+        <p class="inquiry-desc">
+          Skill development pathways, support networks, and barriers to digital access
+          within the broader ecosystem — the structural problems that individual effort
+          alone can't solve.
+        </p>
+      </div>
+
+      <div class="inquiry-card">
+        <div class="inquiry-title">Socio-Cultural Influences</div>
+        <p class="inquiry-desc">
+          The personal, familial, and cultural factors that shape a homemaker's willingness
+          and capacity to pursue entrepreneurship — and the invisible constraints that rarely
+          show up in structured survey responses.
+        </p>
+      </div>
+
+      <div class="inquiry-card">
+        <div class="inquiry-title">Practical Support Needs</div>
+        <p class="inquiry-desc">
+          The concrete help, resources, and guidance participants actively needed — and
+          weren't consistently finding. The gap between what exists and what is actually
+          accessible.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 04 — WHAT WE FOUND                                  -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="rp-section rp-section-cream">
+  <div class="container">
+
+    <div class="rp-section-label">04 — Findings</div>
+    <h2 class="rp-section-heading">Four insight clusters</h2>
+    <p class="rp-section-body">
+      Each insight is grounded in direct participant quotes and paired with a rephrased
+      How Might We question that defines the design opportunity it opens.
+    </p>
+
+    <div class="insights-grid">
+
+      <div class="insight-block">
+        <div class="insight-block-label">Insight 1 — Technology &amp; Upskilling</div>
+        <img
+          src="Research Project/7.png"
+          alt="Insight 1: Technology and Upskilling — Homemakers are keen to develop technical, business, and marketing skills. Quote: 'I would be interested to learn things that would help grow my business.' HMW: How might we assist homemakers in acquiring skills to bridge skill gaps and pursue entrepreneurial ventures?"
+          class="insight-img"
+          data-lightbox
+          loading="lazy"
+        >
+      </div>
+
+      <div class="insight-block">
+        <div class="insight-block-label">Insight 2 — Business Goals &amp; Scaling</div>
+        <img
+          src="Research Project/8.png"
+          alt="Insight 2: Business Goals and Scaling — Many aspire to scale but a significant number prefer small for flexibility. Quote: 'I am very particular about my process. I don't want to compromise on that, for scaling opportunities.' HMW: How might we help homemakers optimise within their current small-scale setups while maintaining flexibility?"
+          class="insight-img"
+          data-lightbox
+          loading="lazy"
+        >
+      </div>
+
+      <div class="insight-block">
+        <div class="insight-block-label">Insight 3 — Networking</div>
+        <img
+          src="Research Project/9.png"
+          alt="Insight 3: Networking — Maintaining personal connection is crucial for strong business relationships. Quote: 'Mostly I contact customers personally through WhatsApp and accept custom made cake orders based on preferences.' HMW: How might we enable homemakers to develop new networking opportunities efficiently within their business communities?"
+          class="insight-img"
+          data-lightbox
+          loading="lazy"
+        >
+      </div>
+
+      <div class="insight-block">
+        <div class="insight-block-label">Insight 4 — Time Management</div>
+        <img
+          src="Research Project/10.png"
+          alt="Insight 4: Time Management — Time management and resource allocation are key concerns. Quote: 'I appointed a house help to share household responsibilities, so that I could allocate time for my family and business.' HMW: How might we provide homemakers with tools to effectively balance professional aspirations and familial responsibilities?"
+          class="insight-img"
+          data-lightbox
+          loading="lazy"
+        >
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 05 — BEHAVIOURAL PATTERNS                           -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="patterns-section">
+  <div class="container">
+
+    <div class="patterns-label-inv">05 — Behavioural Patterns</div>
+    <h2 class="patterns-heading">What observation kept revealing</h2>
+    <p class="patterns-intro">
+      Interviews tell you what people say they do. Observation and cognitive walkthroughs
+      show you what they actually do — and there's often a gap between the two. These four
+      patterns didn't come from any single conversation. They came from spending weeks
+      watching participants work in their real environments.
+    </p>
+
+    <div class="patterns-list">
+
+      <div class="pattern-item">
+        <div class="pattern-left">
+          <div class="pattern-num">Pattern 01</div>
+          <div class="pattern-name">They were already running at full capacity</div>
+        </div>
+        <div class="pattern-right">
+          <p class="pattern-body">
+            Running a household and a business at the same time doesn't leave much spare
+            room. Participants had quietly found ways to keep things manageable — favouring
+            approaches that didn't pile on extra effort. When something new had too steep a
+            learning curve, it wasn't dismissed outright; it just never got started. They
+            weren't avoiding complexity out of laziness. They were protecting the energy they
+            needed to keep everything else going.
+          </p>
+          <div class="pattern-consideration">
+            <div class="pattern-consideration-label">Design Consideration</div>
+            <p class="pattern-consideration-text">
+              When someone is already juggling two full-time roles, even a temporary learning
+              curve can be enough to put something off permanently. Making things easy to pick
+              up isn't just a nice touch — it's the difference between something being used and
+              something being quietly set aside.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-item">
+        <div class="pattern-left">
+          <div class="pattern-num">Pattern 02</div>
+          <div class="pattern-name">Advice landed better when it came from lived experience</div>
+        </div>
+        <div class="pattern-right">
+          <p class="pattern-body">
+            Participants were more likely to act on advice from someone who'd been through the
+            same thing than from a resource that offered general guidance. It wasn't that they
+            were dismissive — they were practical. Generic business advice often felt like it
+            was written for someone else's situation. But a tip from someone who'd run a similar
+            business, in a similar context, with similar constraints? That felt immediately
+            useful. Who the advice came from mattered just as much as what it said.
+          </p>
+          <div class="pattern-consideration">
+            <div class="pattern-consideration-label">Design Consideration</div>
+            <p class="pattern-consideration-text">
+              Generic guidance, however good, can struggle to feel relevant when the audience
+              can't see their own situation in it. Support that's grounded in experiences that
+              actually resemble the user's own tends to carry a different kind of weight.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-item">
+        <div class="pattern-left">
+          <div class="pattern-num">Pattern 03</div>
+          <div class="pattern-name">They stretched existing tools before switching to new ones</div>
+        </div>
+        <div class="pattern-right">
+          <p class="pattern-body">
+            Nobody picked up new tools when they started their business — they repurposed the
+            ones they already had. WhatsApp became a way to take orders, answer questions, and
+            stay in touch with regular customers. Notebooks tracked inventory. Phone camera rolls
+            doubled as product catalogues. This showed up across every participant group,
+            regardless of how long they'd been running their business. Before anyone committed
+            to something new, they first tried to make what they already trusted work harder.
+          </p>
+          <div class="pattern-consideration">
+            <div class="pattern-consideration-label">Design Consideration</div>
+            <p class="pattern-consideration-text">
+              Tools that slot into what someone already does are a much easier sell than ones
+              that ask them to start from scratch. When something feels like a natural extension
+              of an existing habit, it doesn't feel like a risk.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pattern-item">
+        <div class="pattern-left">
+          <div class="pattern-num">Pattern 04</div>
+          <div class="pattern-name">Confidence came from doing — not from waiting to feel ready</div>
+        </div>
+        <div class="pattern-right">
+          <p class="pattern-body">
+            The participants who had made the most progress were also the most willing to take
+            the next step — not because they were naturally bolder, but because each small
+            success made the next thing feel more manageable. Confidence wasn't something they
+            built up before they started. It grew as they went. And the participants who were
+            waiting until they felt ready before beginning were, in most cases, still waiting.
+          </p>
+          <div class="pattern-consideration">
+            <div class="pattern-consideration-label">Design Consideration</div>
+            <p class="pattern-consideration-text">
+              Getting someone to take the first step — even a small one — matters more than
+              giving them the full picture upfront. Once the first step works, the next one
+              becomes much easier to take.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 06 — IMPLICATIONS                                   -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="rp-section rp-section-white">
+  <div class="container">
+
+    <div class="rp-section-label">06 — Implications</div>
+    <h2 class="rp-section-heading">The potential at scale</h2>
+
+    <div class="impact-stat-box">
+      <div class="impact-stat-figure">400 million women.</div>
+      <p class="impact-stat-body">
+        By 2030, India's working age population will surpass 1 billion. If current trends
+        continue, the economic potential of 400 million women may be left unaddressed —
+        not because of lack of ambition, but lack of infrastructure.
+      </p>
+      <p class="impact-stat-source">Source: Bain &amp; Company, Google — 2019</p>
+    </div>
+
+    <div class="impact-cards">
+
+      <div class="impact-card">
+        <div class="impact-card-label">Economic</div>
+        <div class="impact-card-title">Job creation</div>
+        <p class="impact-card-desc">
+          Income diversification and household-level job creation with ripple effects
+          across communities.
+        </p>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-card-label">Social</div>
+        <div class="impact-card-title">Multiplier effect</div>
+        <p class="impact-card-desc">
+          Successful homemaker entrepreneurs reinvest in their families and networks —
+          compounding welfare across communities.
+        </p>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-card-label">Personal</div>
+        <div class="impact-card-title">Autonomy &amp; agency</div>
+        <p class="impact-card-desc">
+          Financial independence shifts the balance of control — in households, in
+          relationships, and in self-perception.
+        </p>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-card-label">Innovation</div>
+        <div class="impact-card-title">New markets</div>
+        <p class="impact-card-desc">
+          A previously underserved segment with distinct needs creates entirely new
+          product and service opportunities.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="rp-sub-divider"></div>
+
+    <!-- Possible Solutions: web-native card grid -->
+    <div class="rp-section-label">Possible Solutions</div>
+    <h3 class="rp-section-heading" style="font-size: clamp(22px, 2.5vw, 32px);">Four directions that emerged</h3>
+    <p class="rp-section-body" style="margin-bottom: 32px;">
+      Each direction addresses a different dimension of the problem space — from skill
+      acquisition to time management to community connection.
+    </p>
+
+    <div class="solutions-grid">
+      <div class="solution-card">
+        <div class="solution-card-media">
+          <img src="Research Project/image 151.png" alt="Skill Monetization Platform" loading="lazy">
+        </div>
+        <div class="solution-card-body">
+          <div class="solution-card-num">01</div>
+          <h4 class="solution-card-title">Skill Monetization Platform</h4>
+          <p class="solution-card-desc">Tools for business setup, marketing, and financial management.</p>
+        </div>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-card-media">
+          <img src="Research Project/image 152.png" alt="Lifelong Learning Hubs" loading="lazy">
+        </div>
+        <div class="solution-card-body">
+          <div class="solution-card-num">02</div>
+          <h4 class="solution-card-title">Lifelong Learning Hubs</h4>
+          <p class="solution-card-desc">Flexible, bite-sized courses in entrepreneurship and digital skills.</p>
+        </div>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-card-media">
+          <img src="Research Project/image 153.png" alt="Community Support and Networking Spaces" loading="lazy">
+        </div>
+        <div class="solution-card-body">
+          <div class="solution-card-num">03</div>
+          <h4 class="solution-card-title">Community Support and Networking Spaces</h4>
+          <p class="solution-card-desc">A digital hub to connect, share resources, and exchange knowledge.</p>
+        </div>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-card-media">
+          <img src="Research Project/image 154.png" alt="Work-Life Balance Tools" loading="lazy">
+        </div>
+        <div class="solution-card-body">
+          <div class="solution-card-num">04</div>
+          <h4 class="solution-card-title">Work-Life Balance Tools</h4>
+          <p class="solution-card-desc">Task management, time blocking, and family collaboration.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- 07 — UX LEARNINGS                                   -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="rp-section rp-section-cream">
+  <div class="container">
+
+    <div class="rp-section-label">07 — Reflections</div>
+    <h2 class="rp-section-heading">What the research taught us<br>about research itself</h2>
+    <p class="rp-section-body">
+      Beyond the findings, the process surfaced three meta-learnings — about how to design
+      research for this audience, and what assumptions to leave behind when you start.
+    </p>
+
+    <div class="learning-list">
+
+      <div class="learning-item">
+        <div class="learning-left">
+          <div class="learning-num">01</div>
+          <div class="learning-title">Design for context,<br>not category</div>
+        </div>
+        <p class="learning-desc">
+          Every homemaker's business existed in a unique ecosystem — her household setup,
+          family dynamics, cultural context, and personal ambition were all different. Solutions
+          that treat "homemaker entrepreneurs" as a uniform group will consistently miss the
+          lived reality of individuals within that group. Flexibility and adaptability aren't
+          features — they're functional requirements.
+        </p>
+      </div>
+
+      <div class="learning-item">
+        <div class="learning-left">
+          <div class="learning-num">02</div>
+          <div class="learning-title">Time is a key<br>usability constraint</div>
+        </div>
+        <p class="learning-desc">
+          For this audience, cognitive load and time efficiency aren't preferences — they're
+          non-negotiable. Every tool, service, or interaction must fit into gaps within a
+          schedule that is already structured around other people's needs. Complexity isn't
+          just frustrating; it's disqualifying. This needs to be treated as a first-order
+          design constraint, not an edge case.
+        </p>
+      </div>
+
+      <div class="learning-item">
+        <div class="learning-left">
+          <div class="learning-num">03</div>
+          <div class="learning-title">Empathy starts<br>with listening</div>
+        </div>
+        <p class="learning-desc">
+          Our most valuable insights came from unstructured, open-ended conversations — not
+          from the structured interview questions we had prepared in advance. The participants
+          defined the agenda. The motivations and challenges that emerged from those conversations
+          were ones that structured surveys would have missed entirely. Starting with listening,
+          rather than with hypotheses, changed everything about what we learned.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- TRANSITION TO JUNO                                  -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="section-lg section-dark">
+  <div class="container">
+    <div class="rp-transition-row">
+    <div class="rp-transition-inner">
+
+      <div class="rp-transition-eyebrow">What came next</div>
+      <h2 class="rp-transition-heading">One direction<br>went further</h2>
+
+      <p class="rp-transition-body">
+        The research concluded with four possible directions. Each was grounded in something
+        real the participants needed. But one kept reappearing underneath every other
+        finding — not as a standalone category, but as the missing layer connecting all
+        the others.
+      </p>
+
+      <p class="rp-transition-body">
+        <strong>Community Support and Networking Spaces.</strong> The isolation homemakers
+        described was not incidental. It shaped how they learned, how they found customers,
+        how they priced their work, and how they thought about growth. A connected ecosystem
+        would not just solve a networking problem — it could provide the shared infrastructure
+        that all the other needs were missing.
+      </p>
+
+      <p class="rp-transition-body">
+        That question became the subject of a dedicated product design project. What would
+        it actually take to design that ecosystem from first principles — the information
+        architecture, the trust model, the surfaces, the interactions? The research had
+        identified the space. The next step was to build something inside it.
+      </p>
+
+      <div class="rp-transition-divider"></div>
+
+      <p class="rp-transition-body" style="color: rgba(255,255,255,0.5); font-size: 15px; margin-bottom: 8px;">
+        The continuation of that exploration is presented in the next case study.
+      </p>
+
+      <a href="case-study-v5.html" class="rp-next-link">
+        Juno — Community Platform for Homemaker Entrepreneurs →
+      </a>
+
+    </div>
+    <div class="rp-transition-illustration">
+      <img src="Illustrations/Community support section.png" alt="Illustration: Community Support and Networking Spaces — offer homemakers a digital hub to connect, share resources, exchange knowledge, and collaborate with others in business." loading="lazy">
+    </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- PROJECT NAVIGATION                                  -->
+<!-- ─────────────────────────────────────────────────── -->
+<div class="project-nav-wrapper">
+  <div class="container">
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="beyond-the-prompt-editorial.html" class="pnav-link pnav-prev">
+        <span class="pnav-direction">← Previous</span>
+        <span class="pnav-title">Beyond the Prompt</span>
+      </a>
+      <a href="index-cards-v3.html" class="pnav-all">All Projects</a>
+      <a href="case-study-v5.html" class="pnav-link pnav-next">
+        <span class="pnav-direction">Next →</span>
+        <span class="pnav-title">Juno</span>
+      </a>
+    </nav>
+  </div>
+</div>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- LIGHTBOX                                            -->
+<!-- ─────────────────────────────────────────────────── -->
+<div id="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button id="lightbox-close" aria-label="Close image viewer">×</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+(function () {
+  var overlay     = document.getElementById('lightbox-overlay');
+  var img         = document.getElementById('lightbox-img');
+  var btn         = document.getElementById('lightbox-close');
+  var lastTrigger = null;
+
+  function open(src, alt, trigger) {
+    img.src = src;
+    img.alt = alt || '';
+    lastTrigger = trigger || null;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    btn.focus();
+  }
+
+  function close() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    img.src = '';
+    if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+  }
+
+  document.querySelectorAll('[data-lightbox]').forEach(function (el) {
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'button');
+    el.addEventListener('click', function () { open(el.src, el.alt, el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open(el.src, el.alt, el);
+      }
+    });
+  });
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) close();
+  });
+
+  btn.addEventListener('click', close);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+  });
+})();
+</script>
+
+<script>
+(function () {
+  var toggle = document.getElementById('gnav-toggle');
+  var menu   = document.getElementById('gnav-links');
+  if (toggle && menu) {
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('#gnav') && menu.classList.contains('is-open')) {
+        menu.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

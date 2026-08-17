@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond the Prompt — Eshwar</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%234A6FA5'/><text x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif' fill='white' font-weight='700'>E</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  /* Portfolio shared tokens */
+  --cream: #F5F1E8;
+  --white: #FFFFFF;
+  --dark: #1A1A1A;
+  --mid: #6B7280;
+  --border: #E5E7EB;
+  --green: #5A8B6F;
+
+  /* BTP accent palette — slate-indigo */
+  --btp: #4A6FA5;
+  --btp-light: #EEF2F9;
+  --btp-mid: #8BADD0;
+  --btp-dark: #1C2F5E;
+  --btp-border: #D0DCEA;
+}
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--white);
+  color: var(--dark);
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
+
+/* ─── GLOBAL NAV (shared portfolio) ────────────────────── */
+.gnav { position: sticky; top: 0; z-index: 200; background: var(--white); border-bottom: 1px solid var(--border); }
+.gnav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.gnav-logo { font-size: 17px; font-weight: 700; color: var(--dark); text-decoration: none; letter-spacing: -0.02em; }
+.gnav-links { display: flex; align-items: center; gap: 40px; }
+.gnav-link { font-size: 14px; font-weight: 500; color: var(--mid); text-decoration: none; transition: color 0.15s; }
+.gnav-link:hover { color: var(--dark); }
+.gnav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.gnav-hamburger span { display: block; width: 22px; height: 2px; background: var(--dark); border-radius: 2px; }
+
+/* ─── SECTION SHELLS ────────────────────────────────────── */
+.s { padding: 96px 0; }
+.s-white { background: var(--white); }
+.s-cream { background: var(--cream); }
+.s-dark { background: var(--btp-dark); }
+/* Editorial pacing — deliberate pauses, not decoration */
+.s-airy { padding: 132px 0; }
+.s-feature { padding: 160px 0; }
+
+/* ─── SHARED TYPOGRAPHY ─────────────────────────────────── */
+.eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--btp); margin-bottom: 12px;
+}
+.h1 {
+  font-family: 'Lora', serif;
+  font-size: clamp(52px, 7vw, 96px);
+  font-weight: 700; color: var(--dark);
+  letter-spacing: -0.03em; line-height: 0.95;
+}
+.h2 {
+  font-family: 'Lora', serif;
+  font-size: clamp(26px, 3.2vw, 40px);
+  font-weight: 700; color: var(--dark);
+  letter-spacing: -0.025em; line-height: 1.15;
+}
+/* Chapter-marker heading — same type system, larger scale for macro-rhythm moments only */
+.h2--display { font-size: clamp(34px, 4.6vw, 58px); }
+.h3 {
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 700; color: var(--dark);
+  letter-spacing: -0.02em; line-height: 1.2;
+}
+.body {
+  font-size: 16px; line-height: 1.85; color: var(--mid);
+}
+.body strong { color: var(--dark); font-weight: 600; }
+.body + .body { margin-top: 18px; }
+.divider { height: 1px; background: var(--border); margin: 64px 0; }
+
+/* ─── TAGS / CHIPS ──────────────────────────────────────── */
+.chip {
+  font-size: 12px; font-weight: 600; color: var(--mid);
+  padding: 5px 14px; background: var(--white);
+  border: 1px solid var(--border); border-radius: 100px;
+  display: inline-block;
+}
+
+/* ─── HERO ──────────────────────────────────────────────── */
+.hero { background: var(--cream); padding: 100px 0 72px; }
+.hero-title { margin: 24px 0 28px; }
+.hero-subtitle {
+  font-size: clamp(16px, 1.8vw, 19px);
+  line-height: 1.75; color: var(--mid);
+  max-width: 520px; margin-bottom: 36px;
+}
+.hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.hero-bosch {
+  display: flex; align-items: center; gap: 24px;
+  padding: 18px 22px; margin-bottom: 20px;
+  background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+}
+.hero-bosch-logo { height: 34px; width: auto; object-fit: contain; flex-shrink: 0; }
+.hero-bosch-title { font-size: 14px; font-weight: 700; color: var(--btp); letter-spacing: -0.01em; margin-bottom: 4px; }
+.hero-bosch-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+.disclaimer {
+  border-left: 2px solid var(--btp-border);
+  padding-left: 20px; max-width: 600px;
+}
+.disclaimer-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--btp); margin-bottom: 6px;
+}
+.disclaimer-text { font-size: 13px; color: var(--mid); line-height: 1.7; }
+
+.hero-inner { display: grid; grid-template-columns: 1fr 480px; gap: 44px; align-items: start; }
+.hero-visual { display: flex; justify-content: flex-end; margin-top: 40px; margin-right: -24px; }
+.hero-image {
+  width: 100%; display: block; border-radius: 12px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.09); cursor: zoom-in;
+}
+
+/* ─── 01 PURPOSE ────────────────────────────────────────── */
+.purpose-body { max-width: 680px; margin-bottom: 56px; }
+.rq-pull {
+  border-top: 1px solid var(--border);
+  padding-top: 48px;
+  display: grid; grid-template-columns: 160px 1fr; gap: 48px; align-items: start;
+}
+.rq-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--btp); padding-top: 6px;
+}
+.rq-text {
+  font-family: 'Lora', serif;
+  font-size: clamp(20px, 2.4vw, 28px);
+  color: var(--dark); line-height: 1.45;
+  font-style: italic;
+}
+
+/* ─── 02 PROCESS ────────────────────────────────────────── */
+.timeline { margin-top: 48px; }
+.timeline-track {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  position: relative;
+}
+.timeline-track::before {
+  content: ''; position: absolute;
+  top: 7px; left: 0; right: 0; height: 1px;
+  background: var(--dark);
+}
+.tl-step { padding-top: 24px; position: relative; }
+.tl-step:last-child { text-align: right; }
+.tl-dot {
+  position: absolute; top: 0; left: 0;
+  width: 9px; height: 9px;
+  background: var(--dark); border-radius: 50%;
+  transform: translateX(-50%);
+}
+.tl-step:first-child .tl-dot { transform: none; }
+.tl-step:last-child .tl-dot { left: auto; right: 0; transform: none; }
+.tl-week {
+  font-size: 11px; font-weight: 600; color: var(--btp);
+  letter-spacing: 0.06em; margin-bottom: 5px;
+}
+.tl-phase { font-size: 13px; font-weight: 600; color: var(--dark); line-height: 1.4; }
+
+.methods { margin-top: 64px; }
+.method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 32px; }
+.method-item { background: var(--white); padding: 32px; }
+.method-num { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--btp); margin-bottom: 10px; }
+.method-name { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 10px; letter-spacing: -0.01em; }
+.method-desc { font-size: 14px; color: var(--mid); line-height: 1.75; }
+
+.inquiry { margin-top: 64px; }
+.inquiry-items { margin-top: 32px; counter-reset: inq; }
+.inquiry-item {
+  display: grid; grid-template-columns: 56px 1fr;
+  gap: 24px; align-items: start;
+  padding: 28px 0; border-bottom: 1px solid var(--border);
+  counter-increment: inq;
+}
+.inquiry-item:first-child { border-top: 1px solid var(--border); }
+.inquiry-counter {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--btp); padding-top: 3px;
+}
+.inquiry-name { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+.inquiry-def { font-size: 14px; color: var(--mid); line-height: 1.65; }
+
+/* ─── 03 PERSONA (unchanged) ────────────────────────────── */
+.persona-intro { max-width: 640px; margin-bottom: 40px; }
+.persona-img { width: 100%; display: block; border-radius: 12px; box-shadow: 0 4px 32px rgba(0,0,0,0.09); cursor: zoom-in; }
+
+/* ─── 04 EXPLORATORY RESEARCH ──────────────────────────── */
+.er-intro { max-width: 680px; margin-bottom: 48px; }
+.er-split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border-top: 1px solid var(--border); padding-top: 48px; }
+.er-col-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 20px;
+}
+.er-col-positive { color: var(--btp); }
+.er-col-negative { color: #94423B; }
+.er-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.er-list li {
+  font-size: 15px; color: var(--dark); line-height: 1.65;
+  padding-left: 16px; position: relative;
+}
+.er-list li::before {
+  content: ''; position: absolute; left: 0; top: 9px;
+  width: 6px; height: 6px; border-radius: 50%;
+}
+.er-col-positive + .er-list li::before { background: var(--btp); }
+.er-list-uses li::before { background: var(--btp); }
+.er-list-pitfalls li::before { background: #94423B; }
+.er-synthesis {
+  margin-top: 48px; padding: 28px 32px;
+  background: var(--btp-light); border-radius: 10px;
+  font-size: 15px; color: var(--dark); line-height: 1.7;
+  font-style: italic;
+}
+
+/* ─── 05 SYNTHESIS ──────────────────────────────────────── */
+.synth-intro { max-width: 640px; margin-bottom: 48px; }
+.synth-lenses { border-top: 1px solid var(--border); }
+.synth-lens {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 40px; padding: 24px 0; border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.synth-lens-name { font-size: 14px; font-weight: 700; color: var(--dark); }
+.synth-lens-def { font-size: 15px; color: var(--mid); line-height: 1.65; }
+.synth-bottom { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.synth-dims { display: flex; gap: 8px; flex-wrap: wrap; }
+.synth-dim {
+  font-size: 12px; font-weight: 600; color: var(--btp);
+  padding: 5px 14px; background: var(--btp-light);
+  border: 1px solid var(--btp-border); border-radius: 100px;
+}
+.synth-outcome {
+  font-size: 15px; color: var(--mid); line-height: 1.75;
+  font-style: italic; padding-left: 24px;
+  border-left: 2px solid var(--btp-border);
+}
+
+/* ─── 06 INSIGHTS (unchanged) ───────────────────────────── */
+.insights-intro { max-width: 680px; margin-bottom: 48px; }
+.insights-sequence { display: flex; flex-direction: column; gap: 28px; }
+.insight-block-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--btp); margin-bottom: 14px;
+}
+.insight-retained-img { width: 100%; display: block; border-radius: 10px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); cursor: zoom-in; }
+
+/* ─── 07 EXISTING STANDARD ──────────────────────────────── */
+.baseline-intro { max-width: 680px; margin-bottom: 48px; }
+.baseline-features { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 40px; }
+.baseline-feature { padding: 28px 32px; border-bottom: 1px solid var(--border); }
+.baseline-feature:nth-child(odd) { border-right: 1px solid var(--border); }
+.baseline-feature:nth-last-child(-n+2) { border-bottom: none; }
+.bf-name { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+.bf-desc { font-size: 13px; color: var(--mid); line-height: 1.7; }
+.baseline-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.baseline-context {
+  background: var(--btp-dark); border-radius: 10px; padding: 28px;
+  font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.7;
+}
+.baseline-context strong { color: var(--white); }
+.baseline-uses { background: var(--btp-light); border-radius: 10px; padding: 28px; }
+.baseline-uses-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--btp); margin-bottom: 14px;
+}
+.baseline-uses-list { font-size: 14px; color: var(--dark); line-height: 2; }
+
+/* ─── 08 CEILING ────────────────────────────────────────── */
+.ceiling-intro { max-width: 680px; margin-bottom: 48px; }
+.ceiling-limits { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); }
+.ceiling-limit {
+  display: grid; grid-template-columns: 160px 1fr;
+  gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.cl-tag {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--btp); padding-top: 3px;
+}
+.cl-body { font-size: 15px; color: var(--mid); line-height: 1.75; }
+.cl-body strong { color: var(--dark); font-weight: 600; }
+.ceiling-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+.ceiling-quote {
+  padding: 32px; background: var(--btp-light);
+  border-radius: 12px;
+}
+.ceiling-quote-mark {
+  font-family: 'Lora', serif; font-size: 40px;
+  color: var(--btp-mid); line-height: 1; margin-bottom: 12px;
+}
+.ceiling-quote-text {
+  font-family: 'Lora', serif; font-size: 16px;
+  font-style: italic; color: var(--dark); line-height: 1.6;
+  margin-bottom: 12px;
+}
+.ceiling-quote-attr { font-size: 12px; color: var(--mid); }
+.ceiling-assessment { padding: 32px; background: var(--cream); border-radius: 12px; }
+.ceiling-assessment-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mid); margin-bottom: 12px;
+}
+.ceiling-assessment-text { font-size: 15px; color: var(--dark); line-height: 1.75; }
+.ceiling-assessment-text strong { font-weight: 700; }
+
+/* ─── 09 ASSISTANT TO ADVISOR ───────────────────────────── */
+.ata-intro { max-width: 680px; margin-bottom: 56px; }
+.ata-steps { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); }
+.ata-step {
+  display: grid; grid-template-columns: 56px 1fr;
+  gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.ata-num {
+  font-family: 'Lora', serif; font-size: 32px;
+  font-weight: 700; color: var(--btp-light);
+  line-height: 1;
+}
+.ata-content {}
+.ata-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--btp); margin-bottom: 8px;
+}
+.ata-label-break { color: #94423B; }
+.ata-name { font-size: 18px; font-weight: 700; color: var(--dark); letter-spacing: -0.01em; margin-bottom: 8px; }
+.ata-desc { font-size: 15px; color: var(--mid); line-height: 1.7; }
+
+/* ─── 10 RAG EXPLAINED ──────────────────────────────────── */
+.rag-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+.rag-body { }
+.rag-definition {
+  margin-top: 28px; padding: 24px;
+  background: var(--btp-light); border-radius: 10px;
+  border-left: 3px solid var(--btp);
+}
+.rag-definition-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--btp); margin-bottom: 8px;
+}
+.rag-definition-text { font-size: 14px; color: var(--dark); line-height: 1.7; }
+.rag-flow { display: flex; flex-direction: column; }
+.rag-step { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; }
+.rag-step-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--btp); margin-bottom: 8px;
+}
+.rag-step-content { font-size: 14px; color: var(--mid); line-height: 1.65; }
+.rag-step-content em { font-style: italic; color: var(--dark); }
+.rag-connector {
+  width: 1px; height: 20px; background: var(--btp-border);
+  margin-left: 22px;
+}
+.rag-step-answer { background: var(--btp-light); border-color: var(--btp-border); }
+.rag-step-answer .rag-step-content em { color: var(--btp-dark); }
+
+/* ─── 11 RAG COMPARISON ─────────────────────────────────── */
+.rag-comparison-intro { max-width: 680px; margin-bottom: 40px; }
+.rag-table { width: 100%; border-collapse: collapse; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.rag-table-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.rag-table th {
+  padding: 14px 20px; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; text-align: left;
+}
+.rag-th-query { background: var(--dark); color: rgba(255,255,255,0.5); width: 28%; }
+.rag-th-without { background: #FEF2F2; color: #94423B; border-left: 1px solid var(--border); }
+.rag-th-with { background: var(--btp-light); color: var(--btp); border-left: 1px solid var(--btp-border); }
+.rag-table td { padding: 18px 20px; font-size: 14px; line-height: 1.65; vertical-align: top; border-top: 1px solid var(--border); }
+.rag-td-query { color: var(--dark); font-style: italic; font-weight: 500; background: var(--white); }
+.rag-td-without { color: var(--mid); background: #FFFAFA; border-left: 1px solid var(--border); }
+.rag-td-with { color: var(--dark); background: #FAFBFF; border-left: 1px solid var(--btp-border); }
+.rag-callout {
+  margin-top: 28px; background: var(--btp-dark); border-radius: 10px;
+  padding: 24px 28px; font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.75;
+}
+.rag-callout strong { color: var(--white); }
+
+/* ─── 12 RAG MATURITY ───────────────────────────────────── */
+.rag-maturity-intro { max-width: 680px; margin-bottom: 48px; }
+.rag-maturity-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.rag-levels { display: flex; flex-direction: column; gap: 16px; }
+.rag-level {
+  display: grid; grid-template-columns: 80px 1fr;
+  gap: 20px; background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 20px; align-items: start;
+}
+.rag-level-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; background: var(--btp-light);
+  color: var(--btp); padding: 5px 8px; border-radius: 5px;
+  text-align: center;
+}
+.rag-level-desc { font-size: 14px; color: var(--mid); line-height: 1.65; }
+.rag-maturity-aside { display: flex; flex-direction: column; gap: 20px; }
+.rag-eval-q { background: var(--cream); border-radius: 10px; padding: 28px; }
+.rag-eval-q-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--btp); margin-bottom: 12px;
+}
+.rag-eval-q-text {
+  font-family: 'Lora', serif; font-size: 16px;
+  font-style: italic; color: var(--dark); line-height: 1.6;
+}
+.rag-why { background: var(--btp-light); border: 1px solid var(--btp-border); border-radius: 10px; padding: 28px; }
+.rag-why-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--btp); margin-bottom: 12px;
+}
+.rag-why-text { font-size: 14px; color: var(--dark); line-height: 1.75; }
+.rag-why-text strong { font-weight: 700; }
+
+/* ─── 13 TWO LAYERS ─────────────────────────────────────── */
+.layers-intro { max-width: 680px; margin-bottom: 48px; }
+.layers-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.layer-panel { background: var(--white); padding: 48px; }
+.layer-panel-2 { background: var(--btp-light); }
+.layer-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
+  display: inline-block; margin-bottom: 20px;
+}
+.lb-1 { background: var(--btp); color: var(--white); }
+.lb-2 { background: var(--btp-dark); color: var(--white); }
+.layer-name { font-size: 21px; font-weight: 700; color: var(--dark); letter-spacing: -0.02em; margin-bottom: 14px; }
+.layer-desc { font-size: 14px; color: var(--mid); line-height: 1.8; margin-bottom: 24px; }
+.layer-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+.lt-chip {
+  font-size: 11px; font-weight: 600; color: var(--dark);
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 100px; padding: 3px 10px;
+}
+.layer-panel-2 .lt-chip { background: var(--white); }
+.layer-eval {
+  font-size: 12px; color: var(--mid); font-style: italic;
+  padding-top: 16px; border-top: 1px solid var(--btp-border);
+}
+.layers-callout {
+  margin-top: 24px; background: var(--btp-dark); border-radius: 10px;
+  padding: 24px 28px; font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.75;
+}
+.layers-callout strong { color: var(--white); }
+
+/* ─── 14 + 17 + 18 TABLES (eval-table, unchanged class names) */
+.eval-table-wrap { margin-top: 40px; overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+.eval-table { width: 100%; border-collapse: collapse; }
+.eval-table th {
+  background: var(--btp-dark); color: var(--white);
+  font-size: 13px; font-weight: 600; text-align: left;
+  padding: 16px 20px; white-space: nowrap;
+}
+.eval-table td {
+  padding: 16px 20px; font-size: 13px; color: var(--mid);
+  border-top: 1px solid var(--border); vertical-align: top; line-height: 1.55;
+}
+.eval-table tr:nth-child(even) td { background: var(--btp-light); }
+.eval-table td:first-child { font-weight: 600; color: var(--dark); white-space: nowrap; }
+.dot-rating { display: flex; align-items: center; gap: 4px; margin-bottom: 5px; }
+.dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.dot-filled { background: var(--btp-dark); }
+.dot-empty { background: transparent; border: 1.5px solid #BCC7DB; }
+.dot-note { font-size: 12px; color: var(--mid); }
+.table-legend { display: flex; gap: 24px; margin-top: 16px; font-size: 12px; color: var(--mid); }
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.eval-key-pattern {
+  margin-top: 24px; border-left: 3px solid var(--btp);
+  padding: 16px 20px; background: var(--btp-light); border-radius: 0 8px 8px 0;
+}
+.eval-key-pattern-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--btp); margin-bottom: 6px;
+}
+.eval-key-pattern-text { font-size: 14px; color: var(--dark); line-height: 1.65; }
+
+/* ─── 15 CEILING (Layer 1) ──────────────────────────────── */
+.l1-ceiling-body { max-width: 680px; }
+.l1-ceiling-body .body + .body { margin-top: 20px; }
+.critical-diff {
+  margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; background: var(--border); border-radius: 10px; overflow: hidden;
+}
+.cd-panel { padding: 28px 32px; background: var(--white); }
+.cd-panel-2 { background: var(--cream); }
+.cd-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mid); margin-bottom: 10px;
+}
+.cd-text {
+  font-size: 15px; color: var(--dark); line-height: 1.7;
+}
+.cd-text em { font-style: italic; }
+.l1-why {
+  margin-top: 24px; background: var(--btp-light); border: 1px solid var(--btp-border);
+  border-radius: 10px; padding: 24px 28px;
+}
+.l1-why-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--btp); margin-bottom: 10px;
+}
+.l1-why-text { font-size: 14px; color: var(--dark); line-height: 1.75; }
+.l1-why-text strong { font-weight: 700; }
+
+/* ─── 16 TOOL SPOTLIGHTS ────────────────────────────────── */
+.spotlights-intro { max-width: 680px; margin-bottom: 48px; }
+.spotlights-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.spotlight {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px;
+}
+.spotlight-logo {
+  width: 36px; height: 36px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700; color: var(--white);
+  margin-bottom: 14px; font-family: sans-serif; flex-shrink: 0;
+}
+.spotlight-name { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+.spotlight-desc { font-size: 13px; color: var(--mid); line-height: 1.7; margin-bottom: 12px; }
+.spotlight-diff {
+  font-size: 12px; font-weight: 600; color: var(--btp);
+  padding-top: 12px; border-top: 1px solid var(--border);
+}
+
+/* ─── COPILOT STUDIO TABLE (unchanged class names) ──────── */
+.copilot-main-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-top: 40px; }
+.copilot-main-header { background: var(--btp-dark); padding: 22px 32px; }
+.copilot-main-tool { font-size: 17px; font-weight: 700; color: var(--white); letter-spacing: -0.01em; }
+.copilot-main-body { padding: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.copilot-field-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--btp); margin-bottom: 8px; }
+.copilot-field-text { font-size: 14px; color: var(--mid); line-height: 1.7; }
+.copilot-field-text strong { color: var(--dark); font-weight: 600; }
+.copilot-highlight { background: var(--btp-light); border-radius: 8px; padding: 14px 18px; }
+.copilot-attr-rows { border-top: 1px solid var(--border); }
+.copilot-attr-row { display: grid; grid-template-columns: 260px 1fr; gap: 32px; padding: 18px 32px; border-bottom: 1px solid var(--border); align-items: start; }
+.copilot-attr-row:last-child { border-bottom: none; }
+.copilot-attr-name { font-size: 14px; font-weight: 700; color: var(--dark); }
+.copilot-attr-val { font-size: 14px; color: var(--mid); line-height: 1.65; }
+
+/* ─── 19 CONCLUSION ─────────────────────────────────────── */
+.conclusion-intro { max-width: 680px; margin-bottom: 48px; }
+.conclusion-split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.conclusion-panel { }
+.conclusion-divider { width: 32px; height: 3px; border-radius: 2px; margin-bottom: 20px; }
+.cd-good { background: var(--btp); }
+.cd-bad { background: #94423B; }
+.conclusion-panel-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; display: block; margin-bottom: 10px;
+}
+.cpb-good { color: var(--btp); }
+.cpb-bad { color: #94423B; }
+.conclusion-heading { font-size: 17px; font-weight: 700; color: var(--dark); margin-bottom: 16px; }
+.conclusion-intro-text { font-size: 14px; color: var(--mid); margin-bottom: 16px; line-height: 1.65; }
+.conclusion-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.conclusion-list li {
+  font-size: 14px; color: var(--dark); line-height: 1.6;
+  padding-left: 16px; position: relative;
+}
+.conclusion-list li::before { content: '—'; position: absolute; left: 0; font-weight: 600; }
+.cl-good li::before { color: var(--btp); }
+.cl-bad li::before { color: #94423B; }
+.conclusion-note { font-size: 13px; font-style: italic; color: var(--mid); line-height: 1.65; }
+
+/* ─── 20 FINAL VERDICT ──────────────────────────────────── */
+.verdict-statement {
+  padding: 48px 0; border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border); margin-bottom: 56px;
+  display: grid; grid-template-columns: 160px 1fr; gap: 48px; align-items: start;
+}
+.verdict-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--btp); padding-top: 6px;
+}
+.verdict-text {
+  font-family: 'Lora', serif;
+  font-size: clamp(20px, 2.5vw, 28px);
+  color: var(--dark); line-height: 1.4; font-style: italic;
+}
+.verdict-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.vd-box { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 32px; }
+.vd-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--btp); margin-bottom: 14px;
+}
+.vd-text { font-size: 15px; color: var(--mid); line-height: 1.8; }
+.vd-text strong { color: var(--dark); font-weight: 700; }
+
+/* ─── 21 STRATEGIC DIRECTION ────────────────────────────── */
+.strategy-intro { max-width: 680px; margin-bottom: 48px; }
+.strategy-items { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); margin-bottom: 48px; }
+.strategy-item {
+  display: grid; grid-template-columns: 56px 1fr;
+  gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--border); align-items: start;
+}
+.si-num {
+  font-family: 'Lora', serif; font-size: 28px;
+  font-weight: 700; color: var(--btp-dark); line-height: 1;
+}
+.si-name { font-size: 17px; font-weight: 700; color: var(--dark); letter-spacing: -0.01em; margin-bottom: 8px; }
+.si-desc { font-size: 14px; color: var(--mid); line-height: 1.75; }
+.ux-mandate { background: var(--btp-dark); border-radius: 14px; padding: 56px; }
+.ux-mandate-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--btp-mid); margin-bottom: 20px;
+}
+.ux-mandate-text {
+  font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.85; max-width: 680px;
+}
+.ux-mandate-text strong { color: var(--white); font-style: italic; }
+
+/* ─── PROJECT NAV (shared portfolio) ───────────────────── */
+.project-nav-wrapper { background: var(--white); border-top: 1px solid var(--border); }
+.project-nav { display: flex; align-items: center; justify-content: space-between; padding: 40px 0 96px; gap: 16px; }
+.pnav-link { display: flex; flex-direction: column; text-decoration: none; flex: 1; max-width: 280px; }
+.pnav-direction { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+.pnav-title { font-size: 15px; font-weight: 600; color: var(--dark); line-height: 1.3; }
+.pnav-prev { align-items: flex-start; }
+.pnav-next { align-items: flex-end; text-align: right; }
+.pnav-all { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); text-decoration: none; padding: 10px 20px; border: 1px solid var(--border); border-radius: 100px; }
+.pnav-all:hover { border-color: var(--dark); color: var(--dark); }
+.pnav-spacer { flex: 1; max-width: 280px; }
+
+/* ─── LIGHTBOX ──────────────────────────────────────────── */
+.lb-overlay { display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;align-items:center;justify-content:center;padding:32px; }
+.lb-overlay.is-open { display:flex; }
+.lb-img { max-width:100%;max-height:90vh;border-radius:8px;object-fit:contain; }
+.lb-close { position:fixed;top:20px;right:24px;background:none;border:none;color:var(--white);font-size:32px;cursor:pointer;line-height:1; }
+
+/* ─── RESPONSIVE ────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .spotlights-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  .rq-pull { grid-template-columns: 1fr; gap: 20px; }
+  .rag-layout { grid-template-columns: 1fr; gap: 48px; }
+  .rag-maturity-layout { grid-template-columns: 1fr; gap: 32px; }
+  .layers-split { grid-template-columns: 1fr; }
+  .conclusion-split { grid-template-columns: 1fr; gap: 48px; }
+  .verdict-statement { grid-template-columns: 1fr; gap: 20px; }
+  .verdict-detail { grid-template-columns: 1fr; }
+  .critical-diff { grid-template-columns: 1fr; }
+  .baseline-meta { grid-template-columns: 1fr; }
+  .ceiling-bottom { grid-template-columns: 1fr; }
+  .synth-bottom { grid-template-columns: 1fr; gap: 32px; }
+  .copilot-main-body { grid-template-columns: 1fr; }
+  .copilot-attr-row { grid-template-columns: 1fr; gap: 8px; }
+  .er-split { grid-template-columns: 1fr; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { justify-content: flex-start; margin-top: 0; margin-right: 0; }
+  .hero-image { max-width: 360px; }
+}
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+  .s { padding: 64px 0; }
+  .hero { padding: 72px 0 64px; }
+  .method-grid { grid-template-columns: 1fr; }
+  .baseline-features { grid-template-columns: 1fr; }
+  .baseline-feature:nth-child(odd) { border-right: none; }
+  .baseline-feature { border-bottom: 1px solid var(--border) !important; }
+  .baseline-feature:last-child { border-bottom: none !important; }
+  .ceiling-limit { grid-template-columns: 1fr; gap: 8px; }
+  .synth-lens { grid-template-columns: 1fr; gap: 6px; }
+  .inquiry-item { grid-template-columns: 1fr; gap: 8px; }
+  .spotlights-grid { grid-template-columns: 1fr 1fr; }
+  .gnav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--white); flex-direction: column; gap: 0; border-bottom: 1px solid var(--border); box-shadow: 0 8px 24px rgba(0,0,0,0.07); z-index: 199; padding: 8px 0; }
+  .gnav-links.is-open { display: flex; }
+  .gnav-link { padding: 14px 24px; }
+  .gnav-hamburger { display: flex; }
+  .project-nav { flex-wrap: wrap; }
+  .pnav-next { align-items: flex-start; text-align: left; }
+  .ux-mandate { padding: 36px; }
+  .timeline-track { grid-template-columns: 1fr; padding-left: 24px; position: relative; }
+  .timeline-track::before { width: 1px; height: 100%; top: 0; left: 4px; }
+  .tl-dot { top: 6px; left: -20px; transform: none; }
+  .tl-step { padding-top: 0; padding-bottom: 28px; }
+  .tl-step:last-child { text-align: left; }
+  .tl-step:last-child .tl-dot { left: -20px; right: auto; }
+}
+@media (max-width: 560px) {
+  .spotlights-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- GLOBAL NAV -->
+<header class="gnav" id="gnav">
+  <div class="container">
+    <div class="gnav-inner">
+      <a href="index.html" class="gnav-logo">Eshwar</a>
+      <nav class="gnav-links" id="gnav-links" aria-label="Main navigation">
+        <a href="about-v2.html" class="gnav-link">About</a>
+        <a href="index-cards-v3.html#work" class="gnav-link">Work</a>
+        <a href="contact-v3.html" class="gnav-link">Contact</a>
+      </nav>
+      <button class="gnav-hamburger" id="gnav-toggle" aria-expanded="false" aria-controls="gnav-links" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <div class="hero-content">
+        <div class="eyebrow">01 — Industry Project</div>
+        <h1 class="h1 hero-title">Beyond the<br>Prompt</h1>
+        <p class="hero-subtitle">A case study on AI's role in product ownership workflows — what current agentic tools actually deliver, and where the critical gaps remain.</p>
+        <div class="hero-tags">
+          <span class="chip">Industry Project</span>
+          <span class="chip">2 months</span>
+          <span class="chip">AI Research</span>
+          <span class="chip">Enterprise SaaS</span>
+        </div>
+        <div class="hero-bosch">
+          <img src="About me visual assets/image 318.png" alt="Bosch logo" class="hero-bosch-logo">
+          <div>
+            <div class="hero-bosch-title">Bosch Internship Project</div>
+            <p class="hero-bosch-desc">Conducted during my UI/UX internship at Bosch Global Software Technologies, within the Power Tools division.</p>
+          </div>
+        </div>
+        <div class="disclaimer">
+          <div class="disclaimer-label">Disclaimer</div>
+          <p class="disclaimer-text">This research was conducted during September–October 2025. As the study evaluates the evolving capabilities and limitations of AI systems, the observations and findings presented are inherently time-sensitive and may shift as these technologies continue to develop.</p>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <img
+          src="Image placeholder for AI project.png"
+          alt="Illustration of a product owner at her desk reviewing AI-synthesized insights, priorities, decisions, and roadmap items drawn together from scattered tools like docs, chat, email, and analytics"
+          class="hero-image"
+          data-lightbox
+          loading="lazy"
+        >
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 01 PURPOSE -->
+<section class="s s-cream">
+  <div class="container">
+    <div class="eyebrow">01 — Purpose</div>
+    <h2 class="h2 h2--display" style="margin-bottom:36px;">What do Product Owners actually need AI to do?</h2>
+    <div class="purpose-body">
+      <p class="body">Product Owners face constant pressure to ship faster, communicate clearly, and stay ahead of blockers — all while context-switching across tools, teams, and stakeholders.</p>
+      <p class="body">This research set out to understand <strong>what POs actually need from AI</strong>, what tools exist today, and how well those tools address real pain points in the product management lifecycle.</p>
+    </div>
+    <div class="rq-pull">
+      <div class="rq-label">Research Question</div>
+      <p class="rq-text">"How well do current agentic AI tools meet the evolving needs of Product Owners — and where do the critical gaps lie?"</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 PROCESS -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">02 — Process</div>
+    <h2 class="h2" style="margin-bottom:48px;">Eight weeks, four methods</h2>
+
+    <div class="timeline">
+      <div class="timeline-track">
+        <div class="tl-step">
+          <div class="tl-dot"></div>
+          <div class="tl-week">Week 1–2</div>
+          <div class="tl-phase">Research Planning<br>&amp; Scoping</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot"></div>
+          <div class="tl-week">Week 3–4</div>
+          <div class="tl-phase">Secondary<br>Research</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot"></div>
+          <div class="tl-week">Week 5–6</div>
+          <div class="tl-phase">Exploratory<br>Interviews</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot"></div>
+          <div class="tl-week">Week 7</div>
+          <div class="tl-phase">Tool<br>Deep-Dives</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot"></div>
+          <div class="tl-week">Week 8</div>
+          <div class="tl-phase">Synthesis &amp;<br>Comparison</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="methods">
+      <div class="divider" style="margin:48px 0 32px;"></div>
+      <div class="eyebrow">Research Methods</div>
+      <div class="method-grid">
+        <div class="method-item">
+          <div class="method-num">Method 01</div>
+          <div class="method-name">Secondary Research</div>
+          <p class="method-desc">Studied existing AI product management tools, whitepapers, product documentation, and use case libraries across 6 major platforms.</p>
+        </div>
+        <div class="method-item">
+          <div class="method-num">Method 02</div>
+          <div class="method-name">Exploratory Interviews</div>
+          <p class="method-desc">Conducted semi-structured interviews with POs to understand their daily workflows, blockers, and expectations from AI assistance.</p>
+        </div>
+        <div class="method-item">
+          <div class="method-num">Method 03</div>
+          <div class="method-name">Tool Walkthroughs</div>
+          <p class="method-desc">Hands-on evaluation of each AI platform — testing real product scenarios to observe capability gaps and strengths first-hand.</p>
+        </div>
+        <div class="method-item">
+          <div class="method-num">Method 04</div>
+          <div class="method-name">Comparative Analysis</div>
+          <p class="method-desc">Built a structured comparison matrix scoring each tool across 8 dimensions relevant to PO workflows.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="inquiry">
+      <div class="divider" style="margin:48px 0 32px;"></div>
+      <div class="eyebrow">Area of Inquiry</div>
+      <p class="body" style="max-width:640px;margin-bottom:0;">Three core dimensions guided every interview and tool evaluation. Every insight maps back to one of these areas.</p>
+      <div class="inquiry-items">
+        <div class="inquiry-item">
+          <div class="inquiry-counter">01</div>
+          <div>
+            <div class="inquiry-name">AI Capability Gaps</div>
+            <div class="inquiry-def">What tasks POs wish AI could do but current tools can't.</div>
+          </div>
+        </div>
+        <div class="inquiry-item">
+          <div class="inquiry-counter">02</div>
+          <div>
+            <div class="inquiry-name">Workflow Integration</div>
+            <div class="inquiry-def">How AI fits (or doesn't) into existing tool stacks and daily rituals.</div>
+          </div>
+        </div>
+        <div class="inquiry-item">
+          <div class="inquiry-counter">03</div>
+          <div>
+            <div class="inquiry-name">Trust &amp; Adoption Barriers</div>
+            <div class="inquiry-def">What prevents POs from relying on AI outputs for critical decisions.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 THE USER -->
+<section class="s s-white s-airy">
+  <div class="container">
+    <div class="eyebrow">03 — The User</div>
+    <h2 class="h2" style="margin-bottom:20px;">Who this research was built around</h2>
+    <p class="body persona-intro">The research centred on a specific archetype — the senior Product Owner embedded in an enterprise SaaS environment, managing a cross-functional squad and spending the majority of their day bridging execution and strategy across disconnected tools.</p>
+    <img
+      src="Beyond the prompt/Frame 200.png"
+      alt="User Persona: Priya Menon, Senior Product Owner. B2B Enterprise SaaS, 7 years experience, 14-person squad, Bangalore. Quote: 'I don't just need something to write for me. I need something that knows what's in my backlog, has read my specs, and can connect the dots when I ask a question.' Spends half her day in syncs and the rest ensuring the Jira board matches decisions made. Core tools: Jira, Confluence, Slack, ChatGPT. Top priorities: remembering past decisions, connecting chats to tickets. Frustrations: constant tool-switching, AI that forgets context every session."
+      class="persona-img"
+      data-lightbox
+      loading="lazy"
+    >
+  </div>
+</section>
+
+<!-- 04 EXPLORATORY RESEARCH -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">04 — Secondary Research</div>
+    <h2 class="h2" style="margin-bottom:20px;">What emerged from exploratory research</h2>
+    <p class="body er-intro">Secondary research and early interviews revealed a consistent split: AI was being used productively for drafting and summarisation, but consistently failed the moment it needed to operate across sessions, tools, or strategic decisions.</p>
+
+    <div class="er-split">
+      <div>
+        <div class="er-col-label er-col-positive">What AI is used for today</div>
+        <ul class="er-list er-list-uses">
+          <li>Writing user stories and acceptance criteria</li>
+          <li>Summarising feedback and stakeholder updates</li>
+          <li>Basic task automation within workflows</li>
+          <li>Drafting documentation and release notes</li>
+        </ul>
+      </div>
+      <div>
+        <div class="er-col-label er-col-negative">Where it consistently fails</div>
+        <ul class="er-list er-list-pitfalls">
+          <li>Lack of persistent context across sessions</li>
+          <li>Outputs not grounded in actual product data</li>
+          <li>Limited support for prioritisation and decision-making</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="er-synthesis">
+      These patterns indicate where AI is currently useful — and where it begins to break in real product workflows.
+    </div>
+  </div>
+</section>
+
+<!-- 05 SYNTHESIS -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">05 — Synthesis</div>
+    <h2 class="h2" style="margin-bottom:20px;">How these patterns were interpreted</h2>
+    <p class="body synth-intro" style="max-width:640px;">We synthesised the raw observations using the analytical structure defined in our area of inquiry. Each observation was examined through three lenses:</p>
+
+    <div class="synth-lenses">
+      <div class="synth-lens">
+        <div class="synth-lens-name">What it means</div>
+        <div class="synth-lens-def">What each observation reveals about AI's current limitations</div>
+      </div>
+      <div class="synth-lens">
+        <div class="synth-lens-name">Example</div>
+        <div class="synth-lens-def">How it manifests in real Product Owner workflows</div>
+      </div>
+      <div class="synth-lens">
+        <div class="synth-lens-name">PO Lens</div>
+        <div class="synth-lens-def">How it impacts decision-making, not just execution</div>
+      </div>
+    </div>
+
+    <div class="synth-bottom" style="margin-top:40px;">
+      <div class="synth-dims">
+        <span class="synth-dim">Capability gaps</span>
+        <span class="synth-dim">Workflow integration</span>
+        <span class="synth-dim">Trust &amp; adoption</span>
+      </div>
+      <div class="synth-outcome">
+        These interpretations led to five core insights — not about features, but about how AI aligns (or fails to align) with product thinking.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 INSIGHTS (preserved exactly) -->
+<section class="s s-cream s-feature">
+  <div class="container">
+    <div class="eyebrow">06 — Insights</div>
+    <h2 class="h2 h2--display" style="margin-bottom:36px;">Five insights about AI in product workflows</h2>
+    <p class="body insights-intro">Each insight is grounded in direct participant quotes and rephrased as a How Might We question that defines the design opportunity it opens.</p>
+    <div class="insights-sequence">
+      <div class="insight-block">
+        <div class="insight-block-label">Insight 1 — Memory Matters More Than Drafting</div>
+        <img src="Beyond the prompt/Frame 203.png"
+          alt="Insight 1: POs want AI that remembers context across sessions — not a blank slate chatbot every time. Quote: 'I want it to remember what we discussed last sprint and flag if this new ticket contradicts our earlier decisions.' Area of Opportunity: Persistent project-scoped memory connecting decisions, user stories, and roadmap items across time. HMW: How might we help POs maintain continuity of thought across sprints using AI-assisted project memory?"
+          class="insight-retained-img" data-lightbox loading="lazy">
+      </div>
+      <div class="insight-block">
+        <div class="insight-block-label">Insight 2 — Manual Monitoring Drives Workflow Fatigue</div>
+        <img src="Beyond the prompt/Frame 204.png"
+          alt="Insight 2: POs spend significant time manually identifying blockers. AI could proactively flag risks before they become delays. Quote: 'I spend too much time manually checking whether priorities, dependencies, or tickets are at risk instead of focusing on product strategy.' Key roadblock types: External dependencies, Priority shifts, Technical Debt, Compliance issues, Stakeholder misalignment. HMW: How might we give POs predictive risk intelligence embedded directly in their project management tools?"
+          class="insight-retained-img" data-lightbox loading="lazy">
+      </div>
+      <div class="insight-block">
+        <div class="insight-block-label">Insight 3 — Trust in AI Is Hierarchical</div>
+        <img src="Beyond the prompt/Frame 205.png"
+          alt="Insight 3: POs are willing to use AI for drafting and summarising — but are skeptical of AI making prioritisation or strategy decisions. Quote: 'I'll use it to write acceptance criteria or summarise feedback — but for what goes on the roadmap? That's still mine to decide.' Trust hierarchy: High trust — summarisation, drafting, formatting. Low trust — prioritisation, strategic decisions, stakeholder communication. HMW: How might we build AI tools that augment PO judgement rather than attempting to replace it?"
+          class="insight-retained-img" data-lightbox loading="lazy">
+      </div>
+      <div class="insight-block">
+        <div class="insight-block-label">Insight 4 — Context Is Fragmented, Not Missing</div>
+        <img src="Beyond the prompt/Frame 206.png"
+          alt="Insight 4: POs don't lack data — they lack connected context across tools and time. Critical product knowledge is distributed across Jira, Confluence, Slack, CRM, and feedback tools — but AI systems operate within isolated silos. Quote: 'The information exists — it's just scattered everywhere, across tools. No single tool sees the full picture.' Context fragmentation observed: Decisions in Docs, Execution in tickets, Feedback in external tools, No unified view across systems."
+          class="insight-retained-img" data-lightbox loading="lazy">
+      </div>
+      <div class="insight-block">
+        <div class="insight-block-label">Insight 5 — Product Thinking Is Translation, Not Creation</div>
+        <img src="Beyond the prompt/Frame 207.png"
+          alt="Insight 5: POs don't just create — they constantly translate between feedback, requirements, and decisions. Current AI supports creation but not this translation. Quote: 'The hardest part isn't creating tickets — it's carrying the reasoning behind them from customer feedback all the way to roadmap decisions.' HMW: AI works within artifacts — not across them. Feedback, features, tickets, and roadmap decisions still lack continuity and shared context."
+          class="insight-retained-img" data-lightbox loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 THE EXISTING STANDARD -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">07 — The Existing Standard</div>
+    <h2 class="h2" style="margin-bottom:20px;">The baseline: Microsoft Copilot</h2>
+    <div class="baseline-intro">
+      <p class="body">Before evaluating any new tools, we had to understand what Product Owners <strong>already rely on</strong> — and why. Microsoft Copilot and similar embedded assistants represent the current baseline for AI in product workflows.</p>
+      <p class="body">Built on 1,800+ pre-built connectors and natively integrated with Teams, SharePoint, Jira, and Confluence — Copilot is widely adopted for good reason.</p>
+    </div>
+
+    <div class="baseline-features">
+      <div class="baseline-feature">
+        <div class="bf-name">Ecosystem Connectivity</div>
+        <p class="bf-desc">1,800+ connectors — native links to Jira, Confluence, Slack, GitHub, and the full Microsoft 365 suite.</p>
+      </div>
+      <div class="baseline-feature">
+        <div class="bf-name">Enterprise Security &amp; Governance</div>
+        <p class="bf-desc">Compliance-ready with enterprise-grade data governance built into the Microsoft environment.</p>
+      </div>
+      <div class="baseline-feature">
+        <div class="bf-name">Low-Code Agent Building</div>
+        <p class="bf-desc">Copilot Studio enables teams to build custom agents without deep engineering effort.</p>
+      </div>
+      <div class="baseline-feature">
+        <div class="bf-name">Cost-Effective Entry Point</div>
+        <p class="bf-desc">~$200/month for 25,000 messages — a practical AI layer for most organisations to start with.</p>
+      </div>
+    </div>
+
+    <div class="baseline-meta">
+      <div class="baseline-context">
+        <strong>The most widely deployed AI assistant in enterprise product teams today.</strong> This isn't incidental — the Microsoft 365 integration story is genuinely strong, and for many organisations, Copilot is the natural first step into AI-assisted workflows.
+      </div>
+      <div class="baseline-uses">
+        <div class="baseline-uses-label">Typical Use Cases</div>
+        <div class="baseline-uses-list">
+          Automating IT/HR FAQs<br>
+          Drafting meeting summaries<br>
+          Quick in-tool Q&amp;A<br>
+          Task automation within Microsoft 365
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 BUT THERE'S A CEILING -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">08 — Limitations</div>
+    <h2 class="h2" style="margin-bottom:20px;">But there's a ceiling</h2>
+    <p class="body ceiling-intro" style="max-width:680px;">Copilot works well inside a single tool, within a known context. The moment a Product Owner's workflow spans multiple systems, sessions, or strategic decisions — Copilot starts to struggle.</p>
+
+    <div class="ceiling-limits">
+      <div class="ceiling-limit">
+        <div class="cl-tag">Scope</div>
+        <p class="cl-body">Primarily restricted to internal Microsoft deployments (Teams, SharePoint). Cross-platform workflows are an afterthought, not a design principle.</p>
+      </div>
+      <div class="ceiling-limit">
+        <div class="cl-tag">Intelligence</div>
+        <p class="cl-body">Functions as a <strong>task bot, not a true AI agent</strong>. Excellent at summarisation and drafting — but cannot support complex, multi-step decision-making.</p>
+      </div>
+      <div class="ceiling-limit">
+        <div class="cl-tag">Language</div>
+        <p class="cl-body">Generalised language models struggle with <strong>domain-specific requirements</strong>. Ambiguous or conflicting product specs are handled poorly compared to specialised agents.</p>
+      </div>
+      <div class="ceiling-limit">
+        <div class="cl-tag">Memory</div>
+        <p class="cl-body">No persistent context across sessions. Each conversation starts fresh — creating the exact continuity gap POs feel most acutely in practice.</p>
+      </div>
+    </div>
+
+    <div class="ceiling-bottom">
+      <div class="ceiling-quote">
+        <div class="ceiling-quote-mark">"</div>
+        <p class="ceiling-quote-text">It's great for drafting my meeting notes — but it has no idea what we decided last sprint, or why. Every time, I'm starting from scratch.</p>
+        <p class="ceiling-quote-attr">— Theme from PO interviews</p>
+      </div>
+      <div class="ceiling-assessment">
+        <div class="ceiling-assessment-label">Our Assessment</div>
+        <p class="ceiling-assessment-text">Copilot is a strong <strong>productivity layer</strong> — but not a <strong>decision-support layer</strong>. That gap became the central question of this research.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 FROM ASSISTANT TO ADVISOR -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">09 — The Gap</div>
+    <h2 class="h2" style="margin-bottom:20px;">From assistant to advisor</h2>
+    <p class="body ata-intro" style="max-width:680px;">Copilot tools improve productivity — but they stop short of supporting real decisions. In practice, this gap becomes critical.</p>
+
+    <div class="ata-steps">
+      <div class="ata-step">
+        <div class="ata-num">01</div>
+        <div class="ata-content">
+          <div class="ata-label">Starting point</div>
+          <div class="ata-name">What Copilot tools do well</div>
+          <p class="ata-desc">Draft. Summarise. Reformat. Useful for discrete, known tasks within a single tool context.</p>
+        </div>
+      </div>
+      <div class="ata-step">
+        <div class="ata-num">02</div>
+        <div class="ata-content">
+          <div class="ata-label ata-label-break">Where it breaks</div>
+          <div class="ata-name">The boundary</div>
+          <p class="ata-desc">Complex decisions. Ambiguity. Cross-tool context. Sprint continuity. The moment a PO needs to connect dots across systems or sessions, these tools stop helping.</p>
+        </div>
+      </div>
+      <div class="ata-step">
+        <div class="ata-num">03</div>
+        <div class="ata-content">
+          <div class="ata-label">Consequence</div>
+          <div class="ata-name">POs bridge it manually</div>
+          <p class="ata-desc">POs are left to manually connect context, memory, and strategic judgment across their own tool stack. The AI assists with outputs — the human does the work of connecting them.</p>
+        </div>
+      </div>
+      <div class="ata-step">
+        <div class="ata-num">04</div>
+        <div class="ata-content">
+          <div class="ata-label">This led us to</div>
+          <div class="ata-name">The question we evaluated against</div>
+          <p class="ata-desc">Which tools actually cross this gap — and which ones only promise to? We evaluated emerging tools against a higher standard: context-aware AI that can genuinely support decisions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 WHAT IS RAG -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">10 — RAG Explained</div>
+    <h2 class="h2" style="margin-bottom:40px;">What is RAG — and why does it matter?</h2>
+
+    <div class="rag-layout">
+      <div class="rag-body">
+        <p class="body">Standard AI models are trained on general knowledge — they generate responses from what they've learned, but they don't know your product, your decisions, or your context.</p>
+        <p class="body" style="margin-top:20px;">Think of it as the difference between asking a knowledgeable stranger for product advice — versus asking a colleague who has read every Jira ticket, Confluence page, and sprint retro in your project.</p>
+        <div class="rag-definition">
+          <div class="rag-definition-label">RAG — Retrieval-Augmented Generation</div>
+          <p class="rag-definition-text">Instead of relying purely on training data, a RAG system actively retrieves relevant information at the moment of a query — then uses that retrieved context to generate a grounded, specific response.</p>
+        </div>
+      </div>
+      <div>
+        <div class="rag-flow">
+          <div class="rag-step">
+            <div class="rag-step-label">User Query</div>
+            <p class="rag-step-content"><em>"Why did we deprioritise the notifications feature last sprint?"</em></p>
+          </div>
+          <div class="rag-connector"></div>
+          <div class="rag-step">
+            <div class="rag-step-label">Retrieval</div>
+            <p class="rag-step-content">AI fetches the relevant sprint notes, decision log, and Jira ticket history.</p>
+          </div>
+          <div class="rag-connector"></div>
+          <div class="rag-step rag-step-answer">
+            <div class="rag-step-label">Grounded Response</div>
+            <p class="rag-step-content"><em>"It was deprioritised due to a dependency on the auth module — flagged in sprint 14 retro."</em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 WHY RAG IS THE RIGHT LENS -->
+<section class="s s-white s-airy">
+  <div class="container">
+    <div class="eyebrow">11 — RAG in Context</div>
+    <h2 class="h2" style="margin-bottom:20px;">Why RAG is the right lens for PO workflows</h2>
+    <p class="body rag-comparison-intro" style="max-width:680px;">The difference between a generic AI response and a useful one comes down to context retrieval. The same prompt produces fundamentally different outputs depending on whether the tool can access your actual product data.</p>
+
+    <div class="rag-table-wrap">
+      <table class="rag-table">
+        <thead>
+          <tr>
+            <th class="rag-th-query">Query</th>
+            <th class="rag-th-without">✕ Without RAG</th>
+            <th class="rag-th-with">✓ With RAG</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rag-td-query">"Summarise our backlog priorities"</td>
+            <td class="rag-td-without">Generic advice on backlog grooming best practices.</td>
+            <td class="rag-td-with">Surfaces the top 5 tickets ranked by your team's actual scoring criteria, with blockers highlighted.</td>
+          </tr>
+          <tr>
+            <td class="rag-td-query">"Is this new feature aligned with our roadmap?"</td>
+            <td class="rag-td-without">Generates a generic alignment checklist. No knowledge of your actual roadmap.</td>
+            <td class="rag-td-with">Cross-references the feature against your current OKRs, previous decisions, and open dependencies.</td>
+          </tr>
+          <tr>
+            <td class="rag-td-query">"Draft release notes for this sprint"</td>
+            <td class="rag-td-without">Template-style output. No reference to actual ticket outcomes or team decisions.</td>
+            <td class="rag-td-with">Pulls from closed tickets, links to decisions made, and flags what was intentionally deferred.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rag-callout">
+      For POs, <strong>context is the work</strong>. An AI that can't retrieve and connect that context isn't supporting product decisions — it's just generating text.
+    </div>
+  </div>
+</section>
+
+<!-- 12 RAG MATURITY -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">12 — Evaluation Framework</div>
+    <h2 class="h2" style="margin-bottom:20px;">RAG maturity as our evaluation criterion</h2>
+    <p class="body rag-maturity-intro" style="max-width:680px;">We realised early that evaluating tools purely on features — "does it draft user stories?" — missed the deeper question: <strong>how does it know what to draft?</strong> RAG maturity became our primary lens because it determines whether an AI can actually support PO decision-making — or just produce plausible-sounding text.</p>
+
+    <div class="rag-maturity-layout">
+      <div>
+        <div class="rag-levels">
+          <div class="rag-level">
+            <div class="rag-level-badge">Level 1</div>
+            <div class="rag-level-desc">No retrieval. Outputs based on training data only. Generic and context-free.</div>
+          </div>
+          <div class="rag-level">
+            <div class="rag-level-badge">Level 2</div>
+            <div class="rag-level-desc">Basic retrieval within a single tool ecosystem. Context-aware but silo-bound.</div>
+          </div>
+          <div class="rag-level">
+            <div class="rag-level-badge">Level 3</div>
+            <div class="rag-level-desc">Cross-tool, cross-session retrieval. Connects information across the full PO workflow stack.</div>
+          </div>
+        </div>
+      </div>
+      <div class="rag-maturity-aside">
+        <div class="rag-eval-q">
+          <div class="rag-eval-q-label">The Evaluation Question</div>
+          <p class="rag-eval-q-text">"When this tool generates an output — does it know your product, your decisions, and your context? Or is it just a well-dressed guess?"</p>
+        </div>
+        <div class="rag-why">
+          <div class="rag-why-label">Why This Matters</div>
+          <p class="rag-why-text">The tools that scored highest on RAG maturity were also the ones POs trusted most in real workflows — because the outputs felt <strong>grounded, not generic</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 TWO LAYERS -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">13 — Tool Categories</div>
+    <h2 class="h2" style="margin-bottom:20px;">Two layers of AI</h2>
+    <p class="body layers-intro" style="max-width:680px;">The tools evaluated fall into two structurally different categories, each reflecting a different relationship with the Product Owner's workflow. Treating them as equivalent would be a category error.</p>
+
+    <div class="layers-split">
+      <div class="layer-panel">
+        <span class="layer-badge lb-1">Layer 1</span>
+        <div class="layer-name">Workflow-Embedded AI</div>
+        <p class="layer-desc">Tools integrated directly inside the environments POs use every day — Jira, Asana, ClickUp, Productboard. They act on tasks, requirements, and feedback within the workflow.</p>
+        <div class="layer-tools">
+          <span class="lt-chip">Asana AI</span>
+          <span class="lt-chip">Atlassian Rovo</span>
+          <span class="lt-chip">ClickUp AI</span>
+          <span class="lt-chip">Productboard</span>
+          <span class="lt-chip">ProdPad</span>
+        </div>
+        <div class="layer-eval">Evaluated on: drafting, integration depth, requirement refinement, duplicate detection, pricing</div>
+      </div>
+      <div class="layer-panel layer-panel-2">
+        <span class="layer-badge lb-2">Layer 2</span>
+        <div class="layer-name">Agent &amp; AI Infrastructure</div>
+        <p class="layer-desc">Platforms used to build, configure, and orchestrate AI agents across systems. Infrastructure layers — they make deeper agentic capabilities possible, but require setup.</p>
+        <div class="layer-tools">
+          <span class="lt-chip">Agentforce</span>
+          <span class="lt-chip">Watsonx</span>
+          <span class="lt-chip">Botpress</span>
+          <span class="lt-chip">Vertex AI</span>
+          <span class="lt-chip">Bedrock</span>
+          <span class="lt-chip">Zapier</span>
+          <span class="lt-chip">Stack AI</span>
+        </div>
+        <div class="layer-eval">Evaluated on: RAG model strength, cross-platform reach, Jira/Confluence integrations, pricing model</div>
+      </div>
+    </div>
+
+    <div class="layers-callout">
+      This separation matters because it reflects two different questions: <strong>What can POs use today?</strong> And <strong>what does the emerging AI infrastructure make possible?</strong>
+    </div>
+  </div>
+</section>
+
+<!-- 14 LAYER 1 EVALUATION (preserved exactly) -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">14 — Layer 1 Evaluation</div>
+    <h2 class="h2" style="margin-bottom:16px;">Layer 1 — Workflow-Embedded AI tools</h2>
+    <p class="body" style="max-width:680px;margin-bottom:0;">Evaluated on PO-relevant workflow dimensions: integration depth, drafting capability, requirement intelligence, and pricing.</p>
+
+    <div class="eval-table-wrap">
+      <table class="eval-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Asana AI</th>
+            <th>Atlassian Rovo</th>
+            <th>ClickUp AI</th>
+            <th>Productboard</th>
+            <th>ProdPad CoPilot</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Jira &amp; Confluence Integration</td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-empty"></span></div><div class="dot-note">Via connectors</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-filled"></span></div><div class="dot-note">Native / Seamless</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-empty"></span><span class="dot dot-empty"></span></div><div class="dot-note">ClickUp native only</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-empty"></span></div><div class="dot-note">Feedback sync</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-empty"></span></div><div class="dot-note">Bi-directional</div></td>
+          </tr>
+          <tr>
+            <td>Drafting &amp; Requirement Refinement</td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-filled"></span></div><div class="dot-note">Briefs, updates, overviews</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-filled"></span></div><div class="dot-note">Specs, release notes, summaries</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-empty"></span></div><div class="dot-note">Task &amp; doc drafting</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-filled"></span></div><div class="dot-note">Feedback → features</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-filled"></span></div><div class="dot-note">User stories &amp; ACs</div></td>
+          </tr>
+          <tr>
+            <td>Duplicate / Vague Req Detection</td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-empty"></span></div><div class="dot-note">Flags missing context</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-empty"></span></div><div class="dot-note">Knowledge Graph dedup</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-empty"></span><span class="dot dot-empty"></span></div><div class="dot-note">Basic prompting only</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-filled"></span></div><div class="dot-note">Auto-flags duplicates</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-empty"></span><span class="dot dot-empty"></span></div><div class="dot-note">Search-based only</div></td>
+          </tr>
+          <tr>
+            <td>Test Case Generation</td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-empty"></span><span class="dot dot-empty"></span></div><div class="dot-note">Not available</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-empty"></span><span class="dot dot-empty"></span></div><div class="dot-note">Ticket creation</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-empty"></span><span class="dot dot-empty"></span></div><div class="dot-note">No built-in support</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-empty"></span><span class="dot dot-empty"></span></div><div class="dot-note">Not available</div></td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-empty"></span></div><div class="dot-note">Via AI prompts</div></td>
+          </tr>
+          <tr>
+            <td>Price (per user/mo)</td>
+            <td>$10.99–$24.99</td>
+            <td>~$20–$24</td>
+            <td>$5–$7 add-on</td>
+            <td>~$20</td>
+            <td>~$25</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-legend">
+      <div class="legend-item"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-filled"></span> Strong</div>
+      <div class="legend-item"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-empty"></span> Partial</div>
+      <div class="legend-item"><span class="dot dot-filled"></span><span class="dot dot-empty"></span><span class="dot dot-empty"></span> Weak / Absent</div>
+    </div>
+    <div class="eval-key-pattern">
+      <div class="eval-key-pattern-label">Key Pattern</div>
+      <p class="eval-key-pattern-text">Rovo leads on integration and context depth; Productboard excels at feedback-to-feature intelligence. No tool in this layer provides strong test case generation — a consistent gap across the board.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 15 WORKFLOW TOOLS HAVE A CEILING -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">15 — Layer 1 Limitations</div>
+    <h2 class="h2" style="margin-bottom:28px;">But workflow tools have a ceiling</h2>
+
+    <div class="l1-ceiling-body">
+      <p class="body">Layer 1 tools are valuable — they fit into PO workflows with minimal friction. But they are ultimately <strong>bounded by the ecosystem they live in</strong>. Their intelligence is constrained to what that platform knows.</p>
+      <p class="body">What if you needed to build an AI layer that could <strong>reach across your entire product stack</strong> — Jira, Confluence, Slack, CRM, support tickets — and retrieve context from all of it? That requires a fundamentally different level of RAG maturity.</p>
+      <p class="body">That's the territory of Layer 2: <strong>agent and AI infrastructure platforms</strong>. Not plug-and-play tools — they require configuration and setup. But they expose capabilities that Layer 1 tools can't reach.</p>
+    </div>
+
+    <div class="critical-diff">
+      <div class="cd-panel">
+        <div class="cd-label">Layer 1 tools ask</div>
+        <p class="cd-text"><em>"What can the AI do inside this app?"</em></p>
+      </div>
+      <div class="cd-panel cd-panel-2">
+        <div class="cd-label">Layer 2 tools ask</div>
+        <p class="cd-text"><em>"What can the AI do when it has access to everything?"</em></p>
+      </div>
+    </div>
+
+    <div class="l1-why">
+      <div class="l1-why-label">Why This Matters for POs</div>
+      <p class="l1-why-text">The gap between what a PO needs and what current tools deliver is largely a <strong>RAG maturity gap</strong>. Understanding the infrastructure layer reveals what is technically possible — and what the next generation of PM tools should aspire to.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 16 TOOL SPOTLIGHTS -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">16 — Layer 2 Tools</div>
+    <h2 class="h2" style="margin-bottom:20px;">Tool spotlights: agentic AI systems</h2>
+    <p class="body spotlights-intro" style="max-width:680px;">Eight platforms evaluated across RAG depth, cross-system reach, and enterprise readiness.</p>
+
+    <div class="spotlights-grid">
+      <div class="spotlight">
+        <div class="spotlight-logo" style="background:#00A1E0;">S</div>
+        <div class="spotlight-name">Salesforce Agentforce</div>
+        <p class="spotlight-desc">AI agent builder deeply embedded within Salesforce CRM. Uses customer data to automate specialised workflows like lead qualification and support resolution.</p>
+        <div class="spotlight-diff">CRM-grounded AI tailored for customer data.</div>
+      </div>
+      <div class="spotlight">
+        <div class="spotlight-logo" style="background:#006699;">I</div>
+        <div class="spotlight-name">IBM watsonx Assistant</div>
+        <p class="spotlight-desc">Enterprise-grade conversational AI emphasising NLU and explainability. Highly secure and built for scale in strict corporate environments.</p>
+        <div class="spotlight-diff">Compliance and explainability for regulated industries.</div>
+      </div>
+      <div class="spotlight">
+        <div class="spotlight-logo" style="background:#232F3E;">B</div>
+        <div class="spotlight-name">Botpress</div>
+        <p class="spotlight-desc">GPT-powered platform supporting visual flow design. Highly customisable RAG model allowing granular control over what knowledge the bot ingests.</p>
+        <div class="spotlight-diff">Visual flow design for developers needing hands-on control.</div>
+      </div>
+      <div class="spotlight">
+        <div class="spotlight-logo" style="background:#4285F4;">G</div>
+        <div class="spotlight-name">Google Vertex AI Agents</div>
+        <p class="spotlight-desc">Part of Google Cloud's ML suite offering low-code agent building. Excellent native RAG strength with advanced search and vector pipelines.</p>
+        <div class="spotlight-diff">Advanced search pipelines for custom architecture.</div>
+      </div>
+      <div class="spotlight">
+        <div class="spotlight-logo" style="background:#FF4A00;">Z</div>
+        <div class="spotlight-name">Zapier Agents</div>
+        <p class="spotlight-desc">Action-driven conversational agents with built-in automation across 7,000+ apps. Exceptional at triggering workflows but limited in deep RAG capability.</p>
+        <div class="spotlight-diff">High-volume action execution over deep retrieval.</div>
+      </div>
+      <div class="spotlight">
+        <div class="spotlight-logo" style="background:#2D3561;">S</div>
+        <div class="spotlight-name">Stack AI</div>
+        <p class="spotlight-desc">No-code platform delivering high-quality RAG. Auto-syncs seamlessly with external storage hubs like SharePoint, Google Drive, Notion, and Salesforce.</p>
+        <div class="spotlight-diff">Seamless auto-syncing with external enterprise storage.</div>
+      </div>
+      <div class="spotlight">
+        <div class="spotlight-logo" style="background:#FF9900;">A</div>
+        <div class="spotlight-name">Amazon Bedrock / Q</div>
+        <p class="spotlight-desc">Robust enterprise AI agent builder with solid RAG infrastructure, provided the organisation's backend and data lake already reside within AWS.</p>
+        <div class="spotlight-diff">Ideal for teams operating deeply within the AWS ecosystem.</div>
+      </div>
+      <div class="spotlight">
+        <div class="spotlight-logo" style="background:#62D84E;">S</div>
+        <div class="spotlight-name">ServiceNow AI Agents</div>
+        <p class="spotlight-desc">Specialised workflow AI tailored for internal service management and HR. Features one of the strongest RAG setups for internal support tasks without extra tools.</p>
+        <div class="spotlight-diff">Highly specialised for internal service workflows.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 17 LAYER 2 EVALUATION (preserved exactly) -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">17 — Layer 2 Evaluation</div>
+    <h2 class="h2" style="margin-bottom:16px;">Layer 2 — Agent &amp; AI infrastructure</h2>
+    <p class="body" style="max-width:680px;margin-bottom:0;">Evaluated on RAG maturity, cross-platform reach, and integration with core PO tools — 7 platforms.</p>
+
+    <div class="eval-table-wrap">
+      <table class="eval-table">
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>RAG Model Strength</th>
+            <th>Jira Integration</th>
+            <th>Confluence Integration</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Salesforce Agentforce</td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-filled"></span></div><div class="dot-note">Salesforce Data Cloud grounding</div></td>
+            <td>Via MuleSoft or 3rd-party (Exalate)</td>
+            <td>No native support; needs middleware</td>
+            <td>$2 / conversation</td>
+          </tr>
+          <tr>
+            <td>IBM Watsonx Assistant</td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-empty"></span></div><div class="dot-note">Great for actions; RAG via watsonx.data</div></td>
+            <td>Starter kits (bi-directional handoff)</td>
+            <td>No direct support; via Discovery</td>
+            <td>Tiered pricing</td>
+          </tr>
+          <tr>
+            <td>Botpress</td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-filled"></span></div><div class="dot-note">Solid via Knowledge Bases</div></td>
+            <td>Via Pipedream or similar connectors</td>
+            <td>Via @botpresshub/confluence module</td>
+            <td>Pay-as-you-go</td>
+          </tr>
+          <tr>
+            <td>Google Vertex AI Agents</td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-filled"></span></div><div class="dot-note">Search &amp; vector pipelines</div></td>
+            <td>Native support via Make/Infin</td>
+            <td>No first-party support; HTTP API only</td>
+            <td>Usage-based</td>
+          </tr>
+          <tr>
+            <td>Zapier Agents</td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-empty"></span></div><div class="dot-note">Good for actions; RAG limited</div></td>
+            <td>Fully integrated no-code app</td>
+            <td>Via Zapier MCP interface</td>
+            <td>Free (Beta) / $40+</td>
+          </tr>
+          <tr>
+            <td>Stack AI</td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-filled"></span></div><div class="dot-note">Auto-syncs SharePoint, Drive+</div></td>
+            <td>Flexible via API/Zapier/Pipedream</td>
+            <td>Built-in Confluence Node integration</td>
+            <td>$199/mo+</td>
+          </tr>
+          <tr>
+            <td>Amazon Bedrock / Q</td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-filled"></span></div><div class="dot-note">Best if data is on AWS</div></td>
+            <td>No native Jira integration</td>
+            <td>No native Confluence support</td>
+            <td>$20/mo + usage</td>
+          </tr>
+          <tr>
+            <td>ServiceNow AI Agents</td>
+            <td><div class="dot-rating"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-filled"></span></div><div class="dot-note">Strong RAG for internal support</div></td>
+            <td>Bi-directional out-of-the-box connectors</td>
+            <td>No direct out-of-the-box support</td>
+            <td>Pro/Enterprise add-on</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-legend">
+      <div class="legend-item"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-filled"></span> Strong</div>
+      <div class="legend-item"><span class="dot dot-filled"></span><span class="dot dot-filled"></span><span class="dot dot-empty"></span> Partial</div>
+      <div class="legend-item"><span class="dot dot-filled"></span><span class="dot dot-empty"></span><span class="dot dot-empty"></span> Weak / Absent</div>
+    </div>
+    <div class="eval-key-pattern">
+      <div class="eval-key-pattern-label">Key Pattern</div>
+      <p class="eval-key-pattern-text">Agentforce, Vertex AI, Stack AI, and ServiceNow lead on RAG depth. But none offer seamless out-of-the-box Jira + Confluence coverage. Layer 2 tools trade ease-of-use for power — and that trade-off has direct implications for PO adoption.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 18 COPILOT STUDIO (preserved exactly) -->
+<section class="s s-white s-airy">
+  <div class="container">
+    <div class="eyebrow">18 — Copilot Studio Deep-Dive</div>
+    <h2 class="h2" style="margin-bottom:16px;">Where does Copilot Studio stand?</h2>
+
+    <div class="copilot-main-card">
+      <div class="copilot-main-header">
+        <div class="copilot-main-tool">Microsoft Copilot Studio</div>
+      </div>
+      <div class="copilot-main-body">
+        <div>
+          <div class="copilot-field-label">Overview</div>
+          <p class="copilot-field-text">Microsoft Copilot Studio distinguishes itself from competitors like Stack AI, Zapier AI Agents, Google Vertex Agent Builder, and Amazon Q by offering a deeply integrated, low-code environment within the Microsoft 365 ecosystem.</p>
+        </div>
+        <div>
+          <div class="copilot-field-label">RAG Model Strength</div>
+          <p class="copilot-field-text copilot-highlight">Currently limited — Copilot Studio doesn't support out-of-the-box RAG-based grounding on web or open knowledge. It can retrieve from internal documents (like SharePoint), but <strong>lacks advanced document ranking, vector embeddings, or hybrid retrieval</strong> that tools like Stack AI or Vertex AI enable.</p>
+        </div>
+        <div>
+          <div class="copilot-field-label">Price Point</div>
+          <p class="copilot-field-text">Bundled with Microsoft Copilot licenses (M365 E3/E5 + Copilot license). Additional Power Platform costs for advanced workflows.</p>
+        </div>
+        <div>
+          <div class="copilot-field-label">Jira Integrations</div>
+          <p class="copilot-field-text">Achieved via Power Automate connectors, enabling calls to Jira API for retrieving/updating issues or transactional workflows.</p>
+        </div>
+        <div style="grid-column:1/-1;">
+          <div class="copilot-field-label">Confluence Integrations</div>
+          <p class="copilot-field-text">Via Power Automate HTTP connector, with ability to search pages or ingest content.</p>
+        </div>
+      </div>
+      <div class="copilot-attr-rows">
+        <div class="copilot-attr-row">
+          <div class="copilot-attr-name">Knowledge Base Format Support</div>
+          <div class="copilot-attr-val">Supports SharePoint docs, Word, Excel, Power BI, Dataverse, etc. No direct web crawling.</div>
+        </div>
+        <div class="copilot-attr-row">
+          <div class="copilot-attr-name">Use-case Strengths</div>
+          <div class="copilot-attr-val">Enterprise operations, HR, IT service desks, finance, legal, project automation.</div>
+        </div>
+        <div class="copilot-attr-row" style="border-bottom:none;">
+          <div class="copilot-attr-name">NLU (Natural Language Understanding)</div>
+          <div class="copilot-attr-val">Good for task-based prompts, but may not fully support open-ended or ambiguous queries.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 19 CONCLUSION -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">19 — Conclusion</div>
+    <h2 class="h2 h2--display" style="margin-bottom:32px;">AI's current role in product workflows</h2>
+    <p class="body conclusion-intro" style="max-width:680px;">Synthesising the evaluations across workflows reveals a clear boundary — not in what AI can do, but in what it understands.</p>
+
+    <div class="conclusion-split">
+      <div class="conclusion-panel">
+        <div class="conclusion-divider cd-good"></div>
+        <span class="conclusion-panel-badge cpb-good">Where it is useful</span>
+        <div class="conclusion-heading">Supporting execution within workflows</div>
+        <p class="conclusion-intro-text">AI tools consistently perform well when:</p>
+        <ul class="conclusion-list cl-good">
+          <li>Drafting user stories, PRDs, and updates</li>
+          <li>Summarising feedback and discussions</li>
+          <li>Operating within a single tool's context</li>
+        </ul>
+        <p class="conclusion-note">These capabilities make AI an effective productivity layer embedded within workflows.</p>
+      </div>
+      <div class="conclusion-panel">
+        <div class="conclusion-divider cd-bad"></div>
+        <span class="conclusion-panel-badge cpb-bad">Where it breaks down</span>
+        <div class="conclusion-heading">Connecting context and supporting decisions</div>
+        <p class="conclusion-intro-text">AI struggles when tasks require:</p>
+        <ul class="conclusion-list cl-bad">
+          <li>Persistent memory across sprints</li>
+          <li>Connecting information across tools (Jira, Confluence, Slack, CRM)</li>
+          <li>Translating feedback into strategic product decisions</li>
+        </ul>
+        <p class="conclusion-note">These gaps stem from fragmented context, limited retrieval across systems, and a lack of grounding in real product history.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 20 FINAL VERDICT -->
+<section class="s s-cream">
+  <div class="container">
+    <div class="eyebrow">20 — Final Verdict</div>
+    <h2 class="h2" style="margin-bottom:48px;">What this ultimately comes down to</h2>
+
+    <div class="verdict-statement">
+      <div class="verdict-label">The final verdict</div>
+      <p class="verdict-text">"AI today operates within workflows — while product thinking operates across them."</p>
+    </div>
+
+    <div class="verdict-detail">
+      <div class="vd-box">
+        <div class="vd-label">What this ultimately comes down to</div>
+        <p class="vd-text">Across tools, the key differentiator was not capability — but how well AI retrieves and grounds its outputs in real product data. Systems with limited retrieval produce generic, context-free outputs. Those with stronger grounding generate responses tied to actual workflows and decisions.<br><br><strong>This is not just a feature gap — it is a difference in RAG maturity.</strong></p>
+      </div>
+      <div class="vd-box">
+        <div class="vd-label">The implication</div>
+        <p class="vd-text">Product Owners still carry the cognitive work of connecting fragmented context, interpreting feedback across sources, and making decisions. AI can assist in executing tasks, but it does not yet support how product thinking actually happens.</p>
+      </div>
+    </div>
+
+    <div class="divider" style="margin-top:64px;"></div>
+
+    <!-- 21 STRATEGIC DIRECTION -->
+    <div class="eyebrow" style="margin-top:64px;">21 — Strategic Direction</div>
+    <h2 class="h2" style="margin-bottom:20px;">Strategic direction</h2>
+    <p class="body strategy-intro" style="max-width:680px;">Our evaluation matrix reveals a critical market void: Product Owners are currently forced to choose between the seamless UX of <strong>Layer 1</strong> tools (which lack deep project memory) and the robust RAG power of <strong>Layer 2</strong> platforms (which lack out-of-the-box Jira/Confluence integration). To bridge this gap, future AI product development must focus on:</p>
+
+    <div class="strategy-items">
+      <div class="strategy-item">
+        <div class="si-num">01</div>
+        <div>
+          <div class="si-name">Unified Toolchain RAG</div>
+          <p class="si-desc">Moving beyond isolated chatbots to architectures that natively cross-reference Jira tickets, Confluence specs, and Slack decisions.</p>
+        </div>
+      </div>
+      <div class="strategy-item">
+        <div class="si-num">02</div>
+        <div>
+          <div class="si-name">Context Over Generation</div>
+          <p class="si-desc">Shifting AI product value from "drafting text" to autonomously mapping dependencies and flagging sprint risks.</p>
+        </div>
+      </div>
+      <div class="strategy-item">
+        <div class="si-num">03</div>
+        <div>
+          <div class="si-name">Turnkey Infrastructure</div>
+          <p class="si-desc">Transforming developer-heavy agent platforms into no-code, workflow-embedded solutions for business operations.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ux-mandate">
+      <div class="ux-mandate-label">The UX Mandate</div>
+      <p class="ux-mandate-text">To gain true adoption, AI products must stop asking Product Owners to manage the AI itself. The real opportunity lies in <strong>invisible, system-level intelligence that connects the dots across fragmented workflows without ever needing a prompt.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT NAV -->
+<div class="project-nav-wrapper">
+  <div class="container">
+    <nav class="project-nav" aria-label="Project navigation">
+      <div class="pnav-spacer"></div>
+      <a href="index-cards-v3.html" class="pnav-all">All Projects</a>
+      <a href="research-project-v4.html" class="pnav-link pnav-next">
+        <span class="pnav-direction">Next →</span>
+        <span class="pnav-title">Beyond the Household</span>
+      </a>
+    </nav>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lb-overlay" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" id="lb-close" aria-label="Close">×</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+</div>
+
+<script>
+(function () {
+  var toggle = document.getElementById('gnav-toggle');
+  var menu = document.getElementById('gnav-links');
+  if (toggle && menu) {
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('#gnav') && menu.classList.contains('is-open')) {
+        menu.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+  var overlay = document.getElementById('lb-overlay');
+  var lbImg = document.getElementById('lb-img');
+  var lbClose = document.getElementById('lb-close');
+  document.querySelectorAll('[data-lightbox]').forEach(function (img) {
+    img.addEventListener('click', function () {
+      lbImg.src = img.src; lbImg.alt = img.alt;
+      overlay.classList.add('is-open');
+    });
+  });
+  function closeLb() { overlay.classList.remove('is-open'); lbImg.src = ''; }
+  lbClose.addEventListener('click', closeLb);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeLb(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+})();
+</script>
+</body>
+</html>

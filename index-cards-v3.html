@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eshwar — Product Designer</title>
+<meta name="description" content="Eshwar is a product designer working at the intersection of research, information architecture, and interaction design.">
+<meta property="og:title" content="Eshwar — Product Designer">
+<meta property="og:description" content="Portfolio of Eshwar — product design across research, information architecture, and interaction design.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%235A8B6F'/><text x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif' fill='white' font-weight='700'>E</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+
+/* ─── RESET ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ─── TOKENS ────────────────────────────────────────── */
+:root {
+  --cream:       #F5F1E8;
+  --white:       #FFFFFF;
+  --green:       #5A8B6F;
+  --green-light: #EBF1EE;
+  --green-mid:   #9CB9A9;
+  --green-dark:  #1B2E22;
+  --dark:        #1A1A1A;
+  --mid:         #6B7280;
+  --border:      #E5E7EB;
+  --border-firm: rgba(26,26,26,0.14);
+  --editorial-blue:  #5C7D99;
+  --editorial-brown: #96694A;
+  --panel-blue:        #E8EDF2;
+  --panel-sage:        #E7EDDF;
+  --panel-green-juno:  #E2E9D9;
+  --panel-brown:       #E3D5C6;
+}
+
+/* ─── BASE ──────────────────────────────────────────── */
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── LAYOUT ────────────────────────────────────────── */
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ─── GLOBAL NAVIGATION ─────────────────────────────── */
+.gnav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.gnav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.gnav-logo {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--dark);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.gnav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.gnav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--mid);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.15s;
+}
+.gnav-link:hover { color: var(--dark); }
+.gnav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+.gnav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+}
+
+/* ─── STORY TRANSITION (now the page hero) ───────────── */
+.story-transition {
+  padding: 96px 0 48px;
+  background: var(--cream);
+}
+.story-text { max-width: 620px; }
+.story-lede {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  margin-bottom: 20px;
+}
+.story-body {
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.75;
+  color: var(--mid);
+  margin-bottom: 16px;
+}
+.story-emphasis {
+  font-size: clamp(17px, 1.7vw, 19px);
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--dark);
+}
+.story-illustration { margin: 56px 0; }
+.story-illustration img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.08);
+}
+.story-close {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: clamp(19px, 2vw, 22px);
+  color: var(--dark);
+  text-align: center;
+}
+
+/* ─── PROJECTS SECTION ───────────────────────────────── */
+.projects-section {
+  padding: 48px 0 120px;
+  background: var(--white);
+}
+.projects-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 64px;
+  margin-bottom: 40px;
+}
+.projects-header-main {
+  display: flex;
+  flex-direction: column;
+}
+.projects-label {
+  display: block;
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+}
+.projects-count {
+  display: block;
+  font-size: 12px;
+  color: var(--mid);
+  margin-top: 6px;
+}
+.projects-header-main::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 2px;
+  background: var(--green);
+  opacity: 0.5;
+  margin-top: 24px;
+}
+
+/* Editorial note — Research → Product relationship, reads as part of the heading composition */
+.projects-note {
+  max-width: 440px;
+  padding-top: 8px;
+  border-left: 1px solid var(--border);
+  padding-left: 28px;
+  flex-shrink: 0;
+}
+.projects-note-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+.projects-note-text {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--mid);
+}
+.projects-note-text strong {
+  color: var(--dark);
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .projects-header { flex-direction: column; gap: 20px; }
+  .projects-note {
+    max-width: 100%;
+    border-left: none; padding-left: 0;
+    border-top: 1px solid var(--border); padding-top: 20px;
+  }
+}
+
+/* ─── PROJECT GRID (clockwise composition) ───────────── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 32px;
+  row-gap: 28px;
+}
+/* clockwise path: 01 (top-left) → 02 (top-right) → 03 (bottom-right) → 04 (bottom-left) */
+.card-prompt    { grid-column: 1; grid-row: 1; }
+.card-household { grid-column: 2; grid-row: 1; }
+.card-juno      { grid-column: 2; grid-row: 2; }
+.card-janapada  { grid-column: 1; grid-row: 2; }
+
+/* ─── PROJECT CARD (framed destination) ──────────────── */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--border-firm);
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 16px rgba(22, 36, 28, 0.04);
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+a.project-card:hover {
+  box-shadow: 0 16px 44px rgba(22, 36, 28, 0.09);
+  transform: translateY(-4px);
+  border-color: var(--green-mid);
+}
+.project-card.coming-soon {
+  opacity: 0.5;
+  cursor: default;
+}
+.card-thumb {
+  aspect-ratio: 4 / 3;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+}
+.card-prompt .card-thumb    { background: var(--panel-blue); }
+.card-household .card-thumb { background: var(--panel-sage); }
+.card-juno .card-thumb      { background: var(--panel-green-juno); }
+.card-janapada .card-thumb  { background: var(--panel-brown); }
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.4s ease;
+}
+a.project-card:hover .card-thumb img { transform: scale(1.02); }
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 28px 32px 32px;
+}
+.card-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 14px;
+}
+.card-name {
+  font-family: 'Lora', serif;
+  font-size: clamp(20px, 2.2vw, 24px);
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.card-desc-short {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--mid);
+  margin-bottom: 22px;
+}
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+.card-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid);
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+}
+.card-tag.tag-soon { border-style: dashed; }
+.card-janapada .card-meta { margin-top: 16px; }
+.card-arrow {
+  margin-left: auto;
+  font-size: 16px;
+  color: var(--green);
+  opacity: 0.35;
+  transition: opacity 0.15s, transform 0.15s;
+}
+a.project-card:hover .card-arrow { opacity: 1; transform: translateX(4px); }
+
+/* ─── THEMATIC COLOUR CODING (restrained) ────────────── */
+/* Household → Juno share green: same design journey, research into product. */
+.card-prompt .card-num,
+.card-prompt .card-arrow    { color: var(--editorial-blue); }
+.card-janapada .card-num,
+.card-janapada .card-arrow  { color: var(--editorial-brown); }
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+  .projects-grid { grid-template-columns: 1fr; row-gap: 24px; }
+  .card-prompt, .card-household, .card-juno, .card-janapada { grid-column: auto; grid-row: auto; }
+  .story-transition { padding: 72px 0 32px; }
+  .story-illustration { margin: 40px 0; }
+  .projects-section { padding-top: 40px; }
+}
+@media (max-width: 640px) {
+  .gnav-links {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: var(--white);
+    flex-direction: column;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+    z-index: 199;
+    padding: 8px 0;
+  }
+  .gnav-links.is-open { display: flex; }
+  .gnav-link { padding: 14px 24px; }
+  .gnav-hamburger { display: flex; }
+  .card-thumb { padding: 18px; }
+  .card-body { padding: 22px 22px 26px; }
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- GLOBAL NAVIGATION                                   -->
+<!-- ─────────────────────────────────────────────────── -->
+<header class="gnav" id="gnav">
+  <div class="container">
+    <div class="gnav-inner">
+      <a href="index.html" class="gnav-logo">Eshwar</a>
+      <nav class="gnav-links" id="gnav-links" aria-label="Main navigation">
+        <a href="about-v2.html" class="gnav-link">About</a>
+        <a href="#work" class="gnav-link">Work</a>
+        <a href="contact-v3.html" class="gnav-link">Contact</a>
+      </nav>
+      <button class="gnav-hamburger" id="gnav-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="gnav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- STORY TRANSITION (page hero)                        -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="story-transition">
+  <div class="container">
+
+    <div class="story-text">
+      <h1 class="story-lede">Fair warning: things are about to get delightfully detailed.</h1>
+      <p class="story-body">
+        Before we disappear into research methods, frameworks, iterations, and
+        far too many sticky notes — I'd like to take a moment to acknowledge
+        what lies underneath all of it. A product with a story waiting to be
+        heard. And here's why I think storytelling deserves a seat at the
+        design table.
+      </p>
+      <p class="story-emphasis">
+        Because, in my experience, the best projects aren't just solved —
+        they're understood.
+      </p>
+    </div>
+
+    <div class="story-illustration">
+      <img src="Illustrations/Frame 260 (web).png"
+        alt="Illustrated panel titled 'Basically, good storytelling can...' showing five humorous vignettes: bringing everyone to the same table, fixing broken and incomplete experiences, making your work look like a piece of art, making your work feel like absolute cinema, and — hence — checking the portfolio out."
+        loading="lazy">
+    </div>
+
+    <p class="story-close">Anyway... enough philosophy. Let's get to the projects.</p>
+
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────────── -->
+<!-- PROJECTS                                            -->
+<!-- ─────────────────────────────────────────────────── -->
+<section class="projects-section" id="work">
+  <div class="container">
+
+    <div class="projects-header">
+      <div class="projects-header-main">
+        <span class="projects-label">Work</span>
+        <span class="projects-count">4 projects</span>
+      </div>
+      <div class="projects-note">
+        <span class="projects-note-label">Research → Product</span>
+        <p class="projects-note-text"><strong>Beyond the Household</strong> is the research — the fieldwork and synthesis behind a real set of insights. <strong>Juno</strong> is the product built from them. Together, the two projects trace one continuous UX process: research, synthesis, and product design.</p>
+      </div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- 01 — Beyond the Prompt -->
+      <a href="beyond-the-prompt-editorial.html" class="project-card card-prompt">
+        <div class="card-thumb">
+          <img src="thumbnails/AI project thumbnail 2.png"
+            alt="Illustration of a Product Owner surrounded by connected cards — user feedback, requirements, sprint plan, decisions, stakeholder updates, docs, and roadmap — converging through AI"
+            loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-num">01</div>
+          <h2 class="card-name">Beyond the Prompt</h2>
+          <p class="card-desc-short">A case study on AI's role in product ownership workflows.</p>
+          <div class="card-meta">
+            <span class="card-tag">Bosch Internship Project</span>
+            <span class="card-tag">AI Research</span>
+            <span class="card-tag">Product Discovery</span>
+            <span class="card-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 02 — Beyond the Household -->
+      <a href="research-project-v4.html" class="project-card card-household">
+        <div class="card-thumb">
+          <img src="thumbnails/Beyond the household thumbnail.png"
+            alt="Illustration of a homemaker at the center of a home, branching into five paths — baking, packaging orders, sourcing ingredients, sewing, and managing finances online"
+            loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-num">02</div>
+          <h2 class="card-name">Beyond the Household</h2>
+          <p class="card-desc-short">A field study on how Indian homemakers create and grow businesses from home.</p>
+          <div class="card-meta">
+            <span class="card-tag">Field Research</span>
+            <span class="card-tag">Ethnographic Study</span>
+            <span class="card-tag">UX Research</span>
+            <span class="card-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 03 — Juno -->
+      <a href="case-study-v5.html" class="project-card card-juno">
+        <div class="card-thumb">
+          <img src="thumbnails/Juno thumbnail 2.png"
+            alt="Illustration of a hand holding a phone showing the Juno app home screen, surrounded by homemaker entrepreneurs connecting, learning, selling, and growing their businesses"
+            loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-num">03</div>
+          <h2 class="card-name">Juno</h2>
+          <p class="card-desc-short">A community platform designed for homemaker entrepreneurs to connect, learn, and grow.</p>
+          <div class="card-meta">
+            <span class="card-tag">Product Design</span>
+            <span class="card-tag">UI Prototyping</span>
+            <span class="card-tag">Design Systems</span>
+            <span class="card-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 04 — Janapada -->
+      <a href="janapada.html" class="project-card card-janapada">
+        <div class="card-thumb">
+          <img src="thumbnails/Janapada thumbnail.png"
+            alt="Illustration of a player at a folk-heritage board game, with a scene of Karnataka's traditional music and dance unfolding above the board"
+            loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-num">04</div>
+          <h2 class="card-name">Janapada</h2>
+          <p class="card-desc-short">A behavioral UX exploration through interactive game design.</p>
+          <div class="card-meta">
+            <span class="card-tag">Game Design</span>
+            <span class="card-tag">Gamification</span>
+            <span class="card-tag">Experience Design</span>
+            <span class="card-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function () {
+  var toggle = document.getElementById('gnav-toggle');
+  var menu   = document.getElementById('gnav-links');
+  if (toggle && menu) {
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('#gnav') && menu.classList.contains('is-open')) {
+        menu.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

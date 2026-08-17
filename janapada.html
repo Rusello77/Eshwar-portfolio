@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Janapada — Eshwar</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%239A4A27'/><text x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif' fill='white' font-weight='700'>E</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F5F1E8;
+  --white: #FFFFFF;
+  --dark: #1A1A1A;
+  --mid: #6B7280;
+  --border: #E5E7EB;
+  --green: #5A8B6F;
+
+  /* Janapada accent — Karnataka earth */
+  --jan: #9A4A27;
+  --jan-light: #FAF1E8;
+  --jan-mid: #C4855A;
+  --jan-dark: #2C1206;
+  --jan-border: #E5CBAF;
+  --jan-green: #2D7D3C;
+}
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--white); color: var(--dark); -webkit-font-smoothing: antialiased; }
+.container { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
+
+/* ── GLOBAL NAV ──────────────────────────────────────────── */
+.gnav { position: sticky; top: 0; z-index: 200; background: var(--white); border-bottom: 1px solid var(--border); }
+.gnav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.gnav-logo { font-size: 17px; font-weight: 700; color: var(--dark); text-decoration: none; letter-spacing: -0.02em; }
+.gnav-links { display: flex; align-items: center; gap: 40px; }
+.gnav-link { font-size: 14px; font-weight: 500; color: var(--mid); text-decoration: none; transition: color 0.15s; }
+.gnav-link:hover { color: var(--dark); }
+.gnav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.gnav-hamburger span { display: block; width: 22px; height: 2px; background: var(--dark); border-radius: 2px; }
+
+/* ── SHARED SECTION TOKENS ───────────────────────────────── */
+.s { padding: 96px 0; }
+.s-white { background: var(--white); }
+.s-cream { background: var(--cream); }
+.s-dark { background: var(--jan-dark); }
+
+.eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--jan); margin-bottom: 12px;
+}
+.eyebrow-inv {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--jan-mid); margin-bottom: 12px;
+}
+.h2 {
+  font-family: 'Lora', serif;
+  font-size: clamp(26px, 3.2vw, 40px);
+  font-weight: 700; color: var(--dark);
+  letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 20px;
+}
+.h2-inv { color: var(--white); }
+.h3 { font-size: clamp(18px, 2vw, 22px); font-weight: 700; color: var(--dark); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 12px; }
+.body { font-size: 16px; line-height: 1.85; color: var(--mid); }
+.body strong { color: var(--dark); font-weight: 600; }
+.body + .body { margin-top: 18px; }
+.body-inv { font-size: 16px; line-height: 1.85; color: rgba(255,255,255,0.65); }
+.divider { height: 1px; background: var(--border); margin: 64px 0; }
+
+/* ── HERO ────────────────────────────────────────────────── */
+.hero { background: var(--cream); padding: 80px 0 0; overflow: hidden; }
+.hero-inner { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 0; }
+.hero-text { padding-bottom: 80px; }
+.hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jan); margin-bottom: 20px; }
+.hero-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(64px, 8vw, 112px);
+  font-weight: 700; color: var(--dark);
+  letter-spacing: -0.04em; line-height: 0.9; margin-bottom: 24px;
+}
+.hero-subtitle {
+  font-family: 'Lora', serif;
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-style: italic; color: var(--mid);
+  max-width: 420px; line-height: 1.6; margin-bottom: 32px;
+}
+.hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  font-size: 12px; font-weight: 600; color: var(--mid);
+  padding: 5px 14px; background: var(--white);
+  border: 1px solid var(--border); border-radius: 100px;
+}
+.hero-image { align-self: end; }
+.hero-img { width: 100%; display: block; }
+
+/* ── 01 OVERVIEW ─────────────────────────────────────────── */
+.overview-layout { display: grid; grid-template-columns: 1fr 360px; gap: 72px; align-items: start; }
+.overview-text {}
+.overview-image { position: relative; }
+.overview-photo {
+  width: 100%; border-radius: 12px;
+  display: block; box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  cursor: zoom-in;
+}
+.overview-photo-caption {
+  font-size: 12px; color: var(--mid); margin-top: 10px;
+  text-align: center; font-style: italic;
+}
+
+/* Timeline */
+.timeline { margin-top: 56px; border-top: 1px solid var(--border); }
+.tl-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; }
+.tl-track::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--dark); }
+.tl-step { padding-top: 24px; position: relative; }
+.tl-dot { position: absolute; top: -4px; left: 0; width: 9px; height: 9px; background: var(--jan); border-radius: 50%; transform: translateX(-50%); }
+.tl-step:first-child .tl-dot { transform: none; }
+.tl-step:last-child .tl-dot { left: auto; right: 0; transform: none; }
+.tl-month { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--jan); margin-bottom: 8px; }
+.tl-phase { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+.tl-desc { font-size: 13px; color: var(--mid); line-height: 1.65; }
+
+/* ── 02 RESEARCH ─────────────────────────────────────────── */
+.research-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.research-col-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jan); margin-bottom: 20px; }
+.research-items { display: flex; flex-direction: column; gap: 18px; }
+.research-item { padding-left: 16px; border-left: 2px solid var(--jan-border); }
+.research-item p { font-size: 14px; color: var(--mid); line-height: 1.7; }
+.primary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.primary-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 22px;
+}
+.primary-card-name { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+.primary-card-desc { font-size: 13px; color: var(--mid); line-height: 1.65; }
+.research-caption {
+  margin-top: 28px; padding: 18px 20px; background: var(--jan-light);
+  border-left: 3px solid var(--jan); border-radius: 0 8px 8px 0;
+  font-size: 14px; color: var(--dark); line-height: 1.65; font-style: italic;
+}
+.research-photo {
+  margin-top: 32px; width: 100%; border-radius: 12px; display: block;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+/* ── 03 KEY LEARNINGS ────────────────────────────────────── */
+.learnings-intro { max-width: 680px; margin-bottom: 48px; }
+.learnings-list { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); }
+.learning {
+  display: grid; grid-template-columns: 56px 1fr;
+  gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--border); align-items: start;
+}
+.learning-num {
+  font-family: 'Lora', serif; font-size: 28px;
+  font-weight: 700; color: var(--jan-border); line-height: 1;
+}
+.learning-content {}
+.learning-name { font-size: 17px; font-weight: 700; color: var(--dark); letter-spacing: -0.01em; margin-bottom: 8px; }
+.learning-desc { font-size: 15px; color: var(--mid); line-height: 1.75; }
+
+/* ── 04 THE PIVOT ────────────────────────────────────────── */
+.pivot-inner { padding: 96px 0; }
+.pivot-statement {
+  font-family: 'Lora', serif;
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 700; color: var(--white);
+  letter-spacing: -0.03em; line-height: 1.1; max-width: 820px;
+  margin-bottom: 28px;
+}
+.pivot-arrow { color: var(--jan-mid); }
+.pivot-desc { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.75; max-width: 520px; }
+
+/* ── 05 WHY A GAME? ──────────────────────────────────────── */
+.why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.why-text {}
+.why-image { }
+.why-img { width: 100%; display: block; border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.1); cursor: zoom-in; }
+
+/* ── 06 THE GAME ─────────────────────────────────────────── */
+.game-mechanics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; margin-bottom: 64px; }
+.mechanic {
+  background: var(--cream); border-radius: 12px; padding: 32px;
+}
+.mechanic-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jan); margin-bottom: 10px; }
+.mechanic-name { font-size: 17px; font-weight: 700; color: var(--dark); letter-spacing: -0.01em; margin-bottom: 12px; }
+.mechanic-desc { font-size: 14px; color: var(--mid); line-height: 1.75; }
+.game-fullimg { width: 100%; display: block; border-radius: 16px; box-shadow: 0 12px 48px rgba(0,0,0,0.1); cursor: zoom-in; }
+
+/* ── 07 COMPONENTS ───────────────────────────────────────── */
+.components-intro { max-width: 680px; margin-bottom: 48px; }
+.performer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; border-radius: 14px; overflow: hidden; margin-bottom: 48px; }
+.performer-cell { position: relative; background: var(--dark); }
+.performer-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; opacity: 0.92; transition: opacity 0.2s; cursor: zoom-in; }
+.performer-img:hover { opacity: 1; }
+.performer-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+  padding: 20px 14px 12px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--white);
+}
+.instruments-note {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px;
+}
+.instruments-note-item { }
+.instruments-note-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--jan); margin-bottom: 8px; }
+.instruments-note-text { font-size: 14px; color: var(--mid); line-height: 1.7; }
+
+/* ── 08 PERFORMANCE CARDS ────────────────────────────────── */
+.cards-intro { max-width: 680px; margin-bottom: 48px; }
+.cards-gallery { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 32px; }
+.card-item { position: relative; }
+.card-img { width: 100%; display: block; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.12); cursor: zoom-in; transition: transform 0.2s, box-shadow 0.2s; }
+.card-img:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
+.card-caption {
+  font-size: 11px; font-weight: 600; color: var(--mid);
+  text-align: center; margin-top: 8px; letter-spacing: 0.04em;
+}
+.cards-note {
+  border-top: 1px solid var(--border); padding-top: 28px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+}
+.cards-note-item {}
+.cards-note-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--jan); margin-bottom: 8px; }
+.cards-note-text { font-size: 14px; color: var(--mid); line-height: 1.7; }
+.card-front-back { display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center; margin-top: 32px; }
+.card-fb-img { width: 180px; display: block; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.12); cursor: zoom-in; }
+.card-fb-text { font-size: 14px; color: var(--mid); line-height: 1.75; }
+.card-fb-text strong { color: var(--dark); font-weight: 600; }
+
+/* ── 09 HOW TO PLAY ──────────────────────────────────────── */
+.gameplay-intro { max-width: 680px; margin-bottom: 48px; }
+.gameplay-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.gameplay-step { }
+.gameplay-step-img { width: 100%; display: block; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 20px; cursor: zoom-in; aspect-ratio: 4/3; object-fit: cover; }
+.gameplay-step-num { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jan); margin-bottom: 8px; }
+.gameplay-step-name { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+.gameplay-step-desc { font-size: 13px; color: var(--mid); line-height: 1.7; }
+
+/* ── 10 GAME TESTING ─────────────────────────────────────── */
+.testing-intro { max-width: 680px; margin-bottom: 48px; }
+.testing-visual { margin-bottom: 40px; }
+.testing-rows { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); }
+.testing-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  padding: 32px 0; border-bottom: 1px solid var(--border); align-items: start;
+}
+.testing-quote-block { }
+.testing-quote-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); margin-bottom: 10px; }
+.testing-quote-text {
+  font-family: 'Lora', serif; font-size: 16px;
+  font-style: italic; color: var(--dark); line-height: 1.6;
+}
+.testing-insight-block { padding: 20px 24px; background: var(--jan-light); border-radius: 10px; }
+.testing-insight-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--jan); margin-bottom: 8px; }
+.testing-insight-text { font-size: 14px; color: var(--dark); line-height: 1.7; }
+.testing-bridge {
+  margin-top: 32px; padding: 20px 24px; background: var(--cream);
+  border-radius: 10px; font-size: 14px; color: var(--dark); line-height: 1.7; font-style: italic;
+}
+
+/* ── 11 BEHAVIORAL UX EXPERIMENT ─────────────────────────── */
+.qr-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-bottom: 56px; }
+.qr-text {}
+.qr-aside {}
+.qr-img-block { border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
+.qr-img { width: 160px; margin: 0 auto 14px; display: block; }
+.qr-img-label { font-size: 12px; color: var(--mid); font-style: italic; }
+.qr-result-img { width: 100%; border-radius: 10px; margin-top: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); cursor: zoom-in; }
+.hypothesis-box {
+  background: var(--jan-light); border-left: 3px solid var(--jan);
+  border-radius: 0 8px 8px 0; padding: 20px 22px; margin-top: 24px;
+}
+.hypothesis-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--jan); margin-bottom: 8px; }
+.hypothesis-text { font-family: 'Lora', serif; font-size: 15px; font-style: italic; color: var(--dark); line-height: 1.6; }
+.method-items { margin-top: 24px; display: flex; flex-direction: column; gap: 8px; }
+.method-item-row { font-size: 14px; color: var(--mid); line-height: 1.6; display: flex; gap: 10px; align-items: flex-start; }
+.method-item-row::before { content: '—'; color: var(--jan); flex-shrink: 0; font-weight: 700; }
+
+/* QR findings — editorial summary (not a data table) */
+.qr-findings {
+  margin-top: 56px; background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 4px 32px; box-shadow: 0 4px 24px rgba(44,18,6,0.05);
+}
+.qr-findings-head {
+  display: grid; grid-template-columns: 1.5fr 0.7fr 1fr 2.1fr; gap: 28px;
+  padding: 24px 0 14px; border-bottom: 1px solid var(--dark);
+}
+.qr-findings-head span {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid);
+}
+.qr-findings-head span:nth-child(2), .qr-findings-head span:nth-child(3) { text-align: right; }
+.qr-findings-row {
+  display: grid; grid-template-columns: 1.5fr 0.7fr 1fr 2.1fr; gap: 28px; align-items: baseline;
+  padding: 26px 0; border-top: 1px solid var(--border);
+}
+.qr-findings-row:first-of-type { border-top: none; }
+.qff-reaction { font-size: 15px; font-weight: 600; color: var(--dark); line-height: 1.5; }
+.qff-n { font-family: 'Lora', serif; font-size: 15px; color: var(--mid); text-align: right; font-variant-numeric: tabular-nums; }
+.qff-pct { font-family: 'Lora', serif; font-size: 24px; font-weight: 700; color: var(--jan); text-align: right; line-height: 1; font-variant-numeric: tabular-nums; }
+.qff-pct-note { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 500; color: var(--mid); }
+.qff-obs { font-size: 14px; color: var(--mid); line-height: 1.7; }
+@media (max-width: 768px) {
+  .qr-findings-head { display: none; }
+  .qr-findings-row {
+    grid-template-columns: 1fr auto; grid-template-areas: "reaction reaction" "n pct" "obs obs";
+    row-gap: 8px; column-gap: 16px;
+  }
+  .qff-reaction { grid-area: reaction; }
+  .qff-n { grid-area: n; text-align: left; }
+  .qff-pct { grid-area: pct; text-align: right; }
+  .qff-obs { grid-area: obs; }
+}
+
+/* Player reaction quotes */
+.reaction-quotes { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.reaction-quote {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px;
+}
+.rq-mark { font-family: 'Lora', serif; font-size: 36px; color: var(--jan-border); line-height: 1; margin-bottom: 8px; }
+.rq-text { font-family: 'Lora', serif; font-size: 14px; font-style: italic; color: var(--dark); line-height: 1.65; }
+
+/* UX Insight */
+.ux-insight {
+  margin-top: 40px; background: var(--jan-dark); border-radius: 14px; padding: 48px;
+}
+.ux-insight-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jan-mid); margin-bottom: 20px; }
+.ux-insight-text {
+  font-family: 'Lora', serif;
+  font-size: clamp(18px, 2.2vw, 24px);
+  color: var(--white); line-height: 1.55; font-style: italic;
+  max-width: 720px;
+}
+
+/* ── 12 BEHAVIOUR → DESIGN ───────────────────────────────── */
+.btd-intro { max-width: 680px; margin-bottom: 48px; }
+.btd-table-wrap { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.btd-table { width: 100%; border-collapse: collapse; }
+.btd-table th {
+  background: var(--dark); color: var(--white);
+  font-size: 12px; font-weight: 600; text-align: left;
+  padding: 16px 24px;
+}
+.btd-table td {
+  padding: 22px 24px; font-size: 14px; color: var(--mid);
+  border-top: 1px solid var(--border); vertical-align: top; line-height: 1.7;
+}
+.btd-table tr:nth-child(even) td { background: var(--cream); }
+.btd-table td:first-child { font-weight: 600; color: var(--dark); border-right: 1px solid var(--border); }
+.btd-table td:last-child { color: var(--dark); }
+.btd-arrow { color: var(--jan); font-weight: 700; }
+
+/* ── 13 REFLECTIONS ──────────────────────────────────────── */
+.reflections-intro { max-width: 680px; margin-bottom: 48px; }
+.reflections-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.reflection {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; padding: 36px;
+}
+.reflection-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--jan); margin-bottom: 12px; }
+.reflection-name { font-size: 17px; font-weight: 700; color: var(--dark); letter-spacing: -0.01em; margin-bottom: 12px; }
+.reflection-desc { font-size: 14px; color: var(--mid); line-height: 1.75; }
+
+/* ── 14 NEXT STEPS ───────────────────────────────────────── */
+.next-intro { max-width: 680px; margin-bottom: 48px; }
+.next-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+.next-item { border: 1px solid var(--border); border-radius: 12px; padding: 32px; }
+.next-item-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--jan); margin-bottom: 12px; }
+.next-item-name { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 14px; }
+.next-item-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.next-item-list li { font-size: 13px; color: var(--mid); line-height: 1.65; padding-left: 16px; position: relative; }
+.next-item-list li::before { content: '—'; position: absolute; left: 0; color: var(--jan); font-weight: 700; }
+.next-closing {
+  background: var(--jan-dark); border-radius: 14px; padding: 56px;
+}
+.next-closing-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jan-mid); margin-bottom: 20px; }
+.next-closing-text {
+  font-family: 'Lora', serif;
+  font-size: clamp(20px, 2.5vw, 28px);
+  color: var(--white); line-height: 1.5; font-style: italic; max-width: 720px;
+}
+.next-closing-text strong { font-style: normal; color: var(--white); }
+
+/* ── QR EXPERIMENT REDESIGN ──────────────────────────────── */
+.qr-opening { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-bottom: 56px; }
+.qr-card-image { width: 100%; display: block; border-radius: 12px; box-shadow: 0 12px 48px rgba(0,0,0,0.14); cursor: zoom-in; }
+.qr-research-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+.qr-research-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jan); margin-bottom: 16px; }
+.qr-stat-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; border-radius: 14px; overflow: hidden; }
+.qr-stat { background: var(--jan-dark); padding: 40px 32px; text-align: center; }
+.qr-stat-num { font-family: 'Lora', serif; font-size: clamp(52px, 6.5vw, 80px); font-weight: 700; color: var(--white); line-height: 0.9; }
+.qr-stat-unit { font-size: clamp(26px, 3.2vw, 40px); }
+.qr-stat-sub { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--jan-mid); margin-top: 14px; }
+.qr-stat-desc { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 8px; line-height: 1.5; }
+.qr-reveal-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin: 56px 0; }
+.qr-reveal-img { border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+.qr-reveal-img img { width: 100%; display: block; cursor: zoom-in; }
+.qr-reveal-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jan); margin-bottom: 14px; }
+.qr-reveal-headline { font-family: 'Lora', serif; font-size: clamp(20px, 2.4vw, 28px); font-weight: 700; color: var(--dark); line-height: 1.25; margin-bottom: 16px; letter-spacing: -0.02em; }
+.qr-reveal-body { font-size: 15px; color: var(--mid); line-height: 1.8; }
+.editorial-reactions { display: flex; flex-direction: column; margin-top: 8px; }
+.editorial-reaction { padding: 36px 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 52px 1fr; gap: 28px; align-items: start; }
+.editorial-reaction:first-child { border-top: 1px solid var(--border); }
+.er-mark { font-family: 'Lora', serif; font-size: 52px; font-weight: 700; color: var(--jan-border); line-height: 0.85; }
+.er-quote { font-family: 'Lora', serif; font-size: clamp(17px, 2vw, 22px); color: var(--dark); font-style: italic; line-height: 1.5; padding-top: 4px; }
+
+/* ── REFLECTIONS EDITORIAL ROWS ──────────────────────────── */
+.reflections-editorial { border-top: 1px solid var(--border); }
+.ref-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
+.ref-row-img-wrap { overflow: hidden; }
+.ref-row-img { width: 100%; height: 100%; min-height: 380px; object-fit: cover; object-position: center; display: block; }
+.ref-row-text { padding: 56px; display: flex; flex-direction: column; justify-content: center; }
+.ret-num { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jan); margin-bottom: 16px; }
+.ret-name { font-family: 'Lora', serif; font-size: clamp(21px, 2.6vw, 30px); font-weight: 700; color: var(--dark); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 20px; }
+.ret-desc { font-size: 15px; color: var(--mid); line-height: 1.8; }
+
+/* ── NEXT STEPS VISION ───────────────────────────────────── */
+.next-vision-hero { position: relative; border-radius: 16px; overflow: hidden; margin-bottom: 64px; }
+.next-vision-photo { width: 100%; height: 440px; object-fit: cover; object-position: center top; display: block; }
+.next-vision-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(44,18,6,0.92) 0%, rgba(44,18,6,0.45) 55%, transparent 100%); }
+.next-vision-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 48px; }
+.nvc-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jan-mid); margin-bottom: 14px; }
+.nvc-text { font-family: 'Lora', serif; font-size: clamp(20px, 2.8vw, 32px); color: var(--white); font-weight: 700; line-height: 1.2; letter-spacing: -0.025em; max-width: 600px; }
+.next-aspirations { display: flex; flex-direction: column; margin-bottom: 64px; border-top: 1px solid var(--border); }
+.next-aspiration { display: grid; grid-template-columns: 72px 1fr; gap: 32px; padding: 40px 0; border-bottom: 1px solid var(--border); align-items: start; }
+.na-num { font-family: 'Lora', serif; font-size: 32px; font-weight: 700; color: var(--jan-border); line-height: 1; }
+.na-name { font-family: 'Lora', serif; font-size: clamp(18px, 2vw, 22px); font-weight: 700; color: var(--dark); letter-spacing: -0.015em; margin-bottom: 12px; line-height: 1.2; }
+.na-desc { font-size: 15px; color: var(--mid); line-height: 1.8; }
+
+@media (max-width: 900px) {
+  .qr-opening { grid-template-columns: 1fr; }
+  .qr-research-pair { grid-template-columns: 1fr; }
+  .qr-stat-trio { grid-template-columns: 1fr; }
+  .qr-reveal-layout { grid-template-columns: 1fr; }
+  .ref-row { grid-template-columns: 1fr; }
+  .next-aspiration { grid-template-columns: 1fr; gap: 12px; }
+}
+@media (max-width: 768px) {
+  .qr-stat { padding: 32px 20px; }
+  .ref-row-img { min-height: 240px; }
+  .ref-row-text { padding: 36px 24px; }
+  .next-vision-photo { height: 320px; }
+  .next-vision-caption { padding: 32px; }
+}
+
+/* ── COMPONENT COLOUR KEY ────────────────────────────────── */
+.performer-label { display: flex; align-items: center; gap: 8px; }
+.perf-cube { width: 11px; height: 11px; border-radius: 2px; flex-shrink: 0; box-shadow: 0 1px 2px rgba(0,0,0,0.35); }
+.component-key {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border);
+  border-radius: 12px; overflow: hidden; margin: 32px 0;
+}
+.ck-cell { background: var(--white); padding: 20px 24px; }
+.ck-cubes { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+.ck-cube { width: 20px; height: 20px; border-radius: 3px; display: block; }
+.ck-type-name { font-size: 12px; font-weight: 700; color: var(--dark); letter-spacing: 0.04em; text-transform: uppercase; }
+.ck-type-desc { font-size: 12px; color: var(--mid); margin-top: 4px; line-height: 1.4; }
+.component-key-caption { font-size: 13px; color: var(--mid); line-height: 1.65; margin-bottom: 32px; font-style: italic; }
+
+/* ── BTD EDITORIAL FLOW ──────────────────────────────────── */
+.btd-hero { margin-bottom: 64px; border-radius: 16px; overflow: hidden; background: var(--jan-light); box-shadow: 0 16px 56px rgba(44,18,6,0.14); }
+.btd-hero-img { width: 100%; height: auto; display: block; cursor: zoom-in; }
+.btd-flow { display: flex; flex-direction: column; max-width: 920px; }
+.btd-item {
+  display: grid; grid-template-columns: 1fr 44px 1fr; align-items: center; gap: 28px;
+  padding: 40px 0; border-bottom: 1px solid var(--border);
+}
+.btd-item:first-child { border-top: 1px solid var(--border); }
+.btd-obs-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; }
+.btd-observation { font-family: 'Lora', serif; font-size: 17px; font-style: italic; color: var(--dark); line-height: 1.5; }
+.btd-arrow { font-size: 20px; color: var(--jan); font-weight: 700; line-height: 1; text-align: center; }
+.btd-resp-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--jan); margin-bottom: 8px; }
+.btd-response { font-size: 15px; color: var(--dark); line-height: 1.75; }
+
+/* ── NEXT STEPS 2×2 GRID ─────────────────────────────────── */
+.ns-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; background: var(--border);
+  border-radius: 14px; overflow: hidden; margin: 48px 0 56px;
+}
+.ns-card { background: var(--white); padding: 32px; }
+.ns-card-heading { font-size: 14px; font-weight: 700; color: var(--dark); letter-spacing: -0.01em; margin-bottom: 20px; }
+.ns-card-body { display: grid; grid-template-columns: 130px 1fr; gap: 20px; align-items: start; }
+.ns-card-img { width: 100%; border-radius: 8px; display: block; cursor: zoom-in; }
+.ns-card-points { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.ns-card-points li { font-size: 13px; color: var(--dark); line-height: 1.65; padding-left: 16px; position: relative; }
+.ns-card-points li::before { content: '·'; position: absolute; left: 0; color: var(--jan); font-size: 20px; line-height: 1; top: 1px; }
+
+@media (max-width: 900px) {
+  .component-key { grid-template-columns: 1fr 1fr; }
+  .btd-item { grid-template-columns: 1fr; gap: 16px; }
+  .btd-arrow { transform: rotate(90deg); }
+  .ns-grid { grid-template-columns: 1fr; }
+  .ns-card-body { grid-template-columns: 110px 1fr; }
+}
+@media (max-width: 480px) {
+  .ns-card-body { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .component-key { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── PROJECT NAV ─────────────────────────────────────────── */
+.project-nav-wrapper { background: var(--white); border-top: 1px solid var(--border); }
+.project-nav { display: flex; align-items: center; justify-content: space-between; padding: 40px 0 96px; gap: 16px; }
+.pnav-link { display: flex; flex-direction: column; text-decoration: none; flex: 1; max-width: 280px; }
+.pnav-direction { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+.pnav-title { font-size: 15px; font-weight: 600; color: var(--dark); line-height: 1.3; }
+.pnav-prev { align-items: flex-start; }
+.pnav-all { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); text-decoration: none; padding: 10px 20px; border: 1px solid var(--border); border-radius: 100px; }
+.pnav-all:hover { border-color: var(--dark); color: var(--dark); }
+.pnav-spacer { flex: 1; max-width: 280px; }
+
+/* ── LIGHTBOX ────────────────────────────────────────────── */
+.lb-overlay { display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;align-items:center;justify-content:center;padding:32px; }
+.lb-overlay.is-open { display:flex; }
+.lb-img { max-width:100%;max-height:90vh;border-radius:8px;object-fit:contain; }
+.lb-close { position:fixed;top:20px;right:24px;background:none;border:none;color:var(--white);font-size:32px;cursor:pointer;line-height:1; }
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .cards-gallery { grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .overview-layout { grid-template-columns: 1fr 280px; }
+}
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-image { display: none; }
+  .hero { padding: 80px 0 72px; }
+  .overview-layout { grid-template-columns: 1fr; }
+  .research-layout { grid-template-columns: 1fr; }
+  .why-layout { grid-template-columns: 1fr; }
+  .game-mechanics { grid-template-columns: 1fr; }
+  .cards-note { grid-template-columns: 1fr; }
+  .gameplay-steps { grid-template-columns: 1fr; }
+  .reaction-quotes { grid-template-columns: 1fr; }
+  .reflections-grid { grid-template-columns: 1fr; }
+  .next-grid { grid-template-columns: 1fr; }
+  .qr-layout { grid-template-columns: 1fr; }
+  .testing-row { grid-template-columns: 1fr; gap: 20px; }
+  .instruments-note { grid-template-columns: 1fr; }
+  .card-front-back { grid-template-columns: 1fr; }
+  .card-fb-img { width: 100%; max-width: 220px; }
+}
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+  .s { padding: 64px 0; }
+  .performer-grid { grid-template-columns: 1fr 1fr; }
+  .cards-gallery { grid-template-columns: repeat(3, 1fr); }
+  .primary-grid { grid-template-columns: 1fr; }
+  .gnav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--white); flex-direction: column; gap: 0; border-bottom: 1px solid var(--border); box-shadow: 0 8px 24px rgba(0,0,0,0.07); z-index: 199; padding: 8px 0; }
+  .gnav-links.is-open { display: flex; }
+  .gnav-link { padding: 14px 24px; }
+  .gnav-hamburger { display: flex; }
+  .project-nav { flex-wrap: wrap; }
+  .tl-track { grid-template-columns: 1fr; }
+  .tl-track::before { width: 1px; height: 100%; top: 0; left: 4px; }
+  .tl-dot { top: 4px; left: -16px; transform: none; }
+  .tl-step { padding-top: 0; padding-bottom: 24px; padding-left: 8px; }
+  .tl-step:last-child .tl-dot { left: -16px; right: auto; }
+  .next-closing { padding: 36px; }
+  .ux-insight { padding: 36px; }
+}
+@media (max-width: 480px) {
+  .cards-gallery { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- GLOBAL NAV -->
+<header class="gnav" id="gnav">
+  <div class="container">
+    <div class="gnav-inner">
+      <a href="index.html" class="gnav-logo">Eshwar</a>
+      <nav class="gnav-links" id="gnav-links" aria-label="Main navigation">
+        <a href="about-v2.html" class="gnav-link">About</a>
+        <a href="index-cards-v3.html#work" class="gnav-link">Work</a>
+        <a href="contact-v3.html" class="gnav-link">Contact</a>
+      </nav>
+      <button class="gnav-hamburger" id="gnav-toggle" aria-expanded="false" aria-controls="gnav-links" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow">04 — Personal Project &nbsp;·&nbsp; 3 months</div>
+        <h1 class="hero-title">Jana&shy;pada</h1>
+        <p class="hero-subtitle">A behavioral UX exploration through interactive game design</p>
+        <div class="hero-tags">
+          <span class="chip">Game Design</span>
+          <span class="chip">Branding</span>
+          <span class="chip">Behavioral UX</span>
+          <span class="chip">Cultural Heritage</span>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="Visual assets Janapada/Janapada Eshwar M.48 1.png"
+          alt="Janapada game box with components: stage board, performance cards, and green coins arranged around the green game box bearing the title 'Janapada — The Game of Folk'"
+          class="hero-img" data-lightbox loading="eager">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 OVERVIEW -->
+<section class="s s-white">
+  <div class="container">
+    <div class="overview-layout">
+      <div class="overview-text">
+        <div class="eyebrow">01 — Overview</div>
+        <h2 class="h2">Karnataka's folk music is fading in plain sight</h2>
+        <p class="body">Karnataka has one of India's richest traditions of folk music — Dollu Kunitha, Yakshagana, Kamsale, Veeraghase — each with its own performers, instruments, rhythms, and stories. Yet younger generations engage with this culture passively, if at all. They consume it at festivals but don't understand it.</p>
+        <p class="body">The question this project set out to explore was not how to document folk music, but <strong>how design could spark genuine curiosity and participation</strong> among people who wouldn't seek it out on their own.</p>
+        <p class="body">The answer was a game.</p>
+
+        <div class="timeline" style="margin-top:56px;">
+          <div class="eyebrow" style="margin-bottom:20px;">Three months</div>
+          <div class="tl-track">
+            <div class="tl-step">
+              <div class="tl-dot"></div>
+              <div class="tl-month">August</div>
+              <div class="tl-phase">Secondary &amp; Primary Research</div>
+              <p class="tl-desc">Online and field research with folk musicians and cultural experts</p>
+            </div>
+            <div class="tl-step">
+              <div class="tl-dot"></div>
+              <div class="tl-month">September</div>
+              <div class="tl-phase">Game Development &amp; Prototyping</div>
+              <p class="tl-desc">Defined core mechanics, designed components, built playable prototype</p>
+            </div>
+            <div class="tl-step">
+              <div class="tl-dot"></div>
+              <div class="tl-month">October</div>
+              <div class="tl-phase">Playtesting, Iteration &amp; Finalization</div>
+              <p class="tl-desc">Three rounds of playtesting, behavioral UX study, final refinements</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="overview-image">
+        <img src="Visual assets Janapada/image 324-1.png"
+          alt="A Yakshagana folk dancer in traditional red and gold costume performing"
+          class="overview-photo" data-lightbox loading="lazy">
+        <p class="overview-photo-caption">Karnataka folk performance tradition</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 RESEARCH -->
+<section class="s s-cream">
+  <div class="container">
+    <div class="eyebrow">02 — Research</div>
+    <h2 class="h2">Understanding folk music as an ecosystem</h2>
+
+    <div class="research-layout">
+      <div>
+        <div class="research-col-label">Secondary Research</div>
+        <div class="research-items">
+          <div class="research-item">
+            <p>Studied folk forms across Karnataka — Dollu Kunitha, Yakshagana, Kamsale and others — to identify patterns of performance, collaboration, and storytelling.</p>
+          </div>
+          <div class="research-item">
+            <p>Researched folk music monetization, audience engagement, and cultural relevance in today's digital era.</p>
+          </div>
+          <div class="research-item">
+            <p>Mapped out the structure of a performance — what kinds of stories are communicated through folk music, and who makes them possible.</p>
+          </div>
+        </div>
+        <img src="Visual assets Janapada/image 121.png"
+          alt="Pencil illustration of a Karnataka folk drummer"
+          class="research-photo" data-lightbox loading="lazy">
+      </div>
+
+      <div>
+        <div class="research-col-label">Primary Research</div>
+        <div class="research-caption">
+          This categorization helped form a semi-structured discussion guide, ensuring conversations with folk musicians and performers stayed holistic yet focused.
+        </div>
+        <div class="primary-grid" style="margin-top:24px;">
+          <div class="primary-card">
+            <div class="primary-card-name">Social</div>
+            <p class="primary-card-desc">Community, values, and audience relationships</p>
+          </div>
+          <div class="primary-card">
+            <div class="primary-card-name">Economic</div>
+            <p class="primary-card-desc">Earnings, modernization, and monetization challenges</p>
+          </div>
+          <div class="primary-card">
+            <div class="primary-card-name">Historical</div>
+            <p class="primary-card-desc">Origins, evolution, and legacy — how stories shape culture</p>
+          </div>
+          <div class="primary-card">
+            <div class="primary-card-name">Geographical</div>
+            <p class="primary-card-desc">Influence of regions and migration on musical styles and interpretation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 KEY LEARNINGS -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">03 — Key Learnings</div>
+    <h2 class="h2">What folk musicians taught me</h2>
+    <p class="body learnings-intro" style="max-width:640px;">Four patterns emerged across every interview — each one eventually shaped a mechanic in the game.</p>
+
+    <div class="learnings-list">
+      <div class="learning">
+        <div class="learning-num">01</div>
+        <div class="learning-content">
+          <div class="learning-name">Identity as Legacy</div>
+          <p class="learning-desc">Folk artists aren't possessive about their art. They want it to pass on from generation to generation. The act of sharing is inseparable from the art itself — and this became central to the game's spirit.</p>
+        </div>
+      </div>
+      <div class="learning">
+        <div class="learning-num">02</div>
+        <div class="learning-content">
+          <div class="learning-name">Collaboration is Core</div>
+          <p class="learning-desc">Every performance depends on multiple interconnected roles — narrators, dancers, instrumentalists, makeup artists. No single person makes a performance. This became the central mechanic of the game.</p>
+        </div>
+      </div>
+      <div class="learning">
+        <div class="learning-num">03</div>
+        <div class="learning-content">
+          <div class="learning-name">Scarcity Inspires Creativity</div>
+          <p class="learning-desc">Limited resources and improvisation are features of folk performance, not bugs. A rare instrument becomes central to a performance because of its scarcity. This informed the strategic resource system in gameplay.</p>
+        </div>
+      </div>
+      <div class="learning">
+        <div class="learning-num">04</div>
+        <div class="learning-content">
+          <div class="learning-name">Cultural Disconnect</div>
+          <p class="learning-desc">Younger audiences engage passively with culture — they consume it at festivals without understanding it. Design must ignite curiosity through play, not explanation. You cannot teach folk culture; you can only create the conditions for someone to discover it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 THE PIVOT — dark section -->
+<section class="s-dark">
+  <div class="container pivot-inner">
+    <div class="eyebrow-inv">04 — Rebrief</div>
+    <p class="pivot-statement">
+      Shift from representing folk music exhaustively
+      <span class="pivot-arrow"> →</span>
+      to creating curiosity-driven participation.
+    </p>
+    <p class="pivot-desc">The original brief was to document Karnataka's folk music ecosystem. The research changed it. Folk culture isn't something that can be explained into relevance — it needs to be experienced.</p>
+  </div>
+</section>
+
+<!-- 05 WHY A GAME? -->
+<section class="s s-cream">
+  <div class="container">
+    <div class="why-layout">
+      <div class="why-text">
+        <div class="eyebrow">05 — Why a Game?</div>
+        <h2 class="h2">Not to teach folk music. To let people experience it.</h2>
+        <p class="body">A game allows embodied understanding — players experience the challenges and rewards of hosting a folk performance firsthand.</p>
+        <p class="body">The goal was not to educate. It was to let players <strong>experience its essence</strong> — collaboration, rhythm, resource management, and community — through the act of hosting their own performance.</p>
+        <p class="body">When someone succeeds in assembling a Kamsale performance from the ground up, they don't need to be told what a Kamsale performance requires. They already know.</p>
+      </div>
+      <div class="why-image">
+        <img src="Visual assets Janapada/Representational image.png"
+          alt="Illustration of a woman in profile with folk musicians and a dancer emerging from her thoughts in a flowing ribbon of color, beside a crossed-out image of a lecturer teaching from sheet music — representing experience over instruction"
+          class="why-img" data-lightbox loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 THE GAME -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">06 — The Game</div>
+    <h2 class="h2">Host a performance. Build your ensemble. Win the stage.</h2>
+    <p class="body" style="max-width:680px;margin-bottom:0;">Players take on the role of performance organizers, competing to be the first to successfully host five folk performances.</p>
+
+    <div class="game-mechanics">
+      <div class="mechanic">
+        <div class="mechanic-label">Objective</div>
+        <div class="mechanic-name">Host a successful folk performance</div>
+        <p class="mechanic-desc">Be the first player to complete five folk performances as dictated by the Performance Cards you collect. First to five wins.</p>
+      </div>
+      <div class="mechanic">
+        <div class="mechanic-label">Actions</div>
+        <div class="mechanic-name">Collect your contributors</div>
+        <p class="mechanic-desc">Spend coins to assemble the narrators, dancers, makeup artists, and instrumentalists that every performance needs — in different combinations for each show.</p>
+      </div>
+      <div class="mechanic">
+        <div class="mechanic-label">Resources</div>
+        <div class="mechanic-name">Acquire contributors fast</div>
+        <p class="mechanic-desc">Coins are finite. Strategy matters. Booster Cards let you upgrade or swap components — adding unpredictability and forcing players to adapt on the fly.</p>
+      </div>
+    </div>
+
+    <img src="Visual assets Janapada/Janapada Eshwar M.48 1.png"
+      alt="Full Janapada game spread: green box, stage board with tokens, performance cards, and green coin pieces"
+      class="game-fullimg" data-lightbox loading="lazy">
+  </div>
+</section>
+
+<!-- 07 COMPONENTS -->
+<section class="s s-cream">
+  <div class="container">
+    <div class="eyebrow">07 — Components</div>
+    <h2 class="h2">The people who make a folk performance real</h2>
+    <p class="body components-intro" style="max-width:680px;">Every folk performance is a collaborative act built from real roles. The game's components aren't abstract — they represent the actual people who make Karnataka's folk culture alive.</p>
+
+    <div class="performer-grid">
+      <div class="performer-cell">
+        <img src="Visual assets Janapada/image 142.png"
+          alt="A classical dancer in traditional costume — representing Dancers in the game"
+          class="performer-img" data-lightbox loading="lazy">
+        <div class="performer-label"><span class="perf-cube" style="background:#E05F36;"></span>Dancers</div>
+      </div>
+      <div class="performer-cell">
+        <img src="Visual assets Janapada/image 142-1.png"
+          alt="Traditional makeup being applied to a performer — representing Make-up Artists in the game"
+          class="performer-img" data-lightbox loading="lazy">
+        <div class="performer-label"><span class="perf-cube" style="background:#52AA3C;"></span>Make-up Artists</div>
+      </div>
+      <div class="performer-cell">
+        <img src="Visual assets Janapada/image 146.png"
+          alt="Two folk musicians with traditional drums and string instruments — representing Narrators"
+          class="performer-img" data-lightbox loading="lazy">
+        <div class="performer-label"><span class="perf-cube" style="background:#D4A820;"></span>Narrators</div>
+      </div>
+      <div class="performer-cell">
+        <img src="Visual assets Janapada/image 148.png"
+          alt="A collection of traditional Karnataka folk instruments — representing Instruments in the game"
+          class="performer-img" data-lightbox loading="lazy">
+        <div class="performer-label"><span class="perf-cube" style="background:#4A95CF;"></span>Instruments</div>
+      </div>
+    </div>
+
+    <!-- Component Colour Key -->
+    <p class="component-key-caption">Each colour corresponds to a contributor type and appears on every Performance Card — showing exactly which roles are needed to stage that folk form.</p>
+    <div class="component-key">
+      <div class="ck-cell">
+        <div class="ck-cubes">
+          <span class="ck-cube" style="background:#E05F36;"></span>
+          <span class="ck-cube" style="background:#E05F36;"></span>
+          <span class="ck-cube" style="background:#E05F36;"></span>
+          <span class="ck-cube" style="background:#E05F36;"></span>
+        </div>
+        <div class="ck-type-name">Dancers</div>
+        <div class="ck-type-desc">Perform the central act of each folk form</div>
+      </div>
+      <div class="ck-cell">
+        <div class="ck-cubes">
+          <span class="ck-cube" style="background:#52AA3C;"></span>
+          <span class="ck-cube" style="background:#52AA3C;"></span>
+          <span class="ck-cube" style="background:#52AA3C;"></span>
+        </div>
+        <div class="ck-type-name">Make-up Artists</div>
+        <div class="ck-type-desc">Transform performers into their stage personas</div>
+      </div>
+      <div class="ck-cell">
+        <div class="ck-cubes">
+          <span class="ck-cube" style="background:#D4A820;"></span>
+          <span class="ck-cube" style="background:#D4A820;"></span>
+          <span class="ck-cube" style="background:#D4A820;"></span>
+        </div>
+        <div class="ck-type-name">Narrators</div>
+        <div class="ck-type-desc">Carry the cultural story within the performance</div>
+      </div>
+      <div class="ck-cell">
+        <div class="ck-cubes">
+          <span class="ck-cube" style="background:#4A95CF;"></span>
+          <span class="ck-cube" style="background:#4A95CF;"></span>
+          <span class="ck-cube" style="background:#8B65C8;"></span>
+          <span class="ck-cube" style="background:#8B65C8;"></span>
+        </div>
+        <div class="ck-type-name">Instruments</div>
+        <div class="ck-type-desc">Common &amp; uncommon — 3 rarity levels shape strategy</div>
+      </div>
+    </div>
+
+    <div class="instruments-note">
+      <div class="instruments-note-item">
+        <div class="instruments-note-label">Component platform</div>
+        <p class="instruments-note-text">The components are arranged on a stage platform during play. The placement signifies the cost of acquiring each contributor — more expensive roles occupy higher positions, creating visual price clarity without any text.</p>
+      </div>
+      <div class="instruments-note-item">
+        <div class="instruments-note-label">Instrument rarity</div>
+        <p class="instruments-note-text">Instruments are divided into three categories based on rarity. Interviews with folk singers revealed how rare traditional instruments fuel creativity and create unique melodies — so resource limitation became a deliberate driver of strategy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 PERFORMANCE CARDS -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">08 — Performance Cards</div>
+    <h2 class="h2">Five folk forms. Five different ensembles.</h2>
+    <p class="body cards-intro" style="max-width:680px;">Performance Cards are the heart of the game. Each card represents a distinct Karnataka folk form — and defines exactly which contributors are needed to stage it. The aim is to collect the most cards the fastest.</p>
+
+    <div class="cards-gallery">
+      <div class="card-item">
+        <img src="Visual assets Janapada/1 4.png"
+          alt="Veeraghase performance card: charcoal illustration of the Veeraghase folk performer, value 18, with colored component grid showing required contributors"
+          class="card-img" data-lightbox loading="lazy">
+        <div class="card-caption">Veeraghase — 18</div>
+      </div>
+      <div class="card-item">
+        <img src="Visual assets Janapada/4 2.png"
+          alt="Dollu Kunitha performance card: charcoal illustration of a Dollu Kunitha drummer, value 13"
+          class="card-img" data-lightbox loading="lazy">
+        <div class="card-caption">Dollu Kunitha — 13</div>
+      </div>
+      <div class="card-item">
+        <img src="Visual assets Janapada/7 2.png"
+          alt="Kamsale performance card: charcoal illustration of a Kamsale performer, value 13"
+          class="card-img" data-lightbox loading="lazy">
+        <div class="card-caption">Kamsale — 13</div>
+      </div>
+      <div class="card-item">
+        <img src="Visual assets Janapada/10 2.png"
+          alt="Jogathi performance card: charcoal illustration of a Jogathi performer, value 19"
+          class="card-img" data-lightbox loading="lazy">
+        <div class="card-caption">Jogathi — 19</div>
+      </div>
+      <div class="card-item">
+        <img src="Visual assets Janapada/13 2.png"
+          alt="Doddata performance card: charcoal illustration of a Doddata drummer, value 18"
+          class="card-img" data-lightbox loading="lazy">
+        <div class="card-caption">Doddata — 18</div>
+      </div>
+    </div>
+
+    <div class="cards-note">
+      <div class="cards-note-item">
+        <div class="cards-note-label">Component grid</div>
+        <p class="cards-note-text">Each card's colored grid shows exactly which combination of contributors is needed — different for every folk form, reflecting the genuine differences in how each tradition is performed.</p>
+      </div>
+      <div class="cards-note-item">
+        <div class="cards-note-label">QR code</div>
+        <p class="cards-note-text">Every card has a QR code on the reverse — intentionally unexplained. What players find when they scan it became the basis of a behavioral UX experiment. More on that below.</p>
+      </div>
+    </div>
+
+    <div class="card-front-back">
+      <img src="Visual assets Janapada/Janapada Eshwar M.48 2-2.png"
+        alt="Front and back of a Janapada performance card: front shows the Doddata folk performer illustration and component grid, back shows the hidden QR code"
+        class="card-fb-img" data-lightbox loading="lazy">
+      <p class="card-fb-text">The <strong>front</strong> shows the folk performance, value, and contributor grid. The <strong>back</strong> carries a QR code that players never receive instructions for. Whether they scan it — and what they feel when they do — became an experiment in curiosity-driven design.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 HOW TO PLAY -->
+<section class="s s-cream">
+  <div class="container">
+    <div class="eyebrow">09 — How to Play</div>
+    <h2 class="h2">Three steps. One winner.</h2>
+    <p class="body gameplay-intro" style="max-width:640px;">The gameplay loop is simple to understand but demands strategy. Every decision — which contributors to buy, when to play a Booster Card, which Performance Card to target next — involves trade-offs that mirror how a real folk performance organizer thinks.</p>
+
+    <div class="gameplay-steps">
+      <div class="gameplay-step">
+        <img src="Visual assets Janapada/image 161-1.png"
+          alt="Green game coins arranged in rows — the currency players use to purchase contributors"
+          class="gameplay-step-img" data-lightbox loading="lazy">
+        <div class="gameplay-step-num">Step 01</div>
+        <div class="gameplay-step-name">Buy contributors with coins</div>
+        <p class="gameplay-step-desc">Players start with a fixed number of green coins and use them to purchase contributors — roles, instruments, props, and costumes — for their performances.</p>
+      </div>
+      <div class="gameplay-step">
+        <img src="Visual assets Janapada/Booster cards OG.png"
+          alt="Janapada Booster Cards spread in a fan alongside white performance requirement cards"
+          class="gameplay-step-img" data-lightbox loading="lazy">
+        <div class="gameplay-step-num">Step 02</div>
+        <div class="gameplay-step-name">Play Booster Cards strategically</div>
+        <p class="gameplay-step-desc">Booster Cards let players swap or upgrade components, adding unpredictability. Use them to match your assembled contributors to the requirements of upcoming Performance Cards.</p>
+      </div>
+      <div class="gameplay-step">
+        <img src="Visual assets Janapada/Janapada Eshwar M.48 2-1.png"
+          alt="The Janapada stage board with colored component tokens placed on it"
+          class="gameplay-step-img" data-lightbox loading="lazy">
+        <div class="gameplay-step-num">Step 03</div>
+        <div class="gameplay-step-name">Host performances on the stage</div>
+        <p class="gameplay-step-desc">When your arrangement matches a Performance Card, place it on the stage. First to host five performances wins — but the path to five demands constant adaptation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 GAME TESTING -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">10 — Game Testing</div>
+    <h2 class="h2">What players said in playtesting</h2>
+    <p class="body testing-intro" style="max-width:680px;">Three rounds of playtesting with participants who had no prior exposure to the game. Their confusion and delight — in equal measure — shaped the final design.</p>
+
+    <div class="testing-visual">
+      <img src="Visual assets Janapada/Group 331.png"
+        alt="A two-player playtesting session showing the game board, Performance Cards, and components arranged mid-play"
+        class="overview-photo" data-lightbox loading="lazy">
+      <p class="overview-photo-caption">Representative gameplay layout showing a typical two-player playtesting session. The arrangement is intended to illustrate how components are organized during gameplay.</p>
+    </div>
+
+    <div class="testing-rows">
+      <div class="testing-row">
+        <div class="testing-quote-block">
+          <div class="testing-quote-label">Player feedback</div>
+          <p class="testing-quote-text">"I kept mixing up roles; it's hard to remember who does what."</p>
+        </div>
+        <div class="testing-insight-block">
+          <div class="testing-insight-label">Design response</div>
+          <p class="testing-insight-text">Led to the introduction of color-coded categories and icons for each contributor type, allowing recognition at a glance rather than relying on reading.</p>
+        </div>
+      </div>
+      <div class="testing-row">
+        <div class="testing-quote-block">
+          <div class="testing-quote-label">Player feedback</div>
+          <p class="testing-quote-text">"It's cool that I now know what goes into a folk show. Never thought about the behind-the-scenes part."</p>
+        </div>
+        <div class="testing-insight-block">
+          <div class="testing-insight-label">Design validation</div>
+          <p class="testing-insight-text">Confirmed that the game successfully connects players to cultural depth through interaction, not instruction. The learning emerged as a byproduct of play.</p>
+        </div>
+      </div>
+      <div class="testing-row">
+        <div class="testing-quote-block">
+          <div class="testing-quote-label">Player feedback</div>
+          <p class="testing-quote-text">"I was confused at the start, but once we played a few rounds, it all clicked."</p>
+        </div>
+        <div class="testing-insight-block">
+          <div class="testing-insight-label">Design response</div>
+          <p class="testing-insight-text">The learning curve was high initially. Adding a visual quick-start guide made the game significantly easier to grasp on the first play.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="testing-bridge">
+      Playtesting confirmed the core mechanics were working — but raised a deeper question: <strong>how much were players genuinely connecting to the culture, not just playing a game?</strong> That question led to a small behavioral UX study.
+    </div>
+  </div>
+</section>
+
+<!-- 11 BEHAVIORAL UX EXPERIMENT -->
+<section class="s s-cream">
+  <div class="container">
+    <div class="eyebrow">11 — Behavioral UX Experiment</div>
+    <h2 class="h2">The curiosity behind the QR</h2>
+
+    <!-- Context + card image -->
+    <div class="qr-opening">
+      <div class="qr-opening-text">
+        <p class="body">The QR codes printed on the back of every Performance Card were <strong>intentionally left unexplained</strong>. No instructions. No hints during gameplay. Nothing in the rules.</p>
+        <p class="body">The objective: observe how players interpret an unexplained visual cue — and whether emotional investment in the performance they'd built would naturally drive them to explore what lay behind it.</p>
+      </div>
+      <div>
+        <img src="Visual assets Janapada/Janapada Eshwar M.48 2-2.png"
+          alt="Front and back of a Janapada performance card: the front shows the Doddata folk performer illustration and component grid; the reverse carries only a QR code — no label, no instruction"
+          class="qr-card-image" data-lightbox loading="lazy">
+      </div>
+    </div>
+
+    <!-- Hypothesis + Method -->
+    <div class="qr-research-pair">
+      <div>
+        <div class="qr-research-label">Hypothesis</div>
+        <div class="hypothesis-box" style="margin-top:0;">
+          <p class="hypothesis-text">"If players are emotionally invested in the performance they built, they will be naturally motivated to explore what lies behind the QR in the performance card."</p>
+        </div>
+      </div>
+      <div>
+        <div class="qr-research-label">Method</div>
+        <div class="method-items">
+          <div class="method-item-row">18 participants across 3 playtesting sessions</div>
+          <div class="method-item-row">No instructions or hints about the QR codes were provided</div>
+          <div class="method-item-row">Observed behaviour and collected short post-play responses</div>
+          <div class="method-item-row">QR code linked to a curated YouTube playlist of the folk form on the card</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat trio -->
+    <div class="qr-stat-trio">
+      <div class="qr-stat">
+        <div class="qr-stat-num">78<span class="qr-stat-unit">%</span></div>
+        <div class="qr-stat-sub">Scanned the QR</div>
+        <div class="qr-stat-desc">14 of 18 participants — unprompted, out of curiosity alone</div>
+      </div>
+      <div class="qr-stat">
+        <div class="qr-stat-num">85<span class="qr-stat-unit">%</span></div>
+        <div class="qr-stat-sub">Expressed delight</div>
+        <div class="qr-stat-desc">12 of 14 scanners called it "unexpected," "rewarding," or "made culture feel real"</div>
+      </div>
+      <div class="qr-stat">
+        <div class="qr-stat-num">2</div>
+        <div class="qr-stat-sub">Didn't notice</div>
+        <div class="qr-stat-desc">Two participants focused entirely on gameplay and never saw the QR code at all</div>
+      </div>
+    </div>
+
+    <!-- Findings — editorial summary -->
+    <div class="qr-findings" role="table" aria-label="QR scan findings summary">
+      <div class="qr-findings-head" role="row">
+        <span role="columnheader">Player Reaction</span>
+        <span role="columnheader">n</span>
+        <span role="columnheader">% of Participants</span>
+        <span role="columnheader">Observation</span>
+      </div>
+      <div class="qr-findings-row" role="row">
+        <div class="qff-reaction" role="cell">Scanned QR out of curiosity</div>
+        <div class="qff-n" role="cell">14</div>
+        <div class="qff-pct" role="cell">78%</div>
+        <div class="qff-obs" role="cell">Thought it might reveal a score, animation, or hidden bonus</div>
+      </div>
+      <div class="qr-findings-row" role="row">
+        <div class="qff-reaction" role="cell">Ignored QR (didn't notice)</div>
+        <div class="qff-n" role="cell">2</div>
+        <div class="qff-pct" role="cell">11%</div>
+        <div class="qff-obs" role="cell">Focused more on gameplay flow than visual details</div>
+      </div>
+      <div class="qr-findings-row" role="row">
+        <div class="qff-reaction" role="cell">Asked for clarification</div>
+        <div class="qff-n" role="cell">2</div>
+        <div class="qff-pct" role="cell">11%</div>
+        <div class="qff-obs" role="cell">Wanted to confirm if scanning was part of the rules</div>
+      </div>
+      <div class="qr-findings-row" role="row">
+        <div class="qff-reaction" role="cell">Expressed delight post-scan</div>
+        <div class="qff-n" role="cell">12 of 14 scanners</div>
+        <div class="qff-pct" role="cell">85%<span class="qff-pct-note"> of scanners</span></div>
+        <div class="qff-obs" role="cell">Described it as "unexpected," "rewarding," and "made the culture feel real"</div>
+      </div>
+    </div>
+
+    <!-- The reveal -->
+    <div class="qr-reveal-layout">
+      <div>
+        <div class="qr-reveal-label">What they found</div>
+        <p class="qr-reveal-headline">Real music, playing for the folk form they'd just performed</p>
+        <p class="qr-reveal-body">Players who scanned expected a score update, a bonus, or an easter egg. What they found was a curated YouTube playlist of the actual folk music group. The performance card they held and the living culture behind it suddenly felt connected — in a way no explanation could create.</p>
+      </div>
+      <div class="qr-reveal-img">
+        <img src="Visual assets Janapada/Rectangle-1.png"
+          alt="YouTube showing curated playlists for Kamsale, Dollu Kunitha, and Veeraghase folk music — what players discover when scanning the QR code on a Performance Card"
+          data-lightbox loading="lazy">
+      </div>
+    </div>
+
+    <!-- Player reactions — editorial format -->
+    <div class="qr-research-label" style="margin-bottom:24px;">Player reactions</div>
+    <div class="editorial-reactions">
+      <div class="editorial-reaction">
+        <div class="er-mark">"</div>
+        <p class="er-quote">I thought it would show my score, but it played a song — that was such a nice surprise.</p>
+      </div>
+      <div class="editorial-reaction">
+        <div class="er-mark">"</div>
+        <p class="er-quote">I didn't expect real music; it suddenly made the performance feel alive.</p>
+      </div>
+      <div class="editorial-reaction">
+        <div class="er-mark">"</div>
+        <p class="er-quote">It made me want to scan every card to hear how different each performance sounded.</p>
+      </div>
+    </div>
+
+    <!-- UX Insight -->
+    <div class="ux-insight">
+      <div class="ux-insight-label">UX Insight</div>
+      <p class="ux-insight-text">"The unexplained QR design successfully triggered curiosity-led exploration — a key behavioral UX outcome. Instead of instructing users, design can guide exploration through intent and reward — letting discovery itself become part of the experience."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 12 TRANSLATING BEHAVIOUR INTO DESIGN -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">12 — Translating Behaviour into Design</div>
+    <h2 class="h2">Translating Behaviour into Design</h2>
+    <p class="body" style="max-width:680px;margin-bottom:48px;">Playtesting and the QR study produced a set of behavioural insights. Each one was translated directly into a design response — ensuring the game was built around how people actually behave, not how we hoped they would.</p>
+
+    <div class="btd-hero">
+      <img src="Visual assets Janapada/image 354.png"
+        alt="Illustrated journey showing four behaviour-to-design translations: QR curiosity leading to discovery, initial confusion leading to learning through play, cultural unfamiliarity resolved through progressive disclosure, and participation building community engagement"
+        class="btd-hero-img" data-lightbox loading="lazy">
+    </div>
+
+    <div class="btd-flow">
+      <div class="btd-item">
+        <div>
+          <div class="btd-obs-label">Behaviour observed</div>
+          <p class="btd-observation">Curiosity drives exploration</p>
+        </div>
+        <div class="btd-arrow">→</div>
+        <div>
+          <div class="btd-resp-label">Design response</div>
+          <p class="btd-response">Hidden QR-based interactions that reward discovery without demanding it</p>
+        </div>
+      </div>
+      <div class="btd-item">
+        <div>
+          <div class="btd-obs-label">Behaviour observed</div>
+          <p class="btd-observation">Initial hesitation in unfamiliar systems</p>
+        </div>
+        <div class="btd-arrow">→</div>
+        <div>
+          <div class="btd-resp-label">Design response</div>
+          <p class="btd-response">Onboarding through play — the concept reveals itself progressively as the game unfolds, not upfront</p>
+        </div>
+      </div>
+      <div class="btd-item">
+        <div>
+          <div class="btd-obs-label">Behaviour observed</div>
+          <p class="btd-observation">Cultural unfamiliarity creates distance</p>
+        </div>
+        <div class="btd-arrow">→</div>
+        <div>
+          <div class="btd-resp-label">Design response</div>
+          <p class="btd-response">Progressive disclosure instead of explanation — players encounter culture through gameplay mechanics, not reading</p>
+        </div>
+      </div>
+      <div class="btd-item">
+        <div>
+          <div class="btd-obs-label">Behaviour observed</div>
+          <p class="btd-observation">Engagement increases with participation</p>
+        </div>
+        <div class="btd-arrow">→</div>
+        <div>
+          <div class="btd-resp-label">Design response</div>
+          <p class="btd-response">Role-based mechanics requiring active contribution — every player must commit to assembling their performance</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 REFLECTIONS -->
+<section class="s s-cream">
+  <div class="container">
+    <div class="eyebrow">13 — Reflections</div>
+    <h2 class="h2">What the game taught me about UX</h2>
+    <p class="body" style="max-width:680px;margin-bottom:48px;">Building Janapada shifted how I think about design. The game became a testing ground for ideas that apply far beyond board games.</p>
+  </div>
+
+  <div class="reflections-editorial">
+    <div class="ref-row">
+      <div class="ref-row-img-wrap">
+        <img src="Visual assets Janapada/image 173.png"
+          alt="An open mystery box with a question mark, star, and ribbon — representing the moment of unexpected discovery"
+          class="ref-row-img" loading="lazy">
+      </div>
+      <div class="ref-row-text">
+        <div class="ret-num">01</div>
+        <div class="ret-name">Surprise Strengthens Engagement</div>
+        <p class="ret-desc">The QR feature and Booster Cards created unexpected emotional highs — moments of genuine delight that made players want to play again. Designing for surprise, not just utility, builds repeat engagement in ways that smooth, predictable experiences cannot.</p>
+      </div>
+    </div>
+    <div class="ref-row">
+      <div class="ref-row-text">
+        <div class="ret-num">02</div>
+        <div class="ret-name">Cultural Design Needs Participation, Not Explanation</div>
+        <p class="ret-desc">Folk culture can't be taught; it must be experienced. Once the game became the primary interface for cultural encounter — rather than a presentation or a pamphlet — the connection players felt was qualitatively different. Richer. More durable.</p>
+      </div>
+      <div class="ref-row-img-wrap">
+        <img src="Visual assets Janapada/image 166.png"
+          alt="Illustration of a diverse group of people coming together — representing cultural participation and community"
+          class="ref-row-img" loading="lazy">
+      </div>
+    </div>
+    <div class="ref-row">
+      <div class="ref-row-img-wrap">
+        <img src="Visual assets Janapada/image 175.png"
+          alt="Illustration of a person with a glowing brain surrounded by many arrows — representing cognitive overload and complexity"
+          class="ref-row-img" loading="lazy">
+      </div>
+      <div class="ref-row-text">
+        <div class="ret-num">03</div>
+        <div class="ret-name">Cognitive Load Should Evolve, Not Overwhelm</div>
+        <p class="ret-desc">Complexity that unfolds gradually keeps users motivated and curious. Front-loading all the rules killed early engagement. Revealing mechanics layer by layer — through doing, not reading — kept the learning curve from feeling like a wall.</p>
+      </div>
+    </div>
+    <div class="ref-row">
+      <div class="ref-row-text">
+        <div class="ret-num">04</div>
+        <div class="ret-name">Storytelling as a Tool</div>
+        <p class="ret-desc">When there are characters, a setting and a concept that doesn't lecture but instead invites you into a world — people reach and remember faster. The folk performers on the cards weren't illustrations. They were characters with histories.</p>
+      </div>
+      <div class="ref-row-img-wrap">
+        <img src="Visual assets Janapada/image 179.png"
+          alt="An open book with letters and words floating upward — representing the power of narrative and storytelling"
+          class="ref-row-img" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 NEXT STEPS -->
+<section class="s s-white">
+  <div class="container">
+    <div class="eyebrow">14 — Next Steps</div>
+    <h2 class="h2">Expanding the experience beyond the board</h2>
+
+    <div class="ns-grid">
+
+      <!-- 01 Folk Music Database -->
+      <div class="ns-card">
+        <div class="ns-card-heading">Folk Music Database &amp; Digital Archive</div>
+        <div class="ns-card-body">
+          <img src="Visual assets Janapada/image 325.png"
+            alt="Pink magnifying glass over a computer — representing research and digital archiving of folk music"
+            class="ns-card-img" data-lightbox loading="lazy">
+          <ul class="ns-card-points">
+            <li>Create a dedicated database of the songs used in the game.</li>
+            <li>Record them in high-quality audio, preserving authenticity and accessibility.</li>
+            <li>Each artist or group featured in the game could have a profile page with stories, videos, and song origins.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 02 Digital Companion Website -->
+      <div class="ns-card">
+        <div class="ns-card-heading">Digital Companion Website</div>
+        <div class="ns-card-body">
+          <img src="Visual assets Janapada/Screenshot 2026-07-08 110439.png"
+            alt="Karnataka folk musician alongside broken 404-error browser windows — representing the digital inaccessibility of folk culture"
+            class="ns-card-img" data-lightbox loading="lazy">
+          <ul class="ns-card-points">
+            <li>A web platform where players can explore the folk groups featured in the game.</li>
+            <li>Includes interactive maps showing regions, musical styles, and instruments.</li>
+            <li>Enables players to listen, learn, and connect with real artists beyond gameplay.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 03 Playtesting with Real Folk Musicians -->
+      <div class="ns-card">
+        <div class="ns-card-heading">Playtesting with Real Folk Musicians</div>
+        <div class="ns-card-body">
+          <img src="Visual assets Janapada/image 146.png"
+            alt="Two Karnataka folk musicians with traditional drums and string instruments"
+            class="ns-card-img" data-lightbox loading="lazy">
+          <ul class="ns-card-points">
+            <li>Conduct sessions directly with folk performers to capture subtle nuances we may have missed.</li>
+            <li>Their feedback could shape new performance cards or game modes, adding authenticity.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 04 Educational Integration -->
+      <div class="ns-card">
+        <div class="ns-card-heading">Educational Integration</div>
+        <div class="ns-card-body">
+          <img src="Visual assets Janapada/image 175-1.png"
+            alt="Isometric illustration of a presenter teaching to students from a digital screen — representing educational integration"
+            class="ns-card-img" data-lightbox loading="lazy">
+          <ul class="ns-card-points">
+            <li>Collaborate with schools or cultural organizations to use the game as a heritage education tool.</li>
+            <li>Develop workshops where players can learn by playing and performing together.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="next-closing">
+      <div class="next-closing-label">The vision</div>
+      <p class="next-closing-text">"The goal is to evolve Janapada from a game into a living cultural platform — <strong>one that keeps folk art relevant, discoverable, and celebrated.</strong>"</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT NAV -->
+<div class="project-nav-wrapper">
+  <div class="container">
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="case-study-v5.html" class="pnav-link pnav-prev">
+        <span class="pnav-direction">← Previous</span>
+        <span class="pnav-title">Juno</span>
+      </a>
+      <a href="index-cards-v3.html" class="pnav-all">All Projects</a>
+      <div class="pnav-spacer"></div>
+    </nav>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lb-overlay" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" id="lb-close" aria-label="Close">×</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+</div>
+
+<script>
+(function () {
+  var toggle = document.getElementById('gnav-toggle');
+  var menu = document.getElementById('gnav-links');
+  if (toggle && menu) {
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('#gnav') && menu.classList.contains('is-open')) {
+        menu.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+  var overlay = document.getElementById('lb-overlay');
+  var lbImg = document.getElementById('lb-img');
+  var lbClose = document.getElementById('lb-close');
+  document.querySelectorAll('[data-lightbox]').forEach(function (img) {
+    img.addEventListener('click', function () {
+      lbImg.src = img.src; lbImg.alt = img.alt;
+      overlay.classList.add('is-open');
+    });
+  });
+  function closeLb() { overlay.classList.remove('is-open'); lbImg.src = ''; }
+  lbClose.addEventListener('click', closeLb);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeLb(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+})();
+</script>
+</body>
+</html>

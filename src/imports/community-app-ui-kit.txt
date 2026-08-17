@@ -1,0 +1,571 @@
+Create a complete mobile UI design system and high-fidelity prototype for a community networking app designed for Indian homemaker entrepreneurs.
+
+The platform helps women who run small home businesses (baking, pickles, tailoring, handmade crafts, homemade meals, beauty services) connect with each other, share knowledge, collaborate, and manage relationships with customers.
+
+The interface must emphasize community, trust, and simplicity, not a competitive marketplace.
+
+Design for mobile iPhone 14 (390x844).
+
+Visual Style Direction
+
+The aesthetic must match the green visual language used in the research insight slides of the first project in the portfolio.
+
+Design should feel:
+
+Warm
+Friendly
+Supportive
+Community-driven
+Minimal yet expressive
+
+Use:
+
+• White backgrounds
+• Soft green highlights
+• Rounded cards
+• Soft shadows
+• Friendly illustrations of women entrepreneurs
+
+Avoid:
+
+• Corporate fintech aesthetics
+• Dark interfaces
+• Aggressive colors
+
+The app should feel like a neighborhood women's support network.
+
+Color System
+
+Primary Green
+#3BAE84
+
+Secondary Green
+#5DC9A3
+
+Accent Green
+#2F8F6B
+
+Light Green Background
+#EAF7F2
+
+Soft Highlight Green
+#D8F3E6
+
+Neutral White
+#FFFFFF
+
+Light Grey
+#F5F5F5
+
+Text Primary
+#1A1A1A
+
+Text Secondary
+#666666
+
+Notification Accent
+#FFB85C
+
+Use green for:
+
+• primary actions
+• highlights
+• active states
+
+Typography System
+
+Font: Inter
+
+Heading Large
+24px Semibold
+
+Heading Medium
+20px Semibold
+
+Body Text
+16px Regular
+
+Caption
+13px Medium
+
+Labels
+14px Medium
+
+Maintain large readable typography for accessibility.
+
+Layout System
+
+Use Auto Layout for all components and screens.
+
+Spacing scale:
+
+4px
+8px
+16px
+24px
+32px
+
+Corner radius:
+
+Cards: 16px
+Buttons: 12px
+Inputs: 10px
+
+Soft shadow:
+
+0 6px 20px rgba(0,0,0,0.05)
+
+Component Library
+
+Create reusable components:
+
+Buttons
+
+Primary Button
+Green background
+White text
+Rounded corners
+
+Secondary Button
+White background
+Green border
+
+Ghost Button
+Green text only
+
+Cards
+
+Rounded white cards
+Soft shadow
+Padding 16px
+
+Used for:
+
+• posts
+• people
+• courses
+• collaborations
+
+Input Fields
+
+Rounded rectangle
+Soft grey border
+
+States:
+
+Default
+Focused
+Error
+
+Tags / Chips
+
+Pill-shaped
+Light green background
+
+Examples:
+
+Packaging
+Pricing
+Suppliers
+Marketing
+
+Profile Cards
+
+Profile image
+Name
+Business type
+Distance
+
+Buttons:
+
+Connect
+Message
+
+Navigation
+
+Bottom navigation bar:
+
+Home
+Connections
+Collaborate
+Learning
+My Business
+
+Icons should be simple line icons.
+
+Active state = green.
+
+Illustration Style
+
+Use flat friendly illustrations of women entrepreneurs:
+
+• baking
+• tailoring
+• crafting
+• collaborating
+
+Color palette should integrate with the green UI system.
+
+Screens to Generate
+
+Create the following end-to-end product screens.
+
+Screen 1
+
+Login / Welcome
+
+Illustration of women entrepreneurs collaborating.
+
+Title:
+
+Grow Your Home Business Together
+
+Subtitle:
+
+Connect with other homemakers, share ideas, and grow your business.
+
+Buttons:
+
+Continue with Phone Number
+Continue with WhatsApp
+
+Screen 2
+
+OTP Verification
+
+Title
+
+Enter Verification Code
+
+4 OTP boxes
+
+Verify button
+
+Resend OTP link
+
+Screen 3
+
+Onboarding Welcome
+
+Illustration
+
+Text:
+
+Welcome to the Community
+
+Description:
+
+A place where homemakers support each other in building businesses.
+
+Button:
+
+Start Setup
+
+Screen 4
+
+Choose Business Category
+
+Grid cards:
+
+Home Baking
+Pickles & Snacks
+Tailoring
+Handmade Crafts
+Beauty Services
+Homemade Meals
+Other
+
+Each card contains:
+
+small illustration
+category name
+
+Screen 5
+
+Business Stage Selection
+
+Three large cards:
+
+Starting an Idea
+
+Growing My Business
+
+Running an Established Business
+
+Highlight selected card in green.
+
+Screen 6
+
+Location Setup
+
+Title:
+
+Find people near you
+
+Fields:
+
+City
+Area / Pincode
+
+Toggle:
+
+Show my business locally
+
+Screen 7
+
+Create Profile
+
+Fields:
+
+Name
+Business Name
+Short Description
+Profile Photo Upload
+
+Optional:
+
+Upload product photo
+
+Button:
+
+Join Community
+
+Screen 8
+
+Home Feed
+
+Top bar:
+
+Search bar
+Notification icon
+
+Sections:
+
+Ask the Community
+
+Large green button
+Ask a Question
+
+Trending Discussions
+
+Discussion cards
+
+Nearby Entrepreneurs
+
+Horizontal scroll profile cards
+
+Screen 9
+
+Ask Question
+
+Title
+
+Ask the Community
+
+Large text input field
+
+Tag selection:
+
+Packaging
+Pricing
+Suppliers
+Marketing
+Legal
+
+Upload photo option
+
+Post Question button
+
+Screen 10
+
+Discussion Thread
+
+Display:
+
+Original question
+
+Replies list
+
+Each reply card includes:
+
+Profile
+Answer
+Helpful button
+
+Reply input field at bottom.
+
+Screen 11
+
+Connections Screen
+
+Sections:
+
+Suggested Connections
+
+Profile cards showing:
+
+Profile photo
+Business type
+Distance
+
+Buttons:
+
+Connect
+Message
+
+Screen 12
+
+Chat Screen
+
+Messaging interface.
+
+Chat bubbles.
+
+Actions:
+
+Send photo
+Voice message
+Share supplier
+
+WhatsApp quick button.
+
+Screen 13
+
+Collaboration Hub
+
+Sections:
+
+Collaboration Requests
+
+Example card:
+
+Looking for photographer for product photos
+
+Festival Partnerships
+
+Example:
+
+Diwali hamper collaboration
+
+Bulk Supplier Groups
+
+Example:
+
+Bulk packaging order for bakers
+
+Screen 14
+
+Learning Hub
+
+Categories:
+
+Marketing
+Pricing
+Social Media
+Packaging
+Finance
+
+Course cards with:
+
+Thumbnail
+Title
+Duration
+
+Example:
+
+How to price homemade food
+
+Screen 15
+
+Customer Relationship Manager
+
+Title:
+
+My Customers
+
+Customer cards showing:
+
+Customer name
+Orders
+Last purchase
+
+Customer profile shows:
+
+Preferences
+Order history
+Notes
+
+Buttons:
+
+Message
+Send Reminder
+
+Screen 16
+
+My Business Dashboard
+
+Stats cards:
+
+Orders this month
+Customers
+Revenue estimate
+
+Quick actions:
+
+Add Product
+Add Customer
+Share Catalogue
+
+Screen 17
+
+Notifications
+
+List:
+
+Replies to questions
+Connection requests
+Collaboration invites
+Learning updates
+
+Screen 18
+
+Profile Screen
+
+Profile photo
+Business description
+Products
+
+Sections:
+
+My Posts
+My Questions
+My Collaborations
+
+Edit profile button.
+
+Prototype Flows
+
+Create clickable prototype flows:
+
+Login → OTP → Onboarding → Home
+
+Home → Ask Question → Discussion
+
+Home → Connections → Chat
+
+Home → Collaborate → Collaboration details
+
+Home → Learning → Course page
+
+Home → My Business Dashboard
+
+Final Output
+
+Generate:
+
+• complete design system
+• reusable components
+• high fidelity UI screens
+• mobile layout
+• consistent green visual identity
+• prototype interactions
