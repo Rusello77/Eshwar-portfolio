@@ -227,10 +227,11 @@ body {
   }
 }
 @media (max-width: 900px) {
-  .hero-photo-col { width: 220px; transform: rotate(-1deg); }
+  .hero-inner { display: flex; flex-direction: column; }
+  .hero-kicker { order: 0; }
+  .hero-photo-col { order: 1; width: 80%; max-width: 320px; margin: 8px auto 40px; transform: rotate(-1deg); }
+  .hero-text { order: 2; }
   .hero-photo-blob { display: none; }
-  .note-layout { grid-template-columns: 1fr; gap: 32px; }
-  .note-aside { max-width: 300px; padding-top: 0; }
 }
 
 /* ─── SECTION SHELL ──────────────────────────────────── */
@@ -332,6 +333,11 @@ body {
   font-size: 14px;
   line-height: 1.7;
   color: var(--mid);
+}
+@media (max-width: 900px) {
+  .note-layout { grid-template-columns: 1fr; gap: 32px; }
+  .note-text { min-width: 0; }
+  .note-aside { max-width: 300px; padding-top: 0; min-width: 0; }
 }
 
 /* ─── MOVEMENT 3 — THE INDEX ──────────────────────────── */
@@ -501,10 +507,9 @@ body {
   .section { padding: 64px 0; }
   .hiw-item { grid-template-columns: 1fr; gap: 8px; }
   .tool-group-row { flex-direction: column; gap: 10px; }
+  .tool-group-cat { flex: none; }
   .closing { padding: 64px 0; }
   .closing-frame { padding: 56px 32px; }
-}
-@media (max-width: 640px) {
   .gnav-links {
     display: none;
     position: fixed;
@@ -520,6 +525,8 @@ body {
   .gnav-links.is-open { display: flex; }
   .gnav-link { padding: 14px 24px; }
   .gnav-hamburger { display: flex; }
+}
+@media (max-width: 640px) {
   .pull-quote { padding-left: 20px; }
   .ledger-row { flex-direction: column; align-items: flex-start; gap: 4px; }
   .ledger-row-meta { text-align: left; }
@@ -560,11 +567,12 @@ body {
   <div class="container">
     <div class="hero-inner">
 
+      <div class="hero-kicker anim-eyebrow">
+        <span class="hero-kicker-dot" aria-hidden="true"></span>
+        About
+      </div>
+
       <div class="hero-text">
-        <div class="hero-kicker anim-eyebrow">
-          <span class="hero-kicker-dot" aria-hidden="true"></span>
-          About
-        </div>
         <h1 class="anim-heading">Hello, I'm <span class="hero-name">Eshwar<svg class="hero-name-mark" viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="hero-name-mark-path" pathLength="1" d="M2 7C20 2 40 10 60 6C80 2 100 9 118 5" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span>.</h1>
         <p class="hero-bio anim-sub">
           I'm a UI/UX Designer with a Bachelor's degree in Interaction Design from

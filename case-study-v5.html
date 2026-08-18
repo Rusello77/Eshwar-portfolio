@@ -326,6 +326,7 @@ body {
 
 @media (max-width: 768px) {
   .observations-grid { grid-template-columns: 1fr; }
+  .principles-grid { grid-template-columns: 1fr; }
 }
 
 /* ─── PRINCIPLES GRID ───────────────────────────────── */
@@ -502,8 +503,13 @@ body {
 .annotation-item.single-col .annotation-key strong { color: var(--dark); font-weight: 600; }
 
 @media (max-width: 640px) {
-  .screenshot-pair { grid-template-columns: 1fr; }
+  .screenshot-pair { grid-template-columns: 1fr !important; }
   .pair-caption { grid-column: 1; }
+  .screenshot-note-row {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .screenshot-note-row > div:last-child { padding-top: 0 !important; }
 }
 
 /* ─── CHAT SEQUENCE ─────────────────────────────────── */
@@ -1151,7 +1157,7 @@ strong { font-weight: 600; }
 .pnav-all:hover { color: var(--dark); border-color: var(--dark); }
 
 /* ─── RESPONSIVE (shared) ────────────────────────────── */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .gnav-links {
     display: none;
     position: fixed;
@@ -1716,7 +1722,7 @@ strong { font-weight: 600; }
         </div>
 
         <!-- Before connection row -->
-        <div style="display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: start; max-width: 740px; margin-top: 32px;">
+        <div class="screenshot-note-row" style="display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: start; max-width: 740px; margin-top: 32px;">
           <div>
             <div class="pair-item-label" style="margin-bottom: 10px;">Before connection</div>
             <img
@@ -1754,7 +1760,7 @@ strong { font-weight: 600; }
         </div>
 
         <!-- After connection row -->
-        <div style="display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: start; max-width: 740px; margin-top: 40px;">
+        <div class="screenshot-note-row" style="display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: start; max-width: 740px; margin-top: 40px;">
           <div>
             <div class="pair-item-label" style="margin-bottom: 10px;">After connection</div>
             <img
