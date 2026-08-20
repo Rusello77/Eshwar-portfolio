@@ -688,6 +688,20 @@ body {
   .tl-step { padding-top: 0; padding-bottom: 28px; }
   .tl-step:last-child { text-align: left; }
   .tl-step:last-child .tl-dot { left: -20px; right: auto; }
+  .rag-table { table-layout: fixed; }
+  .rag-table th, .rag-table td {
+    padding: 8px 6px; font-size: 11px; line-height: 1.4;
+    white-space: normal; word-wrap: break-word; overflow-wrap: break-word;
+  }
+  .eval-table { table-layout: fixed; }
+  .eval-table th, .eval-table td {
+    padding: 6px 4px; font-size: 9.5px; line-height: 1.3;
+    white-space: normal; word-wrap: break-word; overflow-wrap: break-word;
+  }
+  .eval-table td:first-child { white-space: normal; }
+  .dot { width: 6px; height: 6px; }
+  .dot-rating { gap: 2px; margin-bottom: 3px; }
+  .dot-note { font-size: 8.5px; }
 }
 @media (max-width: 560px) {
   .spotlights-grid { grid-template-columns: 1fr; }
