@@ -111,9 +111,21 @@ body {
   cursor: pointer; transition: background 0.2s ease;
 }
 .send-btn:hover { background: var(--green-dark); }
+.send-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+.send-btn:disabled:hover { background: var(--green); }
 .send-btn-arrow { display: inline-block; transition: transform 0.2s ease; }
 .send-btn:hover .send-btn-arrow { transform: translateX(3px); }
 .form-note { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--mid); margin-top: 18px; }
+.form-status {
+  display: none; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 500; margin-top: 14px;
+  opacity: 0; transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.form-status.is-visible { display: flex; opacity: 1; transform: translateY(0); }
+.form-status.is-loading { color: var(--mid); }
+.form-status.is-success { color: var(--green-dark); }
+.form-status.is-error { color: #94423B; }
 
 /* ─── OTHER WAYS TO CONNECT ───────────────────────────── */
 .connect-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -257,7 +269,7 @@ body {
     <h2 class="section-label">Send a message</h2>
     <p class="section-sub">Fill out the form below and I'll get back to you as soon as I can.</p>
 
-    <form action="mailto:meshwar768@gmail.com" method="post" enctype="text/plain">
+    <form id="contact-form" action="https://formspree.io/f/mkjwyznq" method="POST">
       <div class="form-grid">
         <div class="field">
           <label class="field-label" for="cf-name">Name <span class="field-required">*</span></label>
@@ -272,14 +284,15 @@ body {
         <label class="field-label" for="cf-message">Message <span class="field-required">*</span></label>
         <textarea class="field-textarea" id="cf-message" name="message" placeholder="Tell me about the opportunity or project" required></textarea>
       </div>
-      <button type="submit" class="send-btn">
-        Send message
+      <button type="submit" class="send-btn" id="send-btn">
+        <span class="send-btn-label">Send message</span>
         <span class="send-btn-arrow" aria-hidden="true">→</span>
       </button>
       <div class="form-note">
         <svg width="12" height="12" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="4" y="9" width="12" height="8" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M6.5 9V6.5a3.5 3.5 0 0 1 7 0V9" stroke="currentColor" stroke-width="1.4"/></svg>
         Your information is safe and will never be shared.
       </div>
+      <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
     </form>
   </div>
 </section>
@@ -361,6 +374,50 @@ body {
       }
     });
   }
+})();
+
+(function () {
+  var form   = document.getElementById('contact-form');
+  var btn    = document.getElementById('send-btn');
+  var label  = btn ? btn.querySelector('.send-btn-label') : null;
+  var status = document.getElementById('form-status');
+  if (!form || !btn || !label || !status) return;
+
+  function setStatus(kind, message) {
+    status.className = 'form-status is-visible is-' + kind;
+    status.textContent = message;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    btn.disabled = true;
+    label.textContent = 'Sending…';
+    setStatus('loading', 'Sending your message…');
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (response) {
+      if (response.ok) {
+        setStatus('success', "Thanks — your message is on its way. I'll get back to you soon.");
+        form.reset();
+      } else {
+        return response.json().then(function (data) {
+          var message = (data && data.errors && data.errors.length)
+            ? data.errors.map(function (err) { return err.message; }).join(', ')
+            : 'Something went wrong. Please try again or email me directly.';
+          setStatus('error', message);
+        });
+      }
+    }).catch(function () {
+      setStatus('error', 'Something went wrong. Please check your connection and try again.');
+    }).finally(function () {
+      btn.disabled = false;
+      label.textContent = 'Send message';
+    });
+  });
 })();
 </script>
 
