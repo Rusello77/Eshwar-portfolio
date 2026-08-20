@@ -433,6 +433,10 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--white); c
   .qr-stat-trio { grid-template-columns: 1fr; }
   .qr-reveal-layout { grid-template-columns: 1fr; }
   .ref-row { grid-template-columns: 1fr; }
+  .reflections-editorial .ref-row:nth-child(1) .ref-row-text,
+  .reflections-editorial .ref-row:nth-child(3) .ref-row-text {
+    order: -1;
+  }
   .next-aspiration { grid-template-columns: 1fr; gap: 12px; }
   .editorial-reaction { grid-template-columns: 1fr; gap: 8px; }
 }
